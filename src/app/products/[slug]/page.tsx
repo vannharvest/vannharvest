@@ -2,12 +2,20 @@ import { notFound } from 'next/navigation';
 import { getProductBySlug, Product } from '@/lib/products';
 import Link from 'next/link';
 
-export default async function ProductDetailPage({ params }: { params: { slug: string } }) {
+interface PageProps {
+  params: {
+    slug: string
+  }
+}
+
+export default async function ProductDetailPage({ params }: PageProps) {
   const product = getProductBySlug(params.slug);
 
   if (!product) {
     notFound();
   }
+
+  const relatedProducts = await getRelatedProducts(product.id);
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -133,7 +141,7 @@ export default async function ProductDetailPage({ params }: { params: { slug: st
         <div className="mt-16">
           <h2 className="text-2xl font-bold text-gray-900 mb-8">You May Also Like</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {(await getRelatedProducts(product.id)).map((relatedProduct: Product) => (
+            {relatedProducts.map((relatedProduct: Product) => (
               <div key={relatedProduct.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
                 <div className="h-48 bg-amber-100 flex items-center justify-center">
                   <div className="text-amber-800">
