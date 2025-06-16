@@ -25,7 +25,7 @@ export default function OurStorySection() {
         {/* Center Content */}
         <div className="text-center lg:text-left max-w-2xl">
           <h2 className="text-4xl md:text-5xl font-bold text-[#2d4725] mb-4 leading-snug capitalize">
-            More than a harvest-<br /> it's a legacy of care.
+            More than a harvest-<br /> it&apos;s a legacy of care.
           </h2>
           <p className="text-xl md:text-2xl font-serif text-[#1c3d1c] leading-relaxed mb-6">
             Every raisin we deliver carries a story-<br className="hidden md:block" />

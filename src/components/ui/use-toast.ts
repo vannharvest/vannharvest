@@ -1,7 +1,5 @@
 import * as React from "react"
 import {
-  Toast as ToastPrimitive,
-  ToastAction as ToastActionPrimitive,
   type ToastActionElement,
   type ToastProps as ToastPrimitiveProps,
 } from "@/components/ui/toast"
@@ -9,9 +7,9 @@ import {
 const TOAST_LIMIT = 1
 const TOAST_REMOVE_DELAY = 1000000
 
-type ToasterToast = ToastPrimitiveProps & {
+interface ToasterToast extends Omit<ToastPrimitiveProps, 'title'> {
   id: string
-  title?: React.ReactNode
+  title?: string
   description?: React.ReactNode
   action?: ToastActionElement
 }
@@ -39,15 +37,15 @@ type Action =
     }
   | {
       type: ActionType["UPDATE_TOAST"]
-      toast: Partial<ToasterToast>
+      toast: Partial<ToasterToast> & { id: string }
     }
   | {
       type: ActionType["DISMISS_TOAST"]
-      toastId?: ToasterToast['id']
+      toastId?: string
     }
   | {
       type: ActionType["REMOVE_TOAST"]
-      toastId?: ToasterToast['id']
+      toastId?: string
     }
 
 interface State {
@@ -138,16 +136,33 @@ function dispatch(action: Action) {
   })
 }
 
-type Toast = Omit<ToasterToast, 'id'>
-
-function toast({ ...props }: Toast) {
+function toast(props: Omit<ToasterToast, 'id'>) {
   const id = genId()
 
-  const update = (props: ToasterToast) =>
+  const update = (updateProps: Partial<ToasterToast>) => {
+    // Create a new toast object with all required properties
+    const toastUpdate = {
+      ...props,
+      ...updateProps,
+      id,
+      title: (updateProps.title ?? props.title ?? '') as string,
+      description: updateProps.description ?? props.description,
+      action: updateProps.action ?? props.action,
+      variant: (updateProps.variant ?? props.variant ?? 'default') as 'default' | 'destructive',
+      className: updateProps.className ?? props.className,
+    };
+    
+    // Create a new object with only the properties that ToasterToast expects
+    const typedToast: ToasterToast = {
+      ...toastUpdate,
+      variant: toastUpdate.variant,
+    } as const;
+    
     dispatch({
-      type: "UPDATE_TOAST",
-      toast: { ...props, id },
-    })
+      type: 'UPDATE_TOAST',
+      toast: typedToast,
+    });
+  }
   const dismiss = () => dispatch({ type: "DISMISS_TOAST", toastId: id })
 
   dispatch({

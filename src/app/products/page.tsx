@@ -1,8 +1,7 @@
 import Link from 'next/link';
-import { products, getFeaturedProducts } from '@/lib/products';
+import { products } from '@/lib/products';
 
 export default function ProductsPage() {
-  const featuredProducts = getFeaturedProducts();
   
   return (
     <div className="min-h-screen bg-gray-50">

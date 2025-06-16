@@ -1,8 +1,8 @@
 import { notFound } from 'next/navigation';
 import { getProductBySlug, Product } from '@/lib/products';
-import Image from 'next/image';
+import Link from 'next/link';
 
-export default function ProductDetailPage({ params }: { params: { slug: string } }) {
+export default async function ProductDetailPage({ params }: { params: { slug: string } }) {
   const product = getProductBySlug(params.slug);
 
   if (!product) {
@@ -18,12 +18,12 @@ export default function ProductDetailPage({ params }: { params: { slug: string }
             <ol className="flex items-center space-x-4">
               <li>
                 <div className="flex items-center">
-                  <a href="/" className="text-gray-400 hover:text-gray-500">
+                  <Link href="/" className="text-gray-400 hover:text-gray-500">
                     <svg className="flex-shrink-0 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                       <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
                     </svg>
                     <span className="sr-only">Home</span>
-                  </a>
+                  </Link>
                 </div>
               </li>
               <li>
@@ -31,7 +31,7 @@ export default function ProductDetailPage({ params }: { params: { slug: string }
                   <svg className="flex-shrink-0 h-5 w-5 text-gray-300" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
                     <path d="M5.555 17.776l8-16 .894.448-8 16-.894-.448z" />
                   </svg>
-                  <a href="/products" className="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700">Products</a>
+                  <Link href="/products" className="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700">Products</Link>
                 </div>
               </li>
               <li>
@@ -96,7 +96,7 @@ export default function ProductDetailPage({ params }: { params: { slug: string }
             </div>
 
             <div className="mt-8">
-              <a
+              <Link
                 href="/contact"
                 className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-amber-600 hover:bg-amber-700"
               >
@@ -104,7 +104,7 @@ export default function ProductDetailPage({ params }: { params: { slug: string }
                 <svg className="ml-2 -mr-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
                 </svg>
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -133,7 +133,7 @@ export default function ProductDetailPage({ params }: { params: { slug: string }
         <div className="mt-16">
           <h2 className="text-2xl font-bold text-gray-900 mb-8">You May Also Like</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {getRelatedProducts(product.id).map((relatedProduct) => (
+            {(await getRelatedProducts(product.id)).map((relatedProduct: Product) => (
               <div key={relatedProduct.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
                 <div className="h-48 bg-amber-100 flex items-center justify-center">
                   <div className="text-amber-800">
@@ -143,7 +143,7 @@ export default function ProductDetailPage({ params }: { params: { slug: string }
                 <div className="p-6">
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">{relatedProduct.name}</h3>
                   <p className="text-gray-600 text-sm mb-4 line-clamp-2">{relatedProduct.description}</p>
-                  <a
+                  <Link
                     href={`/products/${relatedProduct.slug}`}
                     className="text-amber-600 hover:text-amber-700 text-sm font-medium inline-flex items-center"
                   >
@@ -151,7 +151,7 @@ export default function ProductDetailPage({ params }: { params: { slug: string }
                     <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
                     </svg>
-                  </a>
+                  </Link>
                 </div>
               </div>
             ))}
@@ -166,7 +166,7 @@ export default function ProductDetailPage({ params }: { params: { slug: string }
               Contact us today to discuss your requirements and get a competitive quote.
             </p>
             <div className="mt-8">
-              <a
+              <Link
                 href="/contact"
                 className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-amber-700 bg-white hover:bg-amber-50"
               >
@@ -174,7 +174,7 @@ export default function ProductDetailPage({ params }: { params: { slug: string }
                 <svg className="ml-2 -mr-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
                 </svg>
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -184,8 +184,8 @@ export default function ProductDetailPage({ params }: { params: { slug: string }
 }
 
 // Helper function to get related products (excluding the current product)
-function getRelatedProducts(currentProductId: string): Product[] {
-  const allProducts = require('@/lib/products').products as Product[];
+async function getRelatedProducts(currentProductId: string): Promise<Product[]> {
+  const { products: allProducts } = await import('@/lib/products');
   return allProducts
     .filter((product) => product.id !== currentProductId)
     .slice(0, 3); // Return up to 3 related products

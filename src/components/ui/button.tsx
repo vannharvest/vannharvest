@@ -28,8 +28,11 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((
 ) => {
   // Create a type-safe motion button with proper props
   const MotionButton = motion.button as React.ForwardRefExoticComponent<
-    Omit<HTMLMotionProps<"button">, "onDrag"> & 
-    React.RefAttributes<HTMLButtonElement>
+    Omit<React.HTMLAttributes<HTMLButtonElement> & 
+         React.ButtonHTMLAttributes<HTMLButtonElement> & 
+         React.RefAttributes<HTMLButtonElement> &
+         { whileHover?: any; whileTap?: any },
+    "onDrag">
   >
 
   return (
@@ -58,7 +61,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((
       whileHover={{ scale: 1.03 }}
       whileTap={{ scale: 0.98 }}
       disabled={isLoading || props.disabled}
-      {...props as any} // Using any to bypass remaining type issues
+      {...props}
     >
       {isLoading ? (
         <>

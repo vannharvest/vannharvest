@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 interface ProductCardProps {
   name: string;
@@ -11,9 +12,15 @@ interface ProductCardProps {
 export default function ProductCard({ name, description, image, slug, hsnCode }: ProductCardProps) {
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
-      <div className="h-48 bg-amber-100 flex items-center justify-center">
+      <div className="relative h-48 bg-amber-100 flex items-center justify-center">
         {image ? (
-          <img src={image} alt={name} className="h-full w-full object-cover" />
+          <Image 
+            src={image} 
+            alt={name} 
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          />
         ) : (
           <span className="text-amber-800">Product Image</span>
         )}

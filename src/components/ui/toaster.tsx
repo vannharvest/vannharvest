@@ -11,14 +11,6 @@ import {
 } from "@/components/ui/toast"
 import { useToast } from "@/components/ui/use-toast"
 
-interface ToastProps {
-  id: string
-  title?: string
-  description?: string
-  action?: React.ReactNode
-  [key: string]: any
-}
-
 export function Toaster() {
   const { toasts } = useToast()
 

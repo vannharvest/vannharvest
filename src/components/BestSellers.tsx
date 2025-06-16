@@ -48,12 +48,12 @@ export default function BestSellers() {
         {/* Header */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 px-4">
           <h2 className="text-3xl md:text-4xl font-semibold text-gray-900 mb-4 md:mb-0">Best Sellers</h2>
-          <a
+          <Link
             href="/products"
             className="inline-block bg-white border-2 border-amber-600 text-amber-600 rounded-full px-6 py-2.5 text-sm font-semibold hover:bg-amber-600 hover:text-white transition-all duration-300 shadow-sm"
           >
             View All Products
-          </a>
+          </Link>
         </div>
 
         {/* Product Grid */}

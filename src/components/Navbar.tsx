@@ -2,11 +2,9 @@
 
 
 import Link from 'next/link';
-import { Facebook, Instagram, Twitter, Search, Heart } from 'lucide-react';
-import { useState } from 'react';
+import { Facebook, Instagram, Twitter } from 'lucide-react';
 
 export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <header className="w-full px-4 pt-4 mb-4">
@@ -38,16 +36,6 @@ export default function Navbar() {
           </Link>
         </div>
       </div>
-
-      {/* Mobile Nav (optional dropdown on toggle) */}
-      {isOpen && (
-        <div className="md:hidden mt-4 bg-white rounded-lg p-4 shadow-md space-y-3">
-          <Link href="/" className="block text-orange-600">home</Link>
-          <Link href="/shop" className="block text-orange-600">shop</Link>
-          <Link href="/about" className="block text-orange-600">about</Link>
-          <Link href="/blog" className="block text-orange-600">blog</Link>
-        </div>
-      )}
       </div>
     </header>
   );
