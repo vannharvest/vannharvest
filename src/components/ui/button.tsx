@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { motion, type HTMLMotionProps } from "framer-motion"
+import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
 
 type ButtonVariant = "default" | "destructive" | "outline" | "secondary" | "ghost" | "link"
@@ -31,7 +31,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((
     Omit<React.HTMLAttributes<HTMLButtonElement> & 
          React.ButtonHTMLAttributes<HTMLButtonElement> & 
          React.RefAttributes<HTMLButtonElement> &
-         { whileHover?: any; whileTap?: any },
+         { whileHover?: React.CSSProperties; whileTap?: React.CSSProperties },
     "onDrag">
   >
 

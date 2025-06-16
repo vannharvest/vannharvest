@@ -14,6 +14,7 @@ interface ToasterToast extends Omit<ToastPrimitiveProps, 'title'> {
   action?: ToastActionElement
 }
 
+// Using a const assertion to ensure type safety
 const actionTypes = {
   ADD_TOAST: "ADD_TOAST",
   UPDATE_TOAST: "UPDATE_TOAST",
