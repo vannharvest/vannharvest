@@ -3,10 +3,10 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Product, getProductBySlug } from '@/lib/products';
 
-export default async function ProductDetailPage({ 
-  params 
-}: { 
-  params: { slug: string } 
+export default async function ProductPage({
+  params,
+}: {
+  params: { slug: string };
 }) {
   const product = await getProductBySlug(params.slug);
 

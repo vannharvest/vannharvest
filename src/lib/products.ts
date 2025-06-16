@@ -5,6 +5,7 @@ export interface Product {
   description: string;
   longDescription: string;
   image: string;
+  price?: string; // Price as a string (e.g., "$12.99")
   hsnCode: string;
   specifications: string[];
   packaging: string[];
