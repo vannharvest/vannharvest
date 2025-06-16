@@ -1,7 +1,14 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Product, getProductBySlug } from '@/lib/products';
+import { Product, getProductBySlug, products } from '@/lib/products';
+
+// This function generates the static paths at build time
+export async function generateStaticParams() {
+  return products.map((product) => ({
+    slug: product.slug,
+  }));
+}
 
 export default async function ProductPage({
   params,
