@@ -1,11 +1,7 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Button } from '@/components/ui/button';
 import { Product, getProductBySlug } from '@/lib/products';
-import { Badge } from '@/components/ui/badge';
-import { Star, Truck, Shield, Check } from 'lucide-react';
-import React from 'react';
 
 interface PageProps {
   params: {
@@ -22,9 +18,6 @@ export default async function ProductDetailPage({ params }: PageProps) {
     return null; // Ensure we don't try to render if product is undefined
   }
 
-  // Use the correct image property from Product interface
-  const productImage = product.image;
-  
   const relatedProducts = await getRelatedProducts(product.id);
 
   return (
