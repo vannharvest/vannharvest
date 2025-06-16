@@ -1,25 +1,28 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Product, getProductBySlug, products } from '@/lib/products';
+import { Product, getProductBySlug } from '@/lib/products';
 
-// This function generates the static paths at build time
-export async function generateStaticParams() {
-  return products.map((product) => ({
-    slug: product.slug,
-  }));
+// This is a workaround for the TypeScript error
+type PageProps = {
+  params: { slug: string };
+  searchParams?: { [key: string]: string | string[] | undefined };
+};
+
+// Helper function to get related products (excluding the current product)
+async function getRelatedProducts(currentProductId: string): Promise<Product[]> {
+  const { products: allProducts } = await import('@/lib/products');
+  return allProducts
+    .filter((product) => product.id !== currentProductId)
+    .slice(0, 3); // Return up to 3 related products
 }
 
-export default async function ProductPage({
-  params,
-}: {
-  params: { slug: string };
-}) {
-  const product = await getProductBySlug(params.slug);
+export default async function ProductPage({ params }: PageProps) {
+  const product = getProductBySlug(params.slug);
 
   if (!product) {
     notFound();
-    return null; // Ensure we don't try to render if product is undefined
+    return null;
   }
 
   const relatedProducts = await getRelatedProducts(product.id);
@@ -216,10 +219,4 @@ export default async function ProductPage({
   );
 }
 
-// Helper function to get related products (excluding the current product)
-async function getRelatedProducts(currentProductId: string): Promise<Product[]> {
-  const { products: allProducts } = await import('@/lib/products');
-  return allProducts
-    .filter((product) => product.id !== currentProductId)
-    .slice(0, 3); // Return up to 3 related products
-}
+
