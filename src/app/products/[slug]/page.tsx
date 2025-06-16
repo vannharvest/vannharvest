@@ -3,14 +3,11 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Product, getProductBySlug } from '@/lib/products';
 
-interface PageProps {
-  params: {
-    slug: string;
-  };
-  searchParams?: { [key: string]: string | string[] | undefined };
-}
-
-export default async function ProductDetailPage({ params }: PageProps) {
+export default async function ProductDetailPage({ 
+  params 
+}: { 
+  params: { slug: string } 
+}) {
   const product = await getProductBySlug(params.slug);
 
   if (!product) {
