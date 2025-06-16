@@ -1,0 +1,154 @@
+{
+  "bestSellers": [
+    {
+      "id": 1,
+      "name": "Golden Round Raisin A",
+      "image": "https://images.unsplash.com/photo-1556216576-97cef34659df?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "category": "golden-round",
+      "price": 12.99,
+      "rating": 4.5,
+      "reviews": 45,
+      "inStock": true
+    },
+    {
+      "id": 2,
+      "name": "Golden Round Raisin AA",
+      "image": "https://images.unsplash.com/photo-1556216584-3a63eea75be4?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "category": "golden-round",
+      "price": 15.99,
+      "rating": 4.7,
+      "reviews": 62,
+      "inStock": true
+    },
+    {
+      "id": 3,
+      "name": "Golden Round Raisin AAA",
+      "image": "https://images.unsplash.com/photo-1593006641231-fc7b94496e06?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8cmFpc2luc3xlbnwwfHwwfHx8MA%3D%3D",
+      "category": "golden-round",
+      "price": 18.99,
+      "rating": 4.9,
+      "reviews": 78,
+      "inStock": true
+    },
+    {
+      "id": 4,
+      "name": "Golden Round Premium Raisins",
+      "image": "https://images.unsplash.com/photo-1603284829661-e2c3bc096c6a?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "category": "golden-round",
+      "price": 22.99,
+      "rating": 5.0,
+      "reviews": 95,
+      "inStock": true
+    },
+    {
+      "id": 5,
+      "name": "Golden Long Raisin A",
+      "image": "https://images.unsplash.com/photo-1603569283847-aa295f0d016a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
+      "category": "golden-long",
+      "price": 13.99,
+      "rating": 4.4,
+      "reviews": 38,
+      "inStock": true
+    },
+    {
+      "id": 6,
+      "name": "Golden Long Raisin AA",
+      "image": "https://images.unsplash.com/photo-1603569283847-aa295f0d016a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
+      "category": "golden-long",
+      "price": 16.99,
+      "rating": 4.6,
+      "reviews": 54,
+      "inStock": true
+    },
+    {
+      "id": 7,
+      "name": "Golden Long Raisin AAA",
+      "image": "https://images.unsplash.com/photo-1603569283847-aa295f0d016a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
+      "category": "golden-long",
+      "price": 19.99,
+      "rating": 4.8,
+      "reviews": 72,
+      "inStock": true
+    },
+    {
+      "id": 8,
+      "name": "Golden Long Premium Raisins",
+      "image": "https://images.unsplash.com/photo-1603569283847-aa295f0d016a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
+      "category": "golden-long",
+      "price": 23.99,
+      "rating": 5.0,
+      "reviews": 88,
+      "inStock": true
+    },
+    {
+      "id": 9,
+      "name": "Green Round Raisin A",
+      "image": "https://images.unsplash.com/photo-1597733336794-12d05021d510?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
+      "category": "green-round",
+      "price": 11.99,
+      "rating": 4.3,
+      "reviews": 42,
+      "inStock": true
+    },
+    {
+      "id": 10,
+      "name": "Green Round Raisin AA",
+      "image": "https://images.unsplash.com/photo-1597733336794-12d05021d510?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
+      "category": "green-round",
+      "price": 14.99,
+      "rating": 4.6,
+      "reviews": 58,
+      "inStock": true
+    },
+    {
+      "id": 11,
+      "name": "Green Round Raisin AAA",
+      "image": "https://images.unsplash.com/photo-1597733336794-12d05021d510?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
+      "category": "green-round",
+      "price": 17.99,
+      "rating": 4.8,
+      "reviews": 65,
+      "inStock": true
+    },
+    {
+      "id": 12,
+      "name": "Green Round Premium Raisins",
+      "image": "https://images.unsplash.com/photo-1597733336794-12d05021d510?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
+      "category": "green-round",
+      "price": 21.99,
+      "rating": 4.9,
+      "reviews": 82,
+      "inStock": true
+    },
+    {
+      "id": 13,
+      "name": "Black Raisins",
+      "image": "https://images.unsplash.com/photo-1601050690773-2dd3b678bc0e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
+      "category": "black",
+      "price": 10.99,
+      "rating": 4.7,
+      "reviews": 76,
+      "inStock": true
+    },
+    {
+      "id": 14,
+      "name": "Black Seedless Raisins",
+      "image": "https://images.unsplash.com/photo-1601050690773-2dd3b678bc0e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
+      "category": "black",
+      "price": 12.99,
+      "rating": 4.8,
+      "reviews": 91,
+      "inStock": true
+    },
+    {
+      "id": 15,
+      "name": "Industrial Raisins",
+      "image": "https://images.unsplash.com/photo-1601050690773-2dd3b678bc0e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
+      "category": "industrial",
+      "price": 8.99,
+      "rating": 4.2,
+      "reviews": 34,
+      "inStock": true
+    }
+  ]
+}
