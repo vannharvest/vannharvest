@@ -1,20 +1,30 @@
 import { notFound } from 'next/navigation';
-import { getProductBySlug, Product } from '@/lib/products';
 import Link from 'next/link';
+import Image from 'next/image';
+import { Button } from '@/components/ui/button';
+import { Product, getProductBySlug } from '@/lib/products';
+import { Badge } from '@/components/ui/badge';
+import { Star, Truck, Shield, Check } from 'lucide-react';
+import React from 'react';
 
 interface PageProps {
   params: {
-    slug: string
-  }
+    slug: string;
+  };
+  searchParams?: { [key: string]: string | string[] | undefined };
 }
 
 export default async function ProductDetailPage({ params }: PageProps) {
-  const product = getProductBySlug(params.slug);
+  const product = await getProductBySlug(params.slug);
 
   if (!product) {
     notFound();
+    return null; // Ensure we don't try to render if product is undefined
   }
 
+  // Use the correct image property from Product interface
+  const productImage = product.image;
+  
   const relatedProducts = await getRelatedProducts(product.id);
 
   return (
@@ -61,9 +71,19 @@ export default async function ProductDetailPage({ params }: PageProps) {
           {/* Product Image */}
           <div className="mb-8 lg:mb-0">
             <div className="bg-amber-100 rounded-lg overflow-hidden h-96 flex items-center justify-center">
-              <div className="text-amber-800 text-xl font-medium">
-                {product.name} Image
-              </div>
+              {product.image ? (
+                <Image
+                  src={product.image}
+                  alt={product.name}
+                  width={200}
+                  height={200}
+                  className="w-full h-48 object-cover rounded-lg"
+                />
+              ) : (
+                <div className="text-amber-800 text-xl font-medium">
+                  {product.name} Image
+                </div>
+              )}
             </div>
           </div>
 
@@ -71,7 +91,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
           <div>
             <h1 className="text-3xl font-extrabold text-gray-900 mb-4">{product.name}</h1>
             <p className="text-lg text-gray-600 mb-6">{product.longDescription}</p>
-            
+
             <div className="bg-amber-50 p-6 rounded-lg mb-8">
               <h2 className="text-lg font-medium text-gray-900 mb-4">Key Specifications</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -89,7 +109,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
                 </div>
                 <div>
                   <h3 className="text-sm font-medium text-gray-500">Certifications</h3>
-                  <p className="mt-1 text-sm text-gray-900">{product.certifications.join(', ')}</p>
+                  <p className="mt-1 text-sm text-gray-900">{product.certifications?.join(', ') || 'N/A'}</p>
                 </div>
               </div>
             </div>
@@ -144,9 +164,17 @@ export default async function ProductDetailPage({ params }: PageProps) {
             {relatedProducts.map((relatedProduct: Product) => (
               <div key={relatedProduct.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
                 <div className="h-48 bg-amber-100 flex items-center justify-center">
-                  <div className="text-amber-800">
-                    {relatedProduct.name} Image
-                  </div>
+                  {relatedProduct.image ? (
+                    <Image
+                      src={relatedProduct.image}
+                      alt={relatedProduct.name}
+                      width={300}
+                      height={300}
+                      className="object-contain h-full"
+                    />
+                  ) : (
+                    <div className="text-amber-800">{relatedProduct.name} Image</div>
+                  )}
                 </div>
                 <div className="p-6">
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">{relatedProduct.name}</h3>
