@@ -1,19 +1,19 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import Image from 'next/image';
 
 export default function Hero() {
   return (
     <div className="relative h-[calc(100vh-6rem)] w-full max-w-[calc(100%-32px)] mx-auto rounded-2xl overflow-hidden">
-      {/* Background Image */}
+      {/* Background Video */}
       <div className="absolute inset-0 z-0">
-        <Image
-          src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1932&q=80"
-          alt="Beautiful green farm landscape with morning mist"
-          fill
-          className="object-cover"
-          priority
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full h-full object-cover"
+          src="/videos/Vann Harvest Pvt Ltd - Our farm.mp4"
         />
       </div>
 

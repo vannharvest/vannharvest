@@ -2,6 +2,7 @@
 
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { Facebook, Instagram, Twitter } from 'lucide-react';
 
 export default function Navbar() {
@@ -12,7 +13,16 @@ export default function Navbar() {
       <div className="container mx-auto flex items-center justify-between py-3 px-6 md:px-8">
         {/* Logo */}
         <div className="flex items-center">
-          <span className="text-2xl font-bold text-green-800">Vann Harvest</span>
+          <Link href="/" className="block h-12 w-auto">
+            <Image
+              src="/images/logo/Vann-Harvest-Original-Logo.png"
+              alt="Vann Harvest Logo"
+              width={150}
+              height={48}
+              className="h-full w-auto object-contain"
+              priority
+            />
+          </Link>
         </div>
 
         {/* Center Nav */}

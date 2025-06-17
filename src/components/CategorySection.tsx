@@ -3,31 +3,40 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-const categories = [
+interface Category {
+  id: number;
+  name: string;
+  slug: string;
+  image: string;
+  alt: string;
+  category: string;
+}
+
+const categories: Category[] = [
   {
     id: 1,
-    name: 'Natural Raisins',
-    category: 'Premium Quality',
-    image: 'https://images.unsplash.com/photo-1539519532614-723937382b86?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fGdyYXBlc3xlbnwwfHwwfHx8MA%3D%3D',
-    alt: 'Natural Raisins',
-    slug: 'natural-raisins',
+    name: 'Golden Long Raisins',
+    slug: 'golden-long',
+    image: '/images/products/Golden long A.webp',
+    alt: 'Golden Long Raisins',
+    category: 'Premium Quality'
   },
   {
     id: 2,
-    name: 'Golden Raisins',
-    category: 'Premium Quality',
-    image: 'https://plus.unsplash.com/premium_photo-1687014519727-7f85c60ca12e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fGdyYXBlc3xlbnwwfHwwfHx8MA%3D%3D',
-    alt: 'Golden Raisins',
-    slug: 'golden-raisins',
+    name: 'Golden Round Raisins',
+    slug: 'golden-round',
+    image: '/images/products/Golden Round A.webp',
+    alt: 'Golden Round Raisins',
+    category: 'Premium Quality'
   },
   {
     id: 3,
-    name: 'Black Raisins',
-    category: 'Premium Quality',
-    image: 'https://images.unsplash.com/photo-1518519338886-9d8f39707fa7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzZ8fGdyYXBlc3xlbnwwfHwwfHx8MA%3D%3D',
-    alt: 'Black Raisins',
-    slug: 'black-raisins',
-  },
+    name: 'Green Long Raisins',
+    slug: 'green-long',
+    image: '/images/products/Green long A.webp',
+    alt: 'Green Long Raisins',
+    category: 'Premium Quality'
+  }
 ];
 
 export default function CategorySection() {

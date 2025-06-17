@@ -1,17 +1,19 @@
 import type { Metadata, Viewport } from "next";
-import { Inter as FontSans } from "next/font/google"
-import "./globals.css"
-import { cn } from "@/lib/utils"
-import { siteConfig } from "@/config/site"
-import { ThemeProvider } from "@/components/theme-provider"
-import { Toaster } from "@/components/ui/toaster"
-import Navbar from "@/components/Navbar"
-import Footer from "@/components/Footer"
+import { Montserrat } from "next/font/google";
+import "./globals.css";
+import { cn } from "@/lib/utils";
+import { siteConfig } from "@/config/site";
+import { ThemeProvider } from "@/components/theme-provider";
+import { Toaster } from "@/components/ui/toaster";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
-const fontSans = FontSans({
+// ✅ Use Montserrat font
+const fontSans = Montserrat({
   subsets: ["latin"],
   variable: "--font-sans",
-})
+  weight: ["300", "400", "500", "600", "700"],
+});
 
 export const metadata: Metadata = {
   title: {
@@ -19,7 +21,15 @@ export const metadata: Metadata = {
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
-  keywords: ["raisins", "dried fruits", "export", "black raisins", "golden raisins", "green raisins", "india"],
+  keywords: [
+    "raisins",
+    "dried fruits",
+    "export",
+    "black raisins",
+    "golden raisins",
+    "green raisins",
+    "india",
+  ],
   metadataBase: new URL(siteConfig.url),
   openGraph: {
     type: "website",
@@ -55,9 +65,9 @@ export const viewport: Viewport = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body
@@ -74,9 +84,7 @@ export default function RootLayout({
         >
           <div className="min-h-screen flex flex-col bg-[#fff8f1]">
             <Navbar />
-            <main className="flex-grow">
-              {children}
-            </main>
+            <main className="flex-grow">{children}</main>
             <Footer />
           </div>
           <Toaster />
