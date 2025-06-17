@@ -1,10 +1,11 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
 interface Category {
-  id: number;
+  id: string;
   name: string;
   slug: string;
   image: string;
@@ -12,34 +13,69 @@ interface Category {
   category: string;
 }
 
-const categories: Category[] = [
-  {
-    id: 1,
-    name: 'Golden Long Raisins',
-    slug: 'golden-long',
-    image: '/images/products/Golden long A.webp',
-    alt: 'Golden Long Raisins',
-    category: 'Premium Quality'
-  },
-  {
-    id: 2,
-    name: 'Golden Round Raisins',
-    slug: 'golden-round',
-    image: '/images/products/Golden Round A.webp',
-    alt: 'Golden Round Raisins',
-    category: 'Premium Quality'
-  },
-  {
-    id: 3,
-    name: 'Green Long Raisins',
-    slug: 'green-long',
-    image: '/images/products/Green long A.webp',
-    alt: 'Green Long Raisins',
-    category: 'Premium Quality'
-  }
-];
+const getCategories = (): Category[] => {
+  // These are the base categories we want to display
+  const baseCategories = [
+    { name: 'Golden Long', displayName: 'Golden Long Raisins' },
+    { name: 'Golden Round', displayName: 'Golden Round Raisins' },
+    { name: 'Green Long', displayName: 'Green Long Raisins' },
+    { name: 'Green Round', displayName: 'Green Round Raisins' },
+  ];
+
+  // In a real app, you would fetch this from an API or use require.context
+  // For now, we'll use the existing image paths
+  return baseCategories.map((cat, index) => ({
+    id: `cat-${index + 1}`,
+    name: cat.displayName,
+    slug: cat.name.toLowerCase().replace(/\s+/g, '-'),
+    image: `/images/products/${cat.name} A${cat.name.includes('Green') && !cat.name.includes('Long') ? '-01' : ''}.webp`,
+    alt: cat.displayName,
+    category: 'Premium Quality',
+  }));
+};
 
 export default function CategorySection() {
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    try {
+      // In a real app, you would fetch this from an API
+      // For now, we'll use our local function
+      const fetchedCategories = getCategories();
+      setCategories(fetchedCategories);
+      setIsLoading(false);
+    } catch (err) {
+      setError('Failed to load categories');
+      setIsLoading(false);
+      console.error('Error loading categories:', err);
+    }
+  }, []);
+
+  if (isLoading) {
+    return (
+      <section className="bg-[#f9f9f9] py-20 w-full">
+        <div className="w-full max-w-[calc(100%-32px)] mx-auto px-4">
+          <div className="flex justify-center items-center h-64">
+            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-amber-600"></div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+
+  if (error) {
+    return (
+      <section className="bg-[#f9f9f9] py-20 w-full">
+        <div className="w-full max-w-[calc(100%-32px)] mx-auto px-4">
+          <div className="text-center text-red-600">{error}</div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className="bg-[#f9f9f9] py-20 w-full">
       <div className="w-full max-w-[calc(100%-32px)] mx-auto">
@@ -55,7 +91,7 @@ export default function CategorySection() {
         </div>
 
         {/* Category Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 px-4">
           {categories.map((category) => (
             <Link
               key={category.id}
@@ -79,7 +115,7 @@ export default function CategorySection() {
                     <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                       <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
                     </svg>
-                    Premium
+                    Categories
                   </span>
                 </div>
 
