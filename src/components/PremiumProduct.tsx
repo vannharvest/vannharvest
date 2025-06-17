@@ -1,7 +1,10 @@
 'use client';
 
+import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { Loader2 } from 'lucide-react';
 import products from '../../public/data/products.json';
 
 type Product = {
@@ -22,10 +25,19 @@ type ProductsData = {
 const typedProducts = products as ProductsData;
 
 export default function PremiumProduct() {
+  const router = useRouter();
+  const [navigatingId, setNavigatingId] = useState<string | null>(null);
+
   // Get specific products by ID (4, 8, 12, 16)
   const featuredProducts = typedProducts.bestSellers.filter(
     product => [4, 8, 12, 16].includes(product.id)
   );
+
+  const handleProductClick = (e: React.MouseEvent, category: string) => {
+    e.preventDefault();
+    setNavigatingId(category);
+    router.push(`/products?category=${encodeURIComponent(category)}`);
+  };
 
   return (
     <section className="bg-[#f9f9f9] py-16 w-full">
@@ -46,9 +58,18 @@ export default function PremiumProduct() {
           {featuredProducts.map((product: Product) => (
             <Link
               key={product.id}
-              href={`/products/${product.id}`}
-              className="group relative block rounded-2xl overflow-hidden border border-gray-200 shadow-sm transition-shadow hover:shadow-lg h-[580px] bg-white"
+              href={`/products?category=${encodeURIComponent(product.category)}`}
+              onClick={(e) => handleProductClick(e, product.category)}
+              className={`group relative block rounded-2xl overflow-hidden border border-gray-200 shadow-sm transition-all hover:shadow-xl h-[580px] bg-white ${
+                navigatingId === product.category ? 'opacity-80' : ''
+              }`}
+              aria-disabled={navigatingId === product.category}
             >
+              {navigatingId === product.category && (
+                <div className="absolute inset-0 bg-black/30 z-10 flex items-center justify-center">
+                  <Loader2 className="h-8 w-8 animate-spin text-white" />
+                </div>
+              )}
               {/* Full Height Image */}
               <div className="relative w-full h-full">
                 <Image

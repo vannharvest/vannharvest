@@ -3,6 +3,8 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { Info } from 'lucide-react';
 
 interface Category {
   id: string;
@@ -35,9 +37,18 @@ const getCategories = (): Category[] => {
 };
 
 export default function CategorySection() {
+  const router = useRouter();
   const [categories, setCategories] = useState<Category[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [isNavigating, setIsNavigating] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+
+  const handleCategoryClick = (e: React.MouseEvent, slug: string) => {
+    e.preventDefault();
+    setIsNavigating(slug);
+    // Redirect to products page with category filter
+    router.push(`/products?category=${slug}`);
+  };
 
   useEffect(() => {
     try {
@@ -95,9 +106,18 @@ export default function CategorySection() {
           {categories.map((category) => (
             <Link
               key={category.id}
-              href={`/products/${category.slug}`}
-              className="group relative block rounded-[28px] overflow-hidden border border-gray-200 shadow-sm transition-shadow hover:shadow-2xl h-[580px] bg-white"
+              href={`/products?category=${category.slug}`}
+              onClick={(e) => handleCategoryClick(e, category.slug)}
+              className={`group relative block rounded-[28px] overflow-hidden border border-gray-200 shadow-sm transition-all hover:shadow-2xl h-[580px] bg-white ${
+                isNavigating === category.slug ? 'opacity-70' : ''
+              }`}
+              aria-disabled={isNavigating === category.slug}
             >
+              {isNavigating === category.slug && (
+                <div className="absolute inset-0 bg-black bg-opacity-30 z-10 flex items-center justify-center">
+                  <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-white"></div>
+                </div>
+              )}
               {/* Full Height Image */}
               <div className="relative w-full h-full">
                 <Image
@@ -112,9 +132,7 @@ export default function CategorySection() {
                 {/* Premium Badge */}
                 <div className="absolute top-4 right-4">
                   <span className="bg-yellow-100 text-yellow-800 text-xs font-semibold px-2.5 py-1 rounded-full flex items-center shadow-sm">
-                    <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                      <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
-                    </svg>
+                    <Info className="w-3 h-3 mr-1" />
                     Categories
                   </span>
                 </div>
