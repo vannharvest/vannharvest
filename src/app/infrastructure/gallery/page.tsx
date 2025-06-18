@@ -1,4 +1,4 @@
-import { PhotoIcon } from '@heroicons/react/24/outline';
+import { ImageIcon } from 'lucide-react';
 import { PageLayout } from '@/components/PageLayout';
 
 const gallerySections = [
@@ -7,7 +7,7 @@ const gallerySections = [
     description: 'Explore our lush raisin farms where quality begins',
     images: Array(4).fill({
       id: 1,
-      src: '/placeholder-farm.jpg',
+      src: '/images/infrastructure/farm.jpg',
       alt: 'Our farm',
       title: 'Farm View'
     })
@@ -69,7 +69,7 @@ export default function GalleryPage() {
                 >
                   <div className="w-full h-full flex flex-col items-center justify-center p-6 text-center">
                     <div className="w-16 h-16 mb-4 rounded-full bg-green-100 flex items-center justify-center text-green-600 group-hover:bg-green-200 transition-colors">
-                      <PhotoIcon className="h-8 w-8" />
+                      <ImageIcon className="h-8 w-8" />
                     </div>
                     <span className="text-green-800 font-medium">{section.title} {index + 1}</span>
                     <span className="text-sm text-green-600 mt-1">Click to view</span>

@@ -1,4 +1,4 @@
-import { EnvelopeIcon, PhoneIcon, MapPinIcon } from '@heroicons/react/24/outline';
+import { Mail, Phone, MapPin } from 'lucide-react';
 
 export default function ContactPage() {
   return (
@@ -90,7 +90,7 @@ export default function ContactPage() {
             <div className="space-y-6">
               <div className="flex items-start">
                 <div className="flex-shrink-0 bg-green-100 p-3 rounded-full">
-                  <MapPinIcon className="h-6 w-6 text-green-700" />
+                  <MapPin className="h-6 w-6 text-green-600" />
                 </div>
                 <div className="ml-4">
                   <h3 className="text-lg font-semibold text-green-900">Our Office</h3>
@@ -100,7 +100,7 @@ export default function ContactPage() {
               
               <div className="flex items-start">
                 <div className="flex-shrink-0 bg-green-100 p-3 rounded-full">
-                  <EnvelopeIcon className="h-6 w-6 text-green-700" />
+                  <Mail className="h-6 w-6 text-green-600" />
                 </div>
                 <div className="ml-4">
                   <h3 className="text-lg font-semibold text-green-900">Email Us</h3>
@@ -110,7 +110,7 @@ export default function ContactPage() {
               
               <div className="flex items-start">
                 <div className="flex-shrink-0 bg-green-100 p-3 rounded-full">
-                  <PhoneIcon className="h-6 w-6 text-green-700" />
+                  <Phone className="h-6 w-6 text-green-600" />
                 </div>
                 <div className="ml-4">
                   <h3 className="text-lg font-semibold text-green-900">Call Us</h3>
