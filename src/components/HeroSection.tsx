@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
 export default function Hero() {
   return (
-    <div className="relative h-[calc(100vh-6rem)] w-full max-w-[calc(100%-32px)] mx-auto rounded-2xl overflow-hidden">
+    <div className="relative h-[calc(100vh-10rem)] w-full max-w-[calc(100%-32px)] mx-auto rounded-2xl overflow-hidden mt-32">
       {/* Background Video */}
       <div className="absolute inset-0 z-0">
         <video

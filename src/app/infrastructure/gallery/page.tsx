@@ -1,5 +1,6 @@
 import { ImageIcon } from 'lucide-react';
 import { PageLayout } from '@/components/PageLayout';
+import PageWrapper from '@/components/PageWrapper';
 
 const gallerySections = [
   {
@@ -46,12 +47,13 @@ const gallerySections = [
 
 export default function GalleryPage() {
   return (
-    <PageLayout
-      title="Our Gallery"
-      description="A visual journey through our farm, processing facilities, and premium raisin products"
-      bgColor="bg-amber-700"
-      textColor="text-amber-100"
-    >
+    <PageWrapper>
+      <PageLayout
+        title="Our Gallery"
+        description="A visual journey through our farm, processing facilities, and premium raisin products"
+        bgColor="bg-amber-700"
+        textColor="text-amber-100"
+      >
       {/* Main Gallery */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         {gallerySections.map((section, sectionIndex) => (
@@ -108,6 +110,7 @@ export default function GalleryPage() {
           </div>
         </div>
       </div>
-    </PageLayout>
+      </PageLayout>
+    </PageWrapper>
   );
 }

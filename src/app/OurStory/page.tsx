@@ -2,11 +2,11 @@
 
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import PageWrapper from '@/components/PageWrapper';
 
 export default function AboutUsPage() {
   return (
-    <section className="bg-white text-gray-900">
-      <div className="max-w-7xl mx-auto px-4 py-20 space-y-24">
+    <PageWrapper className="space-y-16 md:space-y-24">
         {/* Intro Section */}
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <motion.div
@@ -86,7 +86,6 @@ export default function AboutUsPage() {
             Every raisin we deliver undergoes rigorous cleaning, grading, and quality checks to meet global export standards.
           </motion.p>
         </div>
-      </div>
-    </section>
+    </PageWrapper>
   );
 }

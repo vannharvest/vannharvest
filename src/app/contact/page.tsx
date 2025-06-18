@@ -1,16 +1,15 @@
 import { Mail, Phone, MapPin } from 'lucide-react';
+import PageWrapper from '@/components/PageWrapper';
 
 export default function ContactPage() {
   return (
-    <div className="bg-white">
+    <PageWrapper className="space-y-12">
       {/* Hero Section */}
-      <div className="relative bg-green-800 text-white py-20">
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Get In Touch</h1>
-          <p className="text-xl md:text-2xl text-green-100 max-w-3xl mx-auto">
-            We'd love to hear from you. Contact us for any inquiries or feedback.
-          </p>
-        </div>
+      <div className="text-center">
+        <h1 className="text-4xl md:text-5xl font-bold mb-4 text-green-900">Get In Touch</h1>
+        <p className="text-xl md:text-2xl text-green-700 max-w-3xl mx-auto">
+          We'd love to hear from you. Contact us for any inquiries or feedback.
+        </p>
       </div>
 
       {/* Contact Form and Info */}
@@ -148,6 +147,6 @@ export default function ContactPage() {
           </div>
         </div>
       </div>
-    </div>
+    </PageWrapper>
   );
 }
