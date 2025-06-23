@@ -7,8 +7,8 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { usePathname } from "next/navigation";
 
-// ✅ Use Montserrat font
 const fontSans = Montserrat({
   subsets: ["latin"],
   variable: "--font-sans",
@@ -68,6 +68,9 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  // Show footer on all pages by default
+  const hideFooter = false;
+
   return (
     <html lang="en" suppressHydrationWarning>
       <body
@@ -82,10 +85,16 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <div className="min-h-screen flex flex-col bg-[#fff8f1]">
+          <div className="min-h-screen flex flex-col bg-[#fff8f1] relative">
             <Navbar />
-            <main className="flex-grow">{children}</main>
-            <Footer />
+            <main className="flex-grow relative z-0">
+              {children}
+            </main>
+            {!hideFooter && (
+              <div className="relative z-10">
+                <Footer />
+              </div>
+            )}
           </div>
           <Toaster />
         </ThemeProvider>

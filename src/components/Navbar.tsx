@@ -64,9 +64,9 @@ export default function Navbar() {
     return pathname.startsWith('/infrastructure') ? 'text-orange-600' : 'text-green-800';
   };
   return (
-    <div className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'py-0' : 'py-2'}`}>
-      <div className={`w-full ${isScrolled ? 'max-w-full' : 'max-w-[calc(100%-32px]'} mx-auto ${isScrolled ? 'mt-0' : 'mt-2'}`}>
-        <div className={`w-full ${isScrolled ? 'bg-white/90 border-b border-gray-200 rounded-none' : 'bg-white/80 border border-white/20 rounded-2xl'} backdrop-blur-lg shadow-lg transition-all duration-300`}>
+    <div className="fixed top-0 left-0 right-0 z-50 py-2">
+      <div className="w-full max-w-[calc(100%-32px)] mx-auto mt-2">
+        <div className="w-full bg-white/80 border border-white/20 rounded-2xl backdrop-blur-lg shadow-lg transition-all duration-300">
           <div className="container mx-auto flex items-center justify-between py-3 px-4 sm:px-6 lg:px-8">
             {/* Logo */}
             <div className="flex items-center">
@@ -82,12 +82,13 @@ export default function Navbar() {
               </Link>
             </div>
 
-            {/* Mobile menu button */}
-            <div className="md:hidden">
+            {/* Mobile menu button - shown on screens < 768px */}
+            <div className="lg:hidden">
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 className="inline-flex items-center justify-center p-2 rounded-md text-green-800 hover:text-orange-600 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-orange-500"
-                aria-expanded="false"
+                aria-expanded={isMobileMenuOpen}
+                aria-controls="mobile-menu"
               >
                 <span className="sr-only">Open main menu</span>
                 {isMobileMenuOpen ? (
@@ -98,8 +99,8 @@ export default function Navbar() {
               </button>
             </div>
 
-            {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center gap-6 text-md font-medium">
+            {/* Desktop Navigation - shown on screens >= 768px */}
+            <nav className="hidden lg:flex items-center gap-6 text-md font-medium">
               <NavLink href="/" isActive={isActive}>
                 Home
               </NavLink>
@@ -165,8 +166,8 @@ export default function Navbar() {
               </NavLink>
             </nav>
 
-            {/* Desktop Social Icons */}
-            <div className="hidden md:flex items-center gap-4 text-green-800 text-sm">
+            {/* Desktop Social Icons - shown on screens >= 768px */}
+            <div className="hidden lg:flex items-center gap-4 text-green-800 text-sm">
               <Link 
                 href="https://facebook.com" 
                 target="_blank" 
@@ -200,8 +201,12 @@ export default function Navbar() {
             </div>
           </div>
           
-          {/* Mobile menu, show/hide based on menu state */}
-          <div className={`md:hidden transition-all duration-300 ease-in-out ${isMobileMenuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}`}>
+          {/* Mobile menu, show/hide based on menu state - shown on screens < 768px */}
+          <div 
+            id="mobile-menu"
+            className={`lg:hidden transition-all duration-300 ease-in-out ${isMobileMenuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}`}
+            aria-hidden={!isMobileMenuOpen}
+          >
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
               <NavLink 
                 href="/" 

@@ -118,11 +118,11 @@ export default function ProductsPage() {
   };
 
   return (
-    <PageWrapper>
+    <PageWrapper className="pt-28">
       <div className="flex flex-col lg:flex-row gap-6">
         {/* Sticky Sidebar Filters - Sticky on all devices */}
-        <div className="sticky top-24 z-10 lg:z-0 mt-4 lg:mt-0">
-          <div className="lg:sticky lg:top-28 lg:w-64">
+        <div className="sticky top-28 z-10 lg:z-0 mt-4 lg:mt-0 h-fit">
+          <div className="lg:sticky lg:top-32 lg:w-64">
             <div className="bg-white p-4 sm:p-6 rounded-xl shadow-sm space-y-4 sm:space-y-6 border border-gray-100 mx-4 sm:mx-0 lg:mx-0">
               <h2 className="text-lg font-bold text-green-900">Filters</h2>
               <div>
@@ -163,7 +163,7 @@ export default function ProductsPage() {
         </div>
 
         {/* Product Grid */}
-        <div className="flex-1 px-4 sm:px-0">
+        <div className="flex-1 px-4 sm:px-0 lg:pt-4">
           <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {products.length > 0 ? (
               products.map((product: Product, index: number) => (

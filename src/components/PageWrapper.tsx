@@ -7,10 +7,10 @@ type PageWrapperProps = {
 
 export default function PageWrapper({ children, className = '' }: PageWrapperProps) {
   return (
-    <main className={`min-h-[calc(100vh-10rem)] pt-32 pb-16 ${className}`}>
-      <div className="w-full max-w-[calc(100%-32px)] mx-auto">
+    <div className={`flex-grow pt-32 pb-16 px-4 sm:px-6 ${className}`}>
+      <div className="max-w-7xl mx-auto w-full">
         {children}
       </div>
-    </main>
+    </div>
   );
 }
