@@ -102,6 +102,6 @@ declare module '*.aac' {
 
 // Add type declarations for JSON files
 declare module '*.json' {
-  const value: any;
+  const value: Record<string, unknown> | unknown[];
   export default value;
 }

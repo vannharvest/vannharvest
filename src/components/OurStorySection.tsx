@@ -27,7 +27,7 @@ export default function OurStorySection() {
             Our Story
           </h2>
           <p className="text-base md:text-lg text-green-800 leading-relaxed mb-4">
-            At Vann Harvest, every raisin is more than a product — it's a piece of our land, our tradition, and our pride.
+            At Vann Harvest, every raisin is more than a product — it&apos;s a piece of our land, our tradition, and our pride.
           </p>
           <p className="text-base md:text-lg text-green-800 leading-relaxed mb-4">
             From sun-soaked vineyards in Vijayapura to world-class cleaning and packaging, we ensure purity, taste, and trust in every bite.

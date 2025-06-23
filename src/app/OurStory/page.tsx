@@ -17,7 +17,7 @@ export default function OurStory() {
   const bgY = useTransform(scrollYProgress, [0, 1], [0, 100]);
 
   const [bgImageSrc] = useState('/images/our-story-bg.jpg');
-  const [imageError, setImageError] = useState(false);
+  const [, setImageError] = useState(false);
 
   useEffect(() => {
     if (process.env.NODE_ENV === 'development') {

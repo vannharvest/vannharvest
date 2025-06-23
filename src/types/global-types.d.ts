@@ -14,7 +14,7 @@ declare namespace NodeJS {
 // Extend the Window interface
 declare interface Window {
   __NEXT_DATA__: {
-    props: Record<string, any>;
+    props: Record<string, unknown>;
     page: string;
     query: Record<string, string>;
     buildId: string;

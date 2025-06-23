@@ -12,12 +12,6 @@ export type Product = {
   bestSeller?: boolean;
 };
 
-// Define the ProductsData interface
-interface ProductsData {
-  bestSellers: Product[];
-  products: Product[];
-}
-
 // Import the products data
 import products from '../../public/data/products.json';
 

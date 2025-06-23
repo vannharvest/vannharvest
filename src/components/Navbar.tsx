@@ -38,17 +38,7 @@ export default function Navbar() {
     };
   }, [pathname]);
 
-  // Handle scroll effect for navbar
-  useEffect(() => {
-    const handleScroll = () => {
-      const offset = window.scrollY;
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
+  // Scroll effect removed as it wasn't being used
 
   const isActive = (path: string) => {
     return pathname === path ? 'text-orange-600' : 'text-green-800';
