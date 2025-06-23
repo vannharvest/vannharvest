@@ -89,7 +89,7 @@ export default function OurStory() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6, duration: 0.8 }}
               >
-                From a seed in Vijayapura to a global legacy - Vann Harvest brings you nature's finest raisins.
+                From a seed in Vijayapura to a global legacy - Vann Harvest brings you nature&apos;s finest raisins.
               </motion.p>
             </motion.div>
           </section>
@@ -97,7 +97,7 @@ export default function OurStory() {
           <section className="max-w-4xl mx-auto text-center py-24 px-4">
             <motion.h2 className="text-3xl md:text-5xl font-bold text-white mb-6" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 1 }}>Our Journey</motion.h2>
             <motion.p className="text-base md:text-lg text-white/80 leading-relaxed tracking-normal" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ delay: 0.2, duration: 1 }}>
-              Since 1993, Vann Harvest has cultivated premium raisins in the heart of Vijayapura, Karnataka. From humble beginnings, we've grown into a 400-acre organic farm rooted in purity, passion, and purpose.
+              Since 1993, Vann Harvest has cultivated premium raisins in the heart of Vijayapura, Karnataka. From humble beginnings, we&apos;ve grown into a 400-acre organic farm rooted in purity, passion, and purpose.
               <br /><br />
               Using natural ripening and chemical-free practices, we deliver raisins with unmatched taste and integrity. Our state-of-the-art facilities ensure every product meets the highest standards — from farm to global market.
             </motion.p>
