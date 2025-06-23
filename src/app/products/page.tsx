@@ -1,10 +1,11 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import productsData from '../../../public/data/products.json';
+import Loading from './loading';
 
 interface Product {
   id: number;
@@ -33,7 +34,8 @@ const categoryLabels: Record<string, string> = {
 
 import PageWrapper from '@/components/PageWrapper';
 
-export default function ProductsPage() {
+// This component is wrapped in Suspense to handle client-side features
+function ProductsContent() {
   const searchParams = useSearchParams();
   const [products, setProducts] = useState(typedProductsData.bestSellers);
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -204,5 +206,13 @@ export default function ProductsPage() {
         </div>
       </div>
     </PageWrapper>
+  );
+}
+
+export default function ProductsPage() {
+  return (
+    <Suspense fallback={<Loading />}>
+      <ProductsContent />
+    </Suspense>
   );
 }
