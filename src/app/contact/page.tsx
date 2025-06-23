@@ -6,9 +6,9 @@ export default function ContactPage() {
     <PageWrapper className="space-y-12">
       {/* Hero Section */}
       <div className="text-center">
-        <h1 className="text-4xl md:text-5xl font-bold mb-4 text-green-900">Get In Touch</h1>
+        <h1 className="text-4xl md:text-5xl font-bold mb-4 text-green-900">Let&apos;s get in touch</h1>
         <p className="text-xl md:text-2xl text-green-700 max-w-3xl mx-auto">
-          We'd love to hear from you. Contact us for any inquiries or feedback.
+          We don&apos;t hesitate to reach out from you. Contact us for any inquiries or feedback.
         </p>
       </div>
 

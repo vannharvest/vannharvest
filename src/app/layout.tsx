@@ -7,7 +7,6 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { usePathname } from "next/navigation";
 
 const fontSans = Montserrat({
   subsets: ["latin"],
