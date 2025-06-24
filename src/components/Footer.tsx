@@ -1,33 +1,62 @@
+'use client';
+
 import Link from 'next/link';
-import { Facebook, Twitter, Linkedin } from 'lucide-react';
+import { Facebook, Instagram, Twitter } from 'lucide-react';
+
+interface NavItemProps {
+  href: string;
+  children: React.ReactNode;
+  className?: string;
+}
+
+const NavLink = ({ href, children, className = '' }: NavItemProps) => (
+  <Link 
+    href={href} 
+    className={`text-gray-100 hover:text-orange-600 transition-colors ${className}`}
+  >
+    {children}
+  </Link>
+);
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
   
   return (
-    <footer className="bg-gray-900 text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div className="col-span-1 md:col-span-2">
-            <h3 className="text-xl font-bold mb-4">Vann Harvest</h3>
-            <p className="text-gray-400">
+    <footer className="bg-green-800 text-white">
+      <div className="w-full max-w-[calc(100%-32px)] mx-auto px-4 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {/* Company Info */}
+          <div className="space-y-4">
+            <h3 className="text-xl font-bold">Vann Harvest</h3>
+            <p className="text-gray-100">
               Exporting premium quality raisins from India to global markets with a commitment to quality and sustainability.
             </p>
           </div>
           
+          {/* Quick Links */}
           <div>
             <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
-            <ul className="space-y-2">
-              <li><Link href="/products" className="text-gray-400 hover:text-white">Products</Link></li>
-              <li><Link href="/about" className="text-gray-400 hover:text-white">About Us</Link></li>
-              <li><Link href="/infrastructure" className="text-gray-400 hover:text-white">Infrastructure</Link></li>
-              <li><Link href="/contact" className="text-gray-400 hover:text-white">Contact</Link></li>
+            <ul className="space-y-3">
+              <li><NavLink href="/">Home</NavLink></li>
+              <li><NavLink href="/products">Products</NavLink></li>
+              <li><NavLink href="/OurStory">Our Story</NavLink></li>
+              <li><NavLink href="/blog">Blog</NavLink></li>
             </ul>
           </div>
           
+          {/* Infrastructure */}
+          <div>
+            <h4 className="text-lg font-semibold mb-4">Infrastructure</h4>
+            <ul className="space-y-3">
+              <li><NavLink href="/infrastructure/sustainability">Sustainability</NavLink></li>
+              <li><NavLink href="/infrastructure/gallery">Gallery</NavLink></li>
+            </ul>
+          </div>
+          
+          {/* Contact */}
           <div>
             <h4 className="text-lg font-semibold mb-4">Contact Us</h4>
-            <address className="not-italic text-gray-400 space-y-2">
+            <address className="not-italic space-y-3 text-gray-100">
               <p>123 Raisin Street</p>
               <p>Farmland, FL 12345</p>
               <p>India</p>
@@ -37,22 +66,38 @@ export default function Footer() {
           </div>
         </div>
         
-        <div className="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-gray-400 text-sm">
+        {/* Bottom Bar */}
+        <div className="border-t border-green-700 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+          <p className="text-gray-100 text-sm">
             &copy; {currentYear} Vann Harvest. All rights reserved.
           </p>
-          <div className="flex space-x-6 mt-4 md:mt-0">
-            <a href="#" className="text-gray-400 hover:text-white">
-              <span className="sr-only">Facebook</span>
-              <Facebook className="h-6 w-6" />
+          <div className="flex space-x-4 mt-4 md:mt-0">
+            <a 
+              href="https://facebook.com" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-gray-100 hover:text-orange-600 transition-colors p-2"
+              aria-label="Facebook"
+            >
+              <Facebook className="w-5 h-5" />
             </a>
-            <a href="#" className="text-gray-400 hover:text-white">
-              <span className="sr-only">Twitter</span>
-              <Twitter className="h-6 w-6" />
+            <a 
+              href="https://instagram.com" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-gray-100 hover:text-orange-600 transition-colors p-2"
+              aria-label="Instagram"
+            >
+              <Instagram className="w-5 h-5" />
             </a>
-            <a href="#" className="text-gray-400 hover:text-white">
-              <span className="sr-only">LinkedIn</span>
-              <Linkedin className="h-6 w-6" />
+            <a 
+              href="https://x.com" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-gray-100 hover:text-orange-600 transition-colors p-2"
+              aria-label="Twitter"
+            >
+              <Twitter className="w-5 h-5" />
             </a>
           </div>
         </div>
