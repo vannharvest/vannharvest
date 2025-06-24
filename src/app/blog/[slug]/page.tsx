@@ -2,23 +2,27 @@ import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import { blogPosts, BlogPost } from '../data';
-import type { Metadata } from 'next';
+import type { Metadata, ResolvingMetadata } from 'next';
 
-type Props = {
-  params: { slug: string };
-  searchParams: { [key: string]: string | string[] | undefined };
-};
+// This is a static page
+export const dynamic = 'force-static';
+
+// Generate static params for all blog posts
+export async function generateStaticParams() {
+  return blogPosts.map((post) => ({
+    slug: post.slug,
+  }));
+}
 
 // Generate metadata for the blog post
 export async function generateMetadata(
-  { params }: Props
+  { params }: { params: { slug: string } },
+  parent: ResolvingMetadata
 ): Promise<Metadata> {
-  // Read route params
-  const slug = params.slug;
-  
-  // Get the post
-  const post = blogPosts.find((post: BlogPost) => post.slug === slug);
-  
+  // In a real app, you would fetch the post data here
+  // For now, we'll use the static data
+  const post = blogPosts.find((post: BlogPost) => post.slug === params.slug);
+
   if (!post) {
     return {
       title: 'Post Not Found',
@@ -26,30 +30,30 @@ export async function generateMetadata(
     };
   }
 
+  const previousImages = (await parent).openGraph?.images || [];
+
   return {
-    title: `${post.title} | Vann Harvest Blog`,
+    title: `${post.title} | Vann Harvest`,
     description: post.excerpt,
     openGraph: {
       title: post.title,
       description: post.excerpt,
-      images: [{
-        url: post.image,
-        width: 1200,
-        height: 630,
-        alt: post.title,
-      }],
+      images: [
+        {
+          url: post.image,
+          width: 1200,
+          height: 630,
+          alt: post.title,
+        },
+        ...previousImages,
+      ],
     },
   };
 }
 
-// Blog post page component
-interface PageProps {
-  params: { slug: string };
-}
-
-export default function BlogPostPage({ params }: PageProps) {
-  const { slug } = params;
-  const post = blogPosts.find((post: BlogPost) => post.slug === slug);
+export default function BlogPostPage({ params }: { params: { slug: string } }) {
+  // Since we're using static data, we don't need to make this async
+  const post = blogPosts.find((post: BlogPost) => post.slug === params.slug);
 
   if (!post) {
     notFound();
@@ -66,11 +70,8 @@ export default function BlogPostPage({ params }: PageProps) {
           <Link 
             href="/blog"
             className="text-green-700 hover:underline inline-flex items-center mb-6"
-            legacyBehavior
           >
-            <a className="text-green-700 hover:underline inline-flex items-center mb-6">
-              ← Back to Blog
-            </a>
+            ← Back to Blog
           </Link>
           
           <div className="relative h-96 w-full rounded-xl overflow-hidden mb-8 bg-gray-100">

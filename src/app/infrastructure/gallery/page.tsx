@@ -16,17 +16,20 @@ interface GalleryImage {
   category: string;
 }
 
-// Image URLs from Unsplash with agricultural/farming theme
+// Image URLs from Pexels with agricultural/farming theme
 const imageUrls = {
-  farm: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=80',
-  harvest: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=80',
-  processing: 'https://images.unsplash.com/photo-1587049352846-4a222e784d38?auto=format&fit=crop&w=1200&q=80',
-  quality: 'https://images.unsplash.com/photo-1573435567373-ef55d1ffd44f?auto=format&fit=crop&w=1200&q=80',
-  team: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80',
-  sustainability: 'https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&w=1200&q=80',
-  products: 'https://images.unsplash.com/photo-1606787366850-de6330128bfc?auto=format&fit=crop&w=1200&q=80',
-  hero: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=2000&q=80'
+  farm: 'https://images.pexels.com/photos/1112080/pexels-photo-1112080.jpeg',
+  harvest: 'https://images.pexels.com/photos/1112080/pexels-photo-1112080.jpeg',
+  processing: 'https://images.pexels.com/photos/1122419/pexels-photo-1122419.jpeg',
+  quality: 'https://images.pexels.com/photos/1112080/pexels-photo-1112080.jpeg',
+  team: 'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg',
+  sustainability: 'https://images.pexels.com/photos/4503273/pexels-photo-4503273.jpeg',
+  products: 'https://images.pexels.com/photos/396132/pexels-photo-396132.jpeg',
+  hero: 'https://images.pexels.com/photos/1112080/pexels-photo-1112080.jpeg'
 };
+
+// Fallback image in case of loading errors
+const FALLBACK_IMAGE = 'https://images.pexels.com/photos/1112080/pexels-photo-1112080.jpeg';
 
 const galleryImages: GalleryImage[] = [
   {
@@ -111,6 +114,7 @@ export default function GalleryPage() {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
   const [isZoomed, setIsZoomed] = useState(false);
+  const [imageError, setImageError] = useState<Record<string, boolean>>({});
 
   const filteredImages = selectedCategory === 'All' 
     ? galleryImages 
@@ -123,7 +127,6 @@ export default function GalleryPage() {
 
   const closeLightbox = useCallback(() => {
     setSelectedImage(null);
-    setIsZoomed(false);
     document.body.style.overflow = 'auto';
   }, []);
 
@@ -136,7 +139,6 @@ export default function GalleryPage() {
     } else {
       setSelectedImage(prev => (prev === lastIndex ? 0 : (prev || 0) + 1));
     }
-    setIsZoomed(false);
   }, [selectedImage, filteredImages.length]);
 
   const prevImage = useCallback(() => {
@@ -146,6 +148,10 @@ export default function GalleryPage() {
   const nextImage = useCallback(() => {
     navigate('next');
   }, [navigate]);
+
+  const handleImageError = useCallback((imageId: string) => {
+    setImageError(prev => ({ ...prev, [imageId]: true }));
+  }, []);
 
   // Close lightbox on ESC key and handle keyboard navigation
   useEffect(() => {
@@ -273,18 +279,14 @@ export default function GalleryPage() {
             >
               <div className="relative aspect-[4/3] sm:aspect-square">
                 <Image
-                  src={image.src}
+                  src={imageError[image.src] ? FALLBACK_IMAGE : image.src}
                   alt={image.alt}
-                  fill
-                  className="object-cover transition-transform duration-300 group-hover:scale-105"
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  onError={(e) => {
-                    const target = e.target as HTMLImageElement;
-                    target.src = image.fallback;
-                    target.onerror = () => {
-                      target.src = `https://placehold.co/${image.width}x${image.height}/f3f4f6/9ca3af?text=Vann+Harvest`;
-                    };
-                  }}
+                  width={image.width}
+                  height={image.height}
+                  className="object-cover w-full h-full rounded-lg transition-transform duration-300 group-hover:scale-105"
+                  onError={() => handleImageError(image.src)}
+                  priority
+                  unoptimized={process.env.NODE_ENV === 'development'}
                 />
               </div>
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
