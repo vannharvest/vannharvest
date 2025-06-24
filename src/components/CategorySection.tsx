@@ -26,14 +26,25 @@ const getCategories = (): Category[] => {
 
   // In a real app, you would fetch this from an API or use require.context
   // For now, we'll use the existing image paths
-  return baseCategories.map((cat, index) => ({
-    id: `cat-${index + 1}`,
-    name: cat.displayName,
-    slug: cat.name.toLowerCase().replace(/\s+/g, '-'),
-    image: `/images/products/${cat.name} A${cat.name.includes('Green') && !cat.name.includes('Long') ? '-01' : ''}.webp`,
-    alt: cat.displayName,
-    category: 'Premium Quality',
-  }));
+  return baseCategories.map((cat, index) => {
+    // Map each category to its corresponding image filename
+    const imageMap: Record<string, string> = {
+      'Golden Long': 'Golden long A.webp',
+      'Golden Round': 'Golden Round A.webp',
+      'Green Long': 'Green long A.webp',
+      'Green Round': 'Green Round A-01.webp'
+    };
+    
+    const cleanName = cat.name.replace(/\s+/g, '-').toLowerCase();
+    return {
+      id: `cat-${index + 1}`,
+      name: cat.displayName,
+      slug: cleanName,
+      image: `/images/products/${imageMap[cat.name as keyof typeof imageMap]}`,
+      alt: cat.displayName,
+      category: 'Premium Quality',
+    };
+  });
 };
 
 export default function CategorySection() {
