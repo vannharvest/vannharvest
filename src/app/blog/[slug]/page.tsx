@@ -83,9 +83,13 @@ type BlogPostPageParams = {
 
 // Main page component (Server Component)
 export default async function BlogPostPage({ params }: BlogPostPageParams) {
-  // Await the params to handle async nature in Next.js 15
-  const resolvedParams = await params;
-  const { slug } = resolvedParams;
+  // Ensure we have the slug before rendering
+  const { slug } = await params;
+  
+  if (!slug) {
+    // Handle the case where slug is not available
+    return <div>Post not found</div>;
+  }
   
   // Pass the slug to the client component
   return <BlogPostClient slug={slug} />;
