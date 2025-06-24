@@ -7,12 +7,6 @@ import { constructUrl, getSiteUrl } from '@/lib/url';
 // This is a static page
 export const dynamic = 'force-static';
 
-// Type for page props
-type PageProps = {
-  params: { slug: string };
-  searchParams?: { [key: string]: string | string[] | undefined };
-};
-
 // Generate static params at build time
 export function generateStaticParams() {
   return blogPosts.map((post) => ({
