@@ -38,14 +38,6 @@ export async function generateMetadata(
   };
 }
 
-// Define the page props interface
-interface PageProps {
-  params: {
-    slug: string;
-  };
-  searchParams?: { [key: string]: string | string[] | undefined };
-}
-
 // This is a server component that receives the params
 export default function BlogPostPage({ params }: { params: { slug: string } }) {
   // Get the slug from params
