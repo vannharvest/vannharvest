@@ -15,16 +15,9 @@ export default function BlogPostClient({ slug }: BlogPostClientProps) {
   const router = useRouter();
 
   useEffect(() => {
-    // Find the post by slug
     const foundPost = blogPosts.find((p) => p.slug === slug);
-    
-    if (!foundPost) {
-      // Instead of using notFound(), we'll handle it in the render
-      setIsLoading(false);
-      return;
-    }
-    
-    setPost(foundPost);
+
+    setPost(foundPost ?? null);
     setIsLoading(false);
   }, [slug]);
 
@@ -37,17 +30,18 @@ export default function BlogPostClient({ slug }: BlogPostClientProps) {
   }
 
   if (!post) {
-    // Redirect to 404 page or show not found message
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-2xl font-bold mb-4">Post Not Found</h1>
-          <p className="text-gray-600">The requested blog post could not be found.</p>
+        <div className="text-center max-w-md px-4">
+          <h1 className="text-2xl font-bold mb-2">Post Not Found</h1>
+          <p className="text-gray-600 mb-4">
+            The blog post you’re looking for doesn’t exist or has been removed.
+          </p>
           <button
             onClick={() => router.push('/blog')}
-            className="mt-4 px-4 py-2 bg-primary text-white rounded hover:bg-primary-dark transition-colors"
+            className="px-5 py-2 bg-primary text-white rounded hover:bg-primary-dark transition-colors"
           >
-            Back to Blog
+            ← Back to Blog
           </button>
         </div>
       </div>
