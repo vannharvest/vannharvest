@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -25,18 +25,41 @@ const NavLink = ({ href, children, isActive, className = '', ...props }: NavItem
 
 export default function Navbar() {
   const pathname = usePathname();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  
+  const closeTimer = useRef<NodeJS.Timeout | null>(null);
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
+
   // Close mobile menu when route changes
   useEffect(() => {
     const handleRouteChange = () => {
-      setIsMobileMenuOpen(false);
+      setIsMenuOpen(false);
     };
     return () => {
       handleRouteChange();
     };
   }, [pathname]);
+
+  // Close mobile menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target as Node)) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    if (isMenuOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isMenuOpen]);
+
+  const toggleMobileMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
 
   // Scroll effect removed as it wasn't being used
 
@@ -68,14 +91,15 @@ export default function Navbar() {
 
             {/* Mobile menu button - shown on screens < 768px */}
             <div className="lg:hidden">
-              <button
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="inline-flex items-center justify-center p-2 rounded-md text-green-800 hover:text-orange-600 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-orange-500"
-                aria-expanded={isMobileMenuOpen}
+              <button 
+                type="button" 
+                className="lg:hidden text-green-800 hover:text-orange-600 focus:outline-none"
+                onClick={toggleMobileMenu}
+                aria-expanded={isMenuOpen}
                 aria-controls="mobile-menu"
               >
                 <span className="sr-only">Open main menu</span>
-                {isMobileMenuOpen ? (
+                {isMenuOpen ? (
                   <X className="block h-6 w-6" aria-hidden="true" />
                 ) : (
                   <Menu className="block h-6 w-6" aria-hidden="true" />
@@ -100,35 +124,53 @@ export default function Navbar() {
               {/* Infrastructure Dropdown */}
               <div 
                 className="relative group"
-                onMouseEnter={() => setIsDropdownOpen(true)}
-                onMouseLeave={() => setIsDropdownOpen(false)}
+                onMouseEnter={() => {
+                  if (closeTimer.current) {
+                    clearTimeout(closeTimer.current);
+                    closeTimer.current = null;
+                  }
+                  setIsDropdownOpen(true);
+                }}
+                onMouseLeave={() => {
+                  closeTimer.current = setTimeout(() => {
+                    setIsDropdownOpen(false);
+                  }, 300);
+                }}
               >
                 <button 
                   className={`flex items-center gap-1 ${isInfrastructureActive()} hover:text-orange-600 transition-colors`}
+                  onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                 >
                   Infrastructure
-                  <ChevronDown className={`w-4 h-4 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
+                  <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isDropdownOpen ? 'rotate-180' : ''}`} />
                 </button>
                 
                 {/* Dropdown Menu */}
-                {isDropdownOpen && (
-                  <div className="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50">
-                    <NavLink 
-                      href="/infrastructure/sustainability" 
-                      isActive={isActive}
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                    >
-                      Sustainability
-                    </NavLink>
-                    <NavLink 
-                      href="/infrastructure/gallery" 
-                      isActive={isActive}
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                    >
-                      Gallery
-                    </NavLink>
-                  </div>
-                )}
+                <div 
+                  className={`absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50 transition-all duration-200 ease-in-out ${isDropdownOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-1 pointer-events-none'}`}
+                  onMouseEnter={() => {
+                    if (closeTimer.current) {
+                      clearTimeout(closeTimer.current);
+                      closeTimer.current = null;
+                    }
+                    setIsDropdownOpen(true);
+                  }}
+                >
+                  <NavLink 
+                    href="/infrastructure/sustainability" 
+                    isActive={isActive}
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150"
+                  >
+                    Sustainability
+                  </NavLink>
+                  <NavLink 
+                    href="/infrastructure/gallery" 
+                    isActive={isActive}
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150"
+                  >
+                    Gallery
+                  </NavLink>
+                </div>
               </div>
               
               <NavLink href="/blog" isActive={isActive}>
@@ -174,15 +216,15 @@ export default function Navbar() {
           {/* Mobile menu, show/hide based on menu state - shown on screens < 768px */}
           <div 
             id="mobile-menu"
-            className={`lg:hidden transition-all duration-300 ease-in-out ${isMobileMenuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}`}
-            aria-hidden={!isMobileMenuOpen}
+            className={`lg:hidden transition-all duration-300 ease-in-out ${isMenuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}`}
+            aria-hidden={!isMenuOpen}
           >
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
               <NavLink 
                 href="/" 
                 isActive={isActive}
                 className="block px-3 py-2 rounded-md text-base font-medium"
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={() => setIsMenuOpen(false)}
               >
                 Home
               </NavLink>
@@ -191,7 +233,7 @@ export default function Navbar() {
                 href="/products" 
                 isActive={isActive}
                 className="block px-3 py-2 rounded-md text-base font-medium"
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={() => setIsMenuOpen(false)}
               >
                 Products
               </NavLink>
@@ -200,7 +242,7 @@ export default function Navbar() {
                 href="/OurStory" 
                 isActive={isActive}
                 className="block px-3 py-2 rounded-md text-base font-medium"
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={() => setIsMenuOpen(false)}
               >
                 Our Story
               </NavLink>
@@ -220,7 +262,7 @@ export default function Navbar() {
                       href="/infrastructure/sustainability" 
                       isActive={isActive}
                       className="block px-3 py-2 rounded-md text-base font-medium"
-                      onClick={() => setIsMobileMenuOpen(false)}
+                      onClick={() => setIsMenuOpen(false)}
                     >
                       Sustainability
                     </NavLink>
@@ -228,7 +270,7 @@ export default function Navbar() {
                       href="/infrastructure/gallery" 
                       isActive={isActive}
                       className="block px-3 py-2 rounded-md text-base font-medium"
-                      onClick={() => setIsMobileMenuOpen(false)}
+                      onClick={() => setIsMenuOpen(false)}
                     >
                       Gallery
                     </NavLink>
@@ -240,7 +282,7 @@ export default function Navbar() {
                 href="/blog" 
                 isActive={isActive}
                 className="block px-3 py-2 rounded-md text-base font-medium"
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={() => setIsMenuOpen(false)}
               >
                 Blog
               </NavLink>
@@ -276,7 +318,7 @@ export default function Navbar() {
                   <Link 
                     href="/contact" 
                     className="block w-full px-4 py-2 text-center bg-green-600 hover:bg-green-700 text-white rounded-md font-medium transition-all"
-                    onClick={() => setIsMobileMenuOpen(false)}
+                    onClick={() => setIsMenuOpen(false)}
                   >
                     Contact Us
                   </Link>
