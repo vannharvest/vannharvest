@@ -1,4 +1,5 @@
 import type { Metadata, ResolvingMetadata } from 'next';
+import { notFound } from 'next/navigation';
 import { blogPosts } from '../data';
 import { constructUrl, getSiteUrl } from '@/lib/url';
 import BlogPostClient from './BlogPostClient';
@@ -20,7 +21,7 @@ export async function generateMetadata(
   { params }: { params: { slug: string } },
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  // Use unstable_ to handle async params in Next.js 15
+  // Get the slug from params
   const { slug } = await Promise.resolve(params);
   const post = findPostBySlug(slug);
   
@@ -78,13 +79,12 @@ export default async function BlogPostPage({
 }: {
   params: { slug: string };
 }) {
-  // Use unstable_ to handle async params in Next.js 15
+  // Get the slug from params
   const { slug } = await Promise.resolve(params);
-  
   const post = findPostBySlug(slug);
   
   if (!post) {
-    return <div>Post not found</div>;
+    notFound();
   }
   
   return <BlogPostClient slug={slug} />;
