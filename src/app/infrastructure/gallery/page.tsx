@@ -139,21 +139,29 @@ export default function GalleryPage() {
     setIsZoomed(false);
   }, [selectedImage, filteredImages.length]);
 
-  // Close lightbox on ESC key
+  const prevImage = useCallback(() => {
+    navigate('prev');
+  }, [navigate]);
+
+  const nextImage = useCallback(() => {
+    navigate('next');
+  }, [navigate]);
+
+  // Close lightbox on ESC key and handle keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         closeLightbox();
       } else if (e.key === 'ArrowLeft') {
-        navigate('prev');
+        prevImage();
       } else if (e.key === 'ArrowRight') {
-        navigate('next');
+        nextImage();
       }
     };
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [closeLightbox, navigate]);
+  }, [closeLightbox, prevImage, nextImage]);
 
   return (
     <div className="min-h-screen bg-white">

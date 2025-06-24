@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import { blogPosts, BlogPost } from '../data';
-import { Metadata, ResolvingMetadata } from 'next';
+import type { Metadata } from 'next';
 
 type Props = {
   params: { slug: string };
@@ -43,17 +43,20 @@ export async function generateMetadata(
 }
 
 // Blog post page component
-export default function BlogPostPage({ params }: Props) {
-  // Get the slug from params
+interface PageProps {
+  params: { slug: string };
+}
+
+export default function BlogPostPage({ params }: PageProps) {
   const { slug } = params;
-  
-  // Find the post synchronously since we're using static data
-  // In a real app, you might want to fetch this data
   const post = blogPosts.find((post: BlogPost) => post.slug === slug);
 
   if (!post) {
     notFound();
+    return null; // This line will never be reached, but makes TypeScript happy
   }
+  
+  // TypeScript now knows post is defined after this point
 
   return (
     <div className="min-h-screen bg-white py-16">
@@ -61,10 +64,13 @@ export default function BlogPostPage({ params }: Props) {
       <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-8">
           <Link 
-            href="/blog" 
+            href="/blog"
             className="text-green-700 hover:underline inline-flex items-center mb-6"
+            legacyBehavior
           >
-            ← Back to Blog
+            <a className="text-green-700 hover:underline inline-flex items-center mb-6">
+              ← Back to Blog
+            </a>
           </Link>
           
           <div className="relative h-96 w-full rounded-xl overflow-hidden mb-8 bg-gray-100">
