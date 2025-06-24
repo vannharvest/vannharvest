@@ -17,11 +17,12 @@ function findPostBySlug(slug: string) {
 
 // Generate metadata for the page
 export async function generateMetadata(
-  { params }: { params: { slug: string } },
+  { params }: PageProps,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  // Await the params to handle async nature in Next.js 15
-  const { slug } = await Promise.resolve(params);
+  // Handle both sync and async params
+  const resolvedParams = await Promise.resolve(params);
+  const { slug } = resolvedParams;
   const post = findPostBySlug(slug);
   
   if (!post) {
@@ -72,14 +73,16 @@ export async function generateMetadata(
   };
 }
 
+// Types for the page props
+type PageProps = {
+  params: { slug: string } | Promise<{ slug: string }>;
+};
+
 // Main page component (Server Component)
-export default async function BlogPostPage({
-  params,
-}: {
-  params: { slug: string };
-}) {
-  // Await the params to handle async nature in Next.js 15
-  const { slug } = await Promise.resolve(params);
+export default async function BlogPostPage({ params }: PageProps) {
+  // Handle both sync and async params
+  const resolvedParams = await Promise.resolve(params);
+  const { slug } = resolvedParams;
   
   const post = findPostBySlug(slug);
   
