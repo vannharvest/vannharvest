@@ -30,8 +30,10 @@ export async function generateMetadata(
   { params }: { params: { slug: string } },
   parent: ResolvingMetadata
 ): Promise<Metadata> {
+  // Ensure we have the slug
+  const { slug } = await params;
   try {
-    const post = findPostBySlug(params.slug);
+    const post = findPostBySlug(slug);
     
     if (!post) {
       return {
@@ -90,9 +92,9 @@ export async function generateMetadata(
 }
 
 // Blog post page component (Server Component)
-export default function BlogPostPage({ params }: PageProps) {
+export default async function BlogPostPage({ params }: { params: { slug: string } }) {
   // Get slug from params
-  const { slug } = params;
+  const { slug } = await params;
   
   // Find the post by slug
   const post = findPostBySlug(slug);

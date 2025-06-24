@@ -14,32 +14,25 @@ const fontSans = Montserrat({
   weight: ["300", "400", "500", "600", "700"],
 });
 
+// Ensure image URL is absolute
+const ogImageUrl = siteConfig.ogImage.startsWith('http') 
+  ? siteConfig.ogImage 
+  : `${siteConfig.url}${siteConfig.ogImage.startsWith('/') ? '' : '/'}${siteConfig.ogImage}`;
+
 export const metadata: Metadata = {
   title: {
     default: siteConfig.name,
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
-  keywords: [
-    "raisins",
-    "dried fruits",
-    "export",
-    "black raisins",
-    "golden raisins",
-    "green raisins",
-    "india",
-  ],
-  metadataBase: new URL(siteConfig.url),
   openGraph: {
     type: "website",
-    locale: "en_US",
-    url: siteConfig.url,
     title: siteConfig.name,
     description: siteConfig.description,
-    siteName: siteConfig.name,
+    url: siteConfig.url,
     images: [
       {
-        url: siteConfig.ogImage,
+        url: ogImageUrl,
         width: 1200,
         height: 630,
         alt: siteConfig.name,
@@ -50,9 +43,8 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: siteConfig.name,
     description: siteConfig.description,
-    images: [siteConfig.ogImage],
-    creator: "@vannharvest",
-  },
+    images: [ogImageUrl],
+  }
 };
 
 export const viewport: Viewport = {
