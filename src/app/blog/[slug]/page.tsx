@@ -13,14 +13,13 @@ export function generateStaticParams() {
   }));
 }
 
-// Helper to get blog post by slug
-function findPostBySlug(slug: string) {
-  return blogPosts.find((post) => post.slug === slug);
-}
-
 // Static metadata for each post
-export function generateMetadata({ params }: PageProps): Metadata {
-  const post = findPostBySlug(params.slug);
+export function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Metadata {
+  const post = blogPosts.find((post) => post.slug === params.slug);
   if (!post) return {};
 
   const postUrl = constructUrl(getSiteUrl(), `/blog/${post.slug}`);
@@ -55,13 +54,12 @@ export function generateMetadata({ params }: PageProps): Metadata {
 }
 
 // Blog Post Page (Fully Static)
-type PageProps = {
+export default function BlogPostPage({
+  params,
+}: {
   params: { slug: string };
-  searchParams: { [key: string]: string | string[] | undefined };
-};
-
-export default function BlogPostPage({ params }: PageProps) {
-  const post = findPostBySlug(params.slug);
+}) {
+  const post = blogPosts.find((post) => post.slug === params.slug);
   if (!post) return null; // Will be handled by the client component
 
   return <BlogPostClient slug={params.slug} />;
