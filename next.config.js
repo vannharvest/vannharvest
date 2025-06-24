@@ -1,8 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
+  // Remove output: 'export' to enable dynamic routes
   images: {
-    unoptimized: true, // Required for static export
     remotePatterns: [
       {
         protocol: 'https',
