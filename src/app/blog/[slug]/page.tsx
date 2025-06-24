@@ -75,8 +75,7 @@ export async function generateMetadata(
 }
 
 // Main page component (Server Component)
-export default async function BlogPostPage({ params }: { params: { slug: string } }) {
-  // Ensure params is resolved before passing to client component
-  const resolvedParams = await Promise.resolve(params);
-  return <BlogPostClient slug={resolvedParams.slug} />;
+export default function BlogPostPage({ params }: { params: { slug: string } }) {
+  // Access params directly as they are already resolved by Next.js
+  return <BlogPostClient slug={params.slug} />;
 }
