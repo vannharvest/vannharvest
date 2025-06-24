@@ -16,97 +16,102 @@ interface GalleryImage {
   category: string;
 }
 
-// Image URLs from Pexels with agricultural/farming theme
+// Gallery images from public directory
 const imageUrls = {
-  farm: 'https://images.pexels.com/photos/1112080/pexels-photo-1112080.jpeg',
-  harvest: 'https://images.pexels.com/photos/1112080/pexels-photo-1112080.jpeg',
-  processing: 'https://images.pexels.com/photos/1122419/pexels-photo-1122419.jpeg',
-  quality: 'https://images.pexels.com/photos/1112080/pexels-photo-1112080.jpeg',
-  team: 'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg',
-  sustainability: 'https://images.pexels.com/photos/4503273/pexels-photo-4503273.jpeg',
-  products: 'https://images.pexels.com/photos/396132/pexels-photo-396132.jpeg',
-  hero: 'https://images.pexels.com/photos/1112080/pexels-photo-1112080.jpeg'
+  // Farm and Operations
+  farm: '/images/gallery/Farm.avif',
+  irrigation: '/images/gallery/Irrigation.avif',
+  processing: '/images/gallery/processing.avif',
+  drying: '/images/gallery/drying.avif',
+  quality: '/images/gallery/quality.avif',
+  
+  // Team and Relationships
+  team: '/images/gallery/team.avif',
+  relationships: '/images/gallery/Relationships.avif',
+  
+  // Sustainability
+  sustainability: '/images/gallery/Sustainibility.avif',
+  
+  // Hero image
+  hero: '/images/gallery/Farm.avif'
 };
 
 // Fallback image in case of loading errors
-const FALLBACK_IMAGE = 'https://images.pexels.com/photos/1112080/pexels-photo-1112080.jpeg';
+const FALLBACK_IMAGE = '/images/gallery/Farm.avif';
 
 const galleryImages: GalleryImage[] = [
+  // Farm and Operations
   {
     src: imageUrls.farm,
     fallback: imageUrls.farm,
-    alt: 'Sunrise over raisin vineyards',
-    width: 800,
-    height: 1200,
+    alt: 'Our beautiful raisin farm landscape',
+    width: 1600,
+    height: 900,
     category: 'Farm'
   },
   {
-    src: imageUrls.harvest,
-    fallback: imageUrls.harvest,
-    alt: 'Harvesting fresh grapes',
-    width: 1200,
-    height: 800,
-    category: 'Harvest'
+    src: imageUrls.irrigation,
+    fallback: imageUrls.irrigation,
+    alt: 'Efficient irrigation systems in our fields',
+    width: 1600,
+    height: 900,
+    category: 'Farm'
   },
   {
     src: imageUrls.processing,
     fallback: imageUrls.processing,
-    alt: 'Drying raisins under the sun',
-    width: 800,
-    height: 1000,
+    alt: 'State-of-the-art processing facility',
+    width: 1600,
+    height: 900,
+    category: 'Processing'
+  },
+  {
+    src: imageUrls.drying,
+    fallback: imageUrls.drying,
+    alt: 'Natural drying process under the sun',
+    width: 1600,
+    height: 900,
     category: 'Processing'
   },
   {
     src: imageUrls.quality,
     fallback: imageUrls.quality,
-    alt: 'Quality inspection',
-    width: 1200,
+    alt: 'Stringent quality control measures',
+    width: 1600,
     height: 900,
     category: 'Quality'
   },
-  {
-    src: imageUrls.processing,
-    fallback: imageUrls.processing,
-    alt: 'Packaging facility',
-    width: 1000,
-    height: 800,
-    category: 'Processing'
-  },
-  {
-    src: imageUrls.farm,
-    fallback: imageUrls.farm,
-    alt: 'Organic farming practices',
-    width: 800,
-    height: 600,
-    category: 'Farm'
-  },
+  
+  // Team and Relationships
   {
     src: imageUrls.team,
     fallback: imageUrls.team,
-    alt: 'Team members working',
-    width: 1200,
-    height: 800,
+    alt: 'Our dedicated and skilled team',
+    width: 1600,
+    height: 900,
     category: 'Team'
   },
   {
+    src: imageUrls.relationships,
+    fallback: imageUrls.relationships,
+    alt: 'Building strong relationships with farmers',
+    width: 1600,
+    height: 900,
+    category: 'Relationships'
+  },
+  
+  // Sustainability
+  {
     src: imageUrls.sustainability,
     fallback: imageUrls.sustainability,
-    alt: 'Sustainable water management',
-    width: 1000,
-    height: 1200,
-    category: 'Sustainability'
-  },
-  {
-    src: imageUrls.products,
-    fallback: imageUrls.products,
-    alt: 'Final product packaging',
-    width: 1200,
+    alt: 'Sustainable farming practices',
+    width: 1600,
     height: 900,
-    category: 'Products'
-  },
+    category: 'Sustainability'
+  }
 ];
 
-const heroImage = imageUrls.hero;
+const heroImage = imageUrls.farm; // Using farm image as hero
 
 const categories = ['All', ...Array.from(new Set(galleryImages.map(img => img.category)))];
 

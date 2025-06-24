@@ -1,21 +1,17 @@
-import { notFound } from 'next/navigation';
 import type { Metadata, ResolvingMetadata } from 'next';
-import { blogPosts, type BlogPost } from '../data';
-import BlogPostContent from './BlogPostContent';
+import { blogPosts } from '../data';
 import { constructUrl, getSiteUrl } from '@/lib/url';
+import BlogPostClient from './BlogPostClient';
 
-// This is a static page
-export const dynamic = 'force-static';
-
-// Generate static params at build time
-export function generateStaticParams() {
+// This is a server component that handles static generation and metadata
+export async function generateStaticParams() {
   return blogPosts.map((post) => ({
     slug: post.slug,
   }));
 }
 
 // Helper function to find post by slug
-function findPostBySlug(slug: string): BlogPost | undefined {
+function findPostBySlug(slug: string) {
   return blogPosts.find((post) => post.slug === slug);
 }
 
@@ -24,80 +20,63 @@ export async function generateMetadata(
   { params }: { params: { slug: string } },
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  // Get the slug from params asynchronously
-  const { slug } = await params;
-  try {
-    const post = findPostBySlug(slug);
-    
-    if (!post) {
-      return {
-        title: 'Post Not Found',
-        description: 'The requested blog post could not be found.',
-      };
-    }
-
-    // Get parent metadata if available
-    const parentMetadata = await Promise.resolve(parent);
-    const previousImages = Array.isArray(parentMetadata?.openGraph?.images) 
-      ? parentMetadata.openGraph.images 
-      : [];
-
-    // Basic metadata
-    const postUrl = constructUrl(getSiteUrl(), `/blog/${post.slug}`);
-    const metadata: Metadata = {
-      title: `${post.title} | Vann Harvest`,
-      description: post.excerpt,
-      openGraph: {
-        title: post.title,
-        description: post.excerpt,
-        type: 'article',
-        url: postUrl,
-        publishedTime: post.date,
-        authors: post.author ? [post.author] : ['Vann Harvest Team'],
-        images: [
-          {
-            url: post.image,
-            width: 1200,
-            height: 630,
-            alt: post.title,
-          },
-          ...previousImages,
-        ],
-      },
-      twitter: {
-        card: 'summary_large_image',
-        title: post.title,
-        description: post.excerpt,
-        images: [post.image],
-      },
-      alternates: {
-        canonical: postUrl,
-      },
-    };
-
-    return metadata;
-  } catch (error) {
-    console.error('Error generating metadata:', error);
-    return {
-      title: 'Error',
-      description: 'An error occurred while loading this page.',
-    };
-  }
-}
-
-// Blog post page component (Server Component)
-export default async function BlogPostPage({ params }: { params: { slug: string } }) {
-  // Get slug from params asynchronously
-  const { slug } = await params;
+  // Ensure params is resolved before accessing its properties
+  const resolvedParams = await Promise.resolve(params);
+  const slug = resolvedParams.slug;
   
-  // Find the post by slug
   const post = findPostBySlug(slug);
   
-  // Return 404 if post not found
   if (!post) {
-    notFound();
+    return {
+      title: 'Post Not Found',
+      description: 'The requested blog post could not be found.',
+    };
   }
+
+  // Get parent metadata if available
+  const parentMetadata = await Promise.resolve(parent);
+  const previousImages = Array.isArray(parentMetadata?.openGraph?.images) 
+    ? parentMetadata.openGraph.images 
+    : [];
+
+  // Basic metadata
+  const postUrl = constructUrl(getSiteUrl(), `/blog/${post.slug}`);
   
-  // Pass the post data to the client component
-  return <BlogPostContent post={post} />;
+  return {
+    title: `${post.title} | Vann Harvest`,
+    description: post.excerpt,
+    openGraph: {
+      title: post.title,
+      description: post.excerpt,
+      type: 'article',
+      url: postUrl,
+      publishedTime: post.date,
+      authors: post.author ? [post.author] : ['Vann Harvest Team'],
+      images: [
+        {
+          url: post.image,
+          width: 1200,
+          height: 630,
+          alt: post.title,
+        },
+        ...previousImages,
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description: post.excerpt,
+      images: [post.image],
+    },
+    alternates: {
+      canonical: postUrl,
+    },
+  };
+}
+
+// Main page component (Server Component)
+export default async function BlogPostPage({ params }: { params: { slug: string } }) {
+  // Ensure params is resolved before passing to client component
+  const resolvedParams = await Promise.resolve(params);
+  return <BlogPostClient slug={resolvedParams.slug} />;
 }
