@@ -4,6 +4,9 @@ import { blogPosts } from '../data';
 import { constructUrl, getSiteUrl } from '@/lib/url';
 import BlogPostClient from './BlogPostClient';
 
+// This tells Next.js to pre-render these pages at build time
+export const dynamicParams = false;
+
 // Generate static paths for each blog post
 export function generateStaticParams() {
   return blogPosts.map((post) => ({
@@ -17,18 +20,9 @@ function findPostBySlug(slug: string) {
 }
 
 // Static metadata for each post
-export function generateMetadata(
-  { params }: { params: { slug: string } }
-): Metadata {
-  const { slug } = params;
-  const post = findPostBySlug(slug);
-
-  if (!post) {
-    return {
-      title: 'Post Not Found',
-      description: 'The requested blog post could not be found.',
-    };
-  }
+export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
+  const post = findPostBySlug(params.slug);
+  if (!post) return {};
 
   const postUrl = constructUrl(getSiteUrl(), `/blog/${post.slug}`);
 
@@ -61,31 +55,10 @@ export function generateMetadata(
   };
 }
 
-// Blog Post Page (Static)
-export default function BlogPostPage({
-  params,
-}: {
-  params: { slug: string };
-}) {
-  const { slug } = params;
-  const post = findPostBySlug(slug);
+// Blog Post Page (Fully Static)
+export default function BlogPostPage({ params }: { params: { slug: string } }) {
+  const post = findPostBySlug(params.slug);
+  if (!post) return null; // Will be handled by the client component
 
-  if (!post) {
-    return (
-      <div className="min-h-screen flex items-center justify-center p-4">
-        <div className="text-center">
-          <h1 className="text-2xl font-bold mb-4">404 - Post Not Found</h1>
-          <p className="text-gray-600 mb-6">The requested blog post could not be found.</p>
-          <Link
-            href="/blog"
-            className="inline-block px-4 py-2 bg-primary text-white rounded hover:bg-primary-dark transition-colors"
-          >
-            Back to Blog
-          </Link>
-        </div>
-      </div>
-    );
-  }
-
-  return <BlogPostClient slug={slug} />;
+  return <BlogPostClient slug={params.slug} />;
 }
