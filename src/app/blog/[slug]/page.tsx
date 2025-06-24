@@ -1,14 +1,16 @@
 import { notFound } from 'next/navigation';
-import { Metadata, ResolvingMetadata } from 'next';
+import type { Metadata, ResolvingMetadata } from 'next';
 import { blogPosts, type BlogPost } from '../data';
 import BlogPostContent from './BlogPostContent';
+import { constructUrl, getSiteUrl } from '@/lib/url';
 
 // This is a static page
 export const dynamic = 'force-static';
 
-type Props = {
+// Type for page props
+type PageProps = {
   params: { slug: string };
-  searchParams: { [key: string]: string | string[] | undefined };
+  searchParams?: { [key: string]: string | string[] | undefined };
 };
 
 // Generate static params at build time
@@ -25,7 +27,7 @@ function findPostBySlug(slug: string): BlogPost | undefined {
 
 // Generate metadata for the page
 export async function generateMetadata(
-  { params }: Props,
+  { params }: { params: { slug: string } },
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   try {
@@ -38,18 +40,24 @@ export async function generateMetadata(
       };
     }
 
-    const previousImages = (await parent).openGraph?.images || [];
+    // Get parent metadata if available
+    const parentMetadata = await Promise.resolve(parent);
+    const previousImages = Array.isArray(parentMetadata?.openGraph?.images) 
+      ? parentMetadata.openGraph.images 
+      : [];
 
-    return {
+    // Basic metadata
+    const postUrl = constructUrl(getSiteUrl(), `/blog/${post.slug}`);
+    const metadata: Metadata = {
       title: `${post.title} | Vann Harvest`,
       description: post.excerpt,
       openGraph: {
         title: post.title,
         description: post.excerpt,
-        url: `/blog/${post.slug}`,
         type: 'article',
+        url: postUrl,
         publishedTime: post.date,
-        authors: [post.author || 'Vann Harvest Team'],
+        authors: post.author ? [post.author] : ['Vann Harvest Team'],
         images: [
           {
             url: post.image,
@@ -66,7 +74,12 @@ export async function generateMetadata(
         description: post.excerpt,
         images: [post.image],
       },
+      alternates: {
+        canonical: postUrl,
+      },
     };
+
+    return metadata;
   } catch (error) {
     console.error('Error generating metadata:', error);
     return {
@@ -77,7 +90,7 @@ export async function generateMetadata(
 }
 
 // Blog post page component (Server Component)
-export default function BlogPostPage({ params }: Props) {
+export default function BlogPostPage({ params }: PageProps) {
   // Get slug from params
   const { slug } = params;
   
