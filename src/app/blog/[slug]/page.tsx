@@ -3,23 +3,25 @@ import { blogPosts } from '../data';
 import { constructUrl, getSiteUrl } from '@/lib/url';
 import BlogPostClient from './BlogPostClient';
 
-// This tells Next.js to pre-render these pages at build time
+// 1. Disable dynamic params to ensure only statically generated pages are served
 export const dynamicParams = false;
 
-// Generate static paths for each blog post
+type Params = {
+  params: {
+    slug: string;
+  };
+};
+
+// 2. Generate static params at build time
 export function generateStaticParams() {
   return blogPosts.map((post) => ({
     slug: post.slug,
   }));
 }
 
-// Static metadata for each post
-export function generateMetadata({
-  params,
-}: {
-  params: { slug: string };
-}): Metadata {
-  const post = blogPosts.find((post) => post.slug === params.slug);
+// 3. Static metadata for each post
+export function generateMetadata({ params }: Params): Metadata {
+  const post = blogPosts.find((p) => p.slug === params.slug);
   if (!post) return {};
 
   const postUrl = constructUrl(getSiteUrl(), `/blog/${post.slug}`);
@@ -53,14 +55,10 @@ export function generateMetadata({
   };
 }
 
-// Blog Post Page (Fully Static)
-export default function BlogPostPage({
-  params,
-}: {
-  params: { slug: string };
-}) {
-  const post = blogPosts.find((post) => post.slug === params.slug);
-  if (!post) return null; // Will be handled by the client component
+// 4. The actual page component
+export default function BlogPostPage({ params }: Params) {
+  const post = blogPosts.find((p) => p.slug === params.slug);
+  if (!post) return null; // Fallback handled by BlogPostClient
 
   return <BlogPostClient slug={params.slug} />;
 }
