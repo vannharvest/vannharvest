@@ -4,27 +4,26 @@ import { blogPosts } from '../data';
 import { constructUrl, getSiteUrl } from '@/lib/url';
 import BlogPostClient from './BlogPostClient';
 
-// This is a server component that handles static generation and metadata
+// Static params for SSG
 export async function generateStaticParams() {
   return blogPosts.map((post) => ({
     slug: post.slug,
   }));
 }
 
-// Helper function to find post by slug
+// Helper function
 function findPostBySlug(slug: string) {
   return blogPosts.find((post) => post.slug === slug);
 }
 
-// Generate metadata for the page
+// Generate metadata (fix: remove Promise union)
 export async function generateMetadata(
   { params }: { params: { slug: string } },
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  // Get the slug from params
-  const { slug } = await Promise.resolve(params);
+  const { slug } = params;
   const post = findPostBySlug(slug);
-  
+
   if (!post) {
     return {
       title: 'Post Not Found',
@@ -32,15 +31,13 @@ export async function generateMetadata(
     };
   }
 
-  // Get parent metadata if available
   const parentMetadata = await parent;
-  const previousImages = Array.isArray(parentMetadata?.openGraph?.images) 
-    ? parentMetadata.openGraph.images 
+  const previousImages = Array.isArray(parentMetadata?.openGraph?.images)
+    ? parentMetadata.openGraph.images
     : [];
 
-  // Basic metadata
   const postUrl = constructUrl(getSiteUrl(), `/blog/${post.slug}`);
-  
+
   return {
     title: `${post.title} | Vann Harvest`,
     description: post.excerpt,
@@ -73,19 +70,18 @@ export async function generateMetadata(
   };
 }
 
-// Main page component (Server Component)
+// Blog post page (fix: remove Promise union)
 export default async function BlogPostPage({
   params,
 }: {
   params: { slug: string };
 }) {
-  // Get the slug from params
-  const { slug } = await Promise.resolve(params);
+  const { slug } = params;
   const post = findPostBySlug(slug);
-  
+
   if (!post) {
     notFound();
   }
-  
+
   return <BlogPostClient slug={slug} />;
 }
