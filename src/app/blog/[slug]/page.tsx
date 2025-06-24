@@ -19,7 +19,7 @@ function findPostBySlug(slug: string) {
 }
 
 // Static metadata for each post
-export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
+export function generateMetadata({ params }: PageProps): Metadata {
   const post = findPostBySlug(params.slug);
   if (!post) return {};
 
@@ -55,7 +55,12 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
 }
 
 // Blog Post Page (Fully Static)
-export default function BlogPostPage({ params }: { params: { slug: string } }) {
+type PageProps = {
+  params: { slug: string };
+  searchParams: { [key: string]: string | string[] | undefined };
+};
+
+export default function BlogPostPage({ params }: PageProps) {
   const post = findPostBySlug(params.slug);
   if (!post) return null; // Will be handled by the client component
 
