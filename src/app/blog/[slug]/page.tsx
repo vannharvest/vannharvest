@@ -6,7 +6,7 @@ import { Metadata } from 'next';
 
 // Generate metadata for the blog post
 export async function generateMetadata(
-  { params }: PageProps
+  { params }: { params: { slug: string } }
 ): Promise<Metadata> {
   // Ensure we have the slug before proceeding
   const slug = await Promise.resolve(params.slug);
@@ -47,7 +47,7 @@ interface PageProps {
 }
 
 // This is a server component that receives the params
-export default function BlogPostPage({ params }: PageProps) {
+export default function BlogPostPage({ params }: { params: { slug: string } }) {
   // Get the slug from params
   const { slug } = params;
   
