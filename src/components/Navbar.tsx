@@ -121,20 +121,6 @@ export default function Navbar() {
                       Sustainability
                     </NavLink>
                     <NavLink 
-                      href="/infrastructure/processing" 
-                      isActive={isActive}
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                    >
-                      Processing
-                    </NavLink>
-                    <NavLink 
-                      href="/infrastructure/packaging" 
-                      isActive={isActive}
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                    >
-                      Packaging
-                    </NavLink>
-                    <NavLink 
                       href="/infrastructure/gallery" 
                       isActive={isActive}
                       className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
@@ -145,8 +131,8 @@ export default function Navbar() {
                 )}
               </div>
               
-              <NavLink href="/blogs" isActive={isActive}>
-                Blogs
+              <NavLink href="/blog" isActive={isActive}>
+                Blog
               </NavLink>
             </nav>
 
@@ -239,22 +225,6 @@ export default function Navbar() {
                       Sustainability
                     </NavLink>
                     <NavLink 
-                      href="/infrastructure/processing" 
-                      isActive={isActive}
-                      className="block px-3 py-2 rounded-md text-base font-medium"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      Processing
-                    </NavLink>
-                    <NavLink 
-                      href="/infrastructure/packaging" 
-                      isActive={isActive}
-                      className="block px-3 py-2 rounded-md text-base font-medium"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      Packaging
-                    </NavLink>
-                    <NavLink 
                       href="/infrastructure/gallery" 
                       isActive={isActive}
                       className="block px-3 py-2 rounded-md text-base font-medium"
@@ -267,12 +237,12 @@ export default function Navbar() {
               </div>
               
               <NavLink 
-                href="/blogs" 
+                href="/blog" 
                 isActive={isActive}
                 className="block px-3 py-2 rounded-md text-base font-medium"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                Blogs
+                Blog
               </NavLink>
               
               <div className="pt-4 pb-2 border-t border-gray-200 mt-2">
