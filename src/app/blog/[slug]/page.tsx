@@ -20,10 +20,7 @@ export async function generateMetadata(
   { params }: { params: { slug: string } },
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  // Await the params to handle async nature in Next.js 15
-  const resolvedParams = await params;
-  const { slug } = resolvedParams;
-  
+  const { slug } = params;
   const post = findPostBySlug(slug);
   
   if (!post) {
@@ -74,23 +71,14 @@ export async function generateMetadata(
   };
 }
 
-// Define the page params type
-type BlogPostPageParams = {
-  params: {
-    slug: string;
-  };
-};
-
 // Main page component (Server Component)
-export default async function BlogPostPage({ params }: BlogPostPageParams) {
-  // Ensure we have the slug before rendering
-  const { slug } = await params;
+export default function BlogPostPage({ params }: { params: { slug: string } }) {
+  const { slug } = params;
+  const post = findPostBySlug(slug);
   
-  if (!slug) {
-    // Handle the case where slug is not available
+  if (!post) {
     return <div>Post not found</div>;
   }
   
-  // Pass the slug to the client component
   return <BlogPostClient slug={slug} />;
 }
