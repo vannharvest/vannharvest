@@ -2,23 +2,23 @@
 
 import type { Metadata, ResolvingMetadata } from 'next';
 import { notFound } from 'next/navigation';
-import { blogPosts } from '../data';
+import { blogPosts, type BlogPost } from '../data';
 import { constructUrl, getSiteUrl } from '@/lib/url';
 import BlogPostClient from './BlogPostClient';
 
-// Helper function to find a post by slug
-function findPostBySlug(slug: string) {
+// Helper function to find a blog post by slug
+function findPostBySlug(slug: string): BlogPost | undefined {
   return blogPosts.find((post) => post.slug === slug);
 }
 
-// 1. Generate static paths for all blog posts
+// Generate static paths for all blog posts
 export async function generateStaticParams() {
-  return blogPosts.map((post) => ({
+  return blogPosts.map((post: BlogPost) => ({
     slug: post.slug,
   }));
 }
 
-// 2. Generate metadata dynamically per post
+// Generate metadata for each blog post
 export async function generateMetadata(
   { params }: { params: { slug: string } },
   parent: ResolvingMetadata
@@ -33,12 +33,12 @@ export async function generateMetadata(
     };
   }
 
-  const parentMetadata = await parent;
-  const previousImages = Array.isArray(parentMetadata?.openGraph?.images)
-    ? parentMetadata.openGraph.images
+  const parentMeta = await parent;
+  const previousImages = Array.isArray(parentMeta?.openGraph?.images)
+    ? parentMeta.openGraph.images
     : [];
 
-  const postUrl = constructUrl(getSiteUrl(), `/blog/${post.slug}`);
+  const url = constructUrl(getSiteUrl(), `/blog/${post.slug}`);
 
   return {
     title: `${post.title} | Vann Harvest`,
@@ -47,9 +47,9 @@ export async function generateMetadata(
       title: post.title,
       description: post.excerpt,
       type: 'article',
-      url: postUrl,
+      url,
       publishedTime: post.date,
-      authors: post.author ? [post.author] : ['Vann Harvest Team'],
+      authors: [post.author || 'Vann Harvest Team'],
       images: [
         {
           url: post.image,
@@ -67,12 +67,12 @@ export async function generateMetadata(
       images: [post.image],
     },
     alternates: {
-      canonical: postUrl,
+      canonical: url,
     },
   };
 }
 
-// 3. The dynamic blog post page
+// Main dynamic blog page component
 export default async function BlogPostPage({
   params,
 }: {
