@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import { blogPosts } from '../data';
 import { constructUrl, getSiteUrl } from '@/lib/url';
 import BlogPostClient from './BlogPostClient';
