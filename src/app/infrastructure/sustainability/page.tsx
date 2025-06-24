@@ -3,8 +3,7 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Head from 'next/head';
-import { Leaf, Droplets, Recycle, Sun, Users, HeartHandshake } from 'lucide-react';
-import PageWrapper from '@/components/PageWrapper';
+import { Leaf, Droplets, Recycle } from 'lucide-react';
 
 export default function Sustainability() {
   return (
@@ -94,10 +93,13 @@ export default function Sustainability() {
             transition={{ duration: 0.8 }}
           >
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">Our Sustainable Practices</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-8">Our Commitment to a Greener Tomorrow</h2>
+              <p className="text-lg text-gray-600 mb-12 max-w-4xl mx-auto">
+                At Vann Harvest, we don&apos;t just grow raisins—we cultivate a legacy of environmental stewardship and sustainable practices that nurture both people and planet.
+              </p>
               <div className="space-y-6 text-gray-600">
                 <p>At Vann Harvest, sustainability is at the heart of everything we do. Our farms use organic methods that work in harmony with nature, not against it.</p>
-                <p>We've implemented solar power across our facilities, reducing our carbon footprint while maintaining the highest quality standards in raisin production.</p>
+                <p>We&apos;ve implemented solar power across our facilities, reducing our carbon footprint while maintaining the highest quality standards in raisin production.</p>
                 <p>Our commitment extends to fair labor practices and supporting the local communities where we operate.</p>
               </div>
             </div>
@@ -145,7 +147,7 @@ export default function Sustainability() {
               <div className="space-y-6 text-gray-600">
                 <p>We believe in giving back to the communities that support us. Our initiatives include education programs, healthcare access, and sustainable livelihood projects.</p>
                 <p>Our environmental programs focus on biodiversity conservation, soil health, and reducing our overall environmental impact through innovative farming techniques.</p>
-                <p>By choosing Vann Harvest, you're supporting a business that cares about people and the planet.</p>
+                <p>By choosing Vann Harvest, you&apos;re supporting a business that cares about people and the planet.</p>
               </div>
             </div>
           </motion.section>

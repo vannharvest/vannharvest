@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import PageWrapper from '@/components/PageWrapper';
 import Link from 'next/link';
-import { blogPosts, blogImages, BlogPost } from './data';
+import { blogPosts, blogImages } from './data';
 
 // Format date for display
 const formatDate = (dateString: string) => {
