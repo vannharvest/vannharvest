@@ -1,24 +1,22 @@
-// src/app/blog/[slug]/page.tsx
-
 import type { Metadata, ResolvingMetadata } from 'next';
 import { notFound } from 'next/navigation';
-import { blogPosts, type BlogPost } from '../data';
+import { blogPosts } from '../data';
 import { constructUrl, getSiteUrl } from '@/lib/url';
 import BlogPostClient from './BlogPostClient';
 
-// Helper function to find a blog post by slug
-function findPostBySlug(slug: string): BlogPost | undefined {
-  return blogPosts.find((post) => post.slug === slug);
-}
-
-// Generate static paths for all blog posts
+// Generate static paths for each blog post
 export async function generateStaticParams() {
-  return blogPosts.map((post: BlogPost) => ({
+  return blogPosts.map((post) => ({
     slug: post.slug,
   }));
 }
 
-// Generate metadata for each blog post
+// Helper to get blog post by slug
+function findPostBySlug(slug: string) {
+  return blogPosts.find((post) => post.slug === slug);
+}
+
+// Metadata for each post (for SEO and OG)
 export async function generateMetadata(
   { params }: { params: { slug: string } },
   parent: ResolvingMetadata
@@ -33,12 +31,12 @@ export async function generateMetadata(
     };
   }
 
-  const parentMeta = await parent;
-  const previousImages = Array.isArray(parentMeta?.openGraph?.images)
-    ? parentMeta.openGraph.images
+  const parentMetadata = await parent;
+  const previousImages = Array.isArray(parentMetadata?.openGraph?.images)
+    ? parentMetadata.openGraph.images
     : [];
 
-  const url = constructUrl(getSiteUrl(), `/blog/${post.slug}`);
+  const postUrl = constructUrl(getSiteUrl(), `/blog/${post.slug}`);
 
   return {
     title: `${post.title} | Vann Harvest`,
@@ -47,9 +45,9 @@ export async function generateMetadata(
       title: post.title,
       description: post.excerpt,
       type: 'article',
-      url,
+      url: postUrl,
       publishedTime: post.date,
-      authors: [post.author || 'Vann Harvest Team'],
+      authors: post.author ? [post.author] : ['Vann Harvest Team'],
       images: [
         {
           url: post.image,
@@ -67,12 +65,12 @@ export async function generateMetadata(
       images: [post.image],
     },
     alternates: {
-      canonical: url,
+      canonical: postUrl,
     },
   };
 }
 
-// Main dynamic blog page component
+// Blog Post Page
 export default async function BlogPostPage({
   params,
 }: {
