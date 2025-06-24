@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import { blogPosts } from '../data';
 import { constructUrl, getSiteUrl } from '@/lib/url';
 import BlogPostClient from './BlogPostClient';
@@ -75,12 +76,12 @@ export default function BlogPostPage({
         <div className="text-center">
           <h1 className="text-2xl font-bold mb-4">404 - Post Not Found</h1>
           <p className="text-gray-600 mb-6">The requested blog post could not be found.</p>
-          <a
+          <Link
             href="/blog"
-            className="px-4 py-2 bg-primary text-white rounded hover:bg-primary-dark transition-colors"
+            className="inline-block px-4 py-2 bg-primary text-white rounded hover:bg-primary-dark transition-colors"
           >
             Back to Blog
-          </a>
+          </Link>
         </div>
       </div>
     );
