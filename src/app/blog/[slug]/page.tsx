@@ -1,12 +1,14 @@
 import { notFound } from 'next/navigation';
+import { Metadata, ResolvingMetadata } from 'next';
 import { blogPosts, type BlogPost } from '../data';
 import BlogPostContent from './BlogPostContent';
 
 // This is a static page
 export const dynamic = 'force-static';
 
-type BlogPostParams = {
+type Props = {
   params: { slug: string };
+  searchParams: { [key: string]: string | string[] | undefined };
 };
 
 // Generate static params at build time
@@ -23,8 +25,9 @@ function findPostBySlug(slug: string): BlogPost | undefined {
 
 // Generate metadata for the page
 export async function generateMetadata(
-  { params }: { params: { slug: string } }
-) {
+  { params }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
   try {
     const post = findPostBySlug(params.slug);
     
@@ -35,12 +38,18 @@ export async function generateMetadata(
       };
     }
 
+    const previousImages = (await parent).openGraph?.images || [];
+
     return {
       title: `${post.title} | Vann Harvest`,
       description: post.excerpt,
       openGraph: {
         title: post.title,
         description: post.excerpt,
+        url: `/blog/${post.slug}`,
+        type: 'article',
+        publishedTime: post.date,
+        authors: [post.author || 'Vann Harvest Team'],
         images: [
           {
             url: post.image,
@@ -48,7 +57,14 @@ export async function generateMetadata(
             height: 630,
             alt: post.title,
           },
+          ...previousImages,
         ],
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title: post.title,
+        description: post.excerpt,
+        images: [post.image],
       },
     };
   } catch (error) {
@@ -61,7 +77,7 @@ export async function generateMetadata(
 }
 
 // Blog post page component (Server Component)
-export default function BlogPostPage({ params }: BlogPostParams) {
+export default function BlogPostPage({ params }: Props) {
   // Get slug from params
   const { slug } = params;
   

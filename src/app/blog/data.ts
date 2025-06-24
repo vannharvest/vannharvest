@@ -20,6 +20,9 @@ export type BlogPost = {
   date: string;
   category: string;
   fallback?: string;
+  author?: string;
+  readTime?: number;
+  content?: string;
 };
 
 // Blog posts data
@@ -47,6 +50,8 @@ export const blogPosts: BlogPost[] = [
     slug: 'vine-to-dried-delights-raisin-journey',
     date: '2025-04-22',
     category: 'Production',
+    author: 'Vann Harvest Team',
+    readTime: 7,
   },
   {
     title: 'A World of Flavor and Health: Exploring the Diverse Types and Benefits of Raisins',
@@ -79,6 +84,8 @@ export const blogPosts: BlogPost[] = [
     slug: 'raisin-trends-2025',
     date: '2025-06-05',
     category: 'Industry',
+    author: 'Vann Harvest Team',
+    readTime: 4,
   },
 ];
 
