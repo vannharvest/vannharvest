@@ -1,22 +1,24 @@
+// src/app/blog/[slug]/page.tsx
+
 import type { Metadata, ResolvingMetadata } from 'next';
 import { notFound } from 'next/navigation';
 import { blogPosts } from '../data';
 import { constructUrl, getSiteUrl } from '@/lib/url';
 import BlogPostClient from './BlogPostClient';
 
-// Static params for SSG
+// Helper function to find a post by slug
+function findPostBySlug(slug: string) {
+  return blogPosts.find((post) => post.slug === slug);
+}
+
+// 1. Generate static paths for all blog posts
 export async function generateStaticParams() {
   return blogPosts.map((post) => ({
     slug: post.slug,
   }));
 }
 
-// Helper function
-function findPostBySlug(slug: string) {
-  return blogPosts.find((post) => post.slug === slug);
-}
-
-// Generate metadata (fix: remove Promise union)
+// 2. Generate metadata dynamically per post
 export async function generateMetadata(
   { params }: { params: { slug: string } },
   parent: ResolvingMetadata
@@ -70,7 +72,7 @@ export async function generateMetadata(
   };
 }
 
-// Blog post page (fix: remove Promise union)
+// 3. The dynamic blog post page
 export default async function BlogPostPage({
   params,
 }: {
