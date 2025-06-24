@@ -11,8 +11,8 @@ type Props = {
 
 // Generate metadata for the blog post
 export async function generateMetadata(
-  { params, searchParams }: Props,
-  parent: ResolvingMetadata
+  { params, searchParams: _searchParams }: Props,
+  _parent: ResolvingMetadata
 ): Promise<Metadata> {
   // Read route params
   const slug = params.slug;
