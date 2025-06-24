@@ -1,11 +1,10 @@
-import type { Metadata, ResolvingMetadata } from 'next';
-import { notFound } from 'next/navigation';
+import type { Metadata } from 'next';
 import { blogPosts } from '../data';
 import { constructUrl, getSiteUrl } from '@/lib/url';
 import BlogPostClient from './BlogPostClient';
 
 // Generate static paths for each blog post
-export async function generateStaticParams() {
+export function generateStaticParams() {
   return blogPosts.map((post) => ({
     slug: post.slug,
   }));
@@ -16,11 +15,10 @@ function findPostBySlug(slug: string) {
   return blogPosts.find((post) => post.slug === slug);
 }
 
-// Metadata for each post (for SEO and OG)
-export async function generateMetadata(
-  { params }: { params: { slug: string } },
-  parent: ResolvingMetadata
-): Promise<Metadata> {
+// Static metadata for each post
+export function generateMetadata(
+  { params }: { params: { slug: string } }
+): Metadata {
   const { slug } = params;
   const post = findPostBySlug(slug);
 
@@ -30,11 +28,6 @@ export async function generateMetadata(
       description: 'The requested blog post could not be found.',
     };
   }
-
-  const parentMetadata = await parent;
-  const previousImages = Array.isArray(parentMetadata?.openGraph?.images)
-    ? parentMetadata.openGraph.images
-    : [];
 
   const postUrl = constructUrl(getSiteUrl(), `/blog/${post.slug}`);
 
@@ -48,15 +41,12 @@ export async function generateMetadata(
       url: postUrl,
       publishedTime: post.date,
       authors: post.author ? [post.author] : ['Vann Harvest Team'],
-      images: [
-        {
-          url: post.image,
-          width: 1200,
-          height: 630,
-          alt: post.title,
-        },
-        ...previousImages,
-      ],
+      images: [{
+        url: post.image,
+        width: 1200,
+        height: 630,
+        alt: post.title,
+      }],
     },
     twitter: {
       card: 'summary_large_image',
@@ -70,8 +60,8 @@ export async function generateMetadata(
   };
 }
 
-// Blog Post Page
-export default async function BlogPostPage({
+// Blog Post Page (Static)
+export default function BlogPostPage({
   params,
 }: {
   params: { slug: string };
@@ -80,7 +70,20 @@ export default async function BlogPostPage({
   const post = findPostBySlug(slug);
 
   if (!post) {
-    notFound();
+    return (
+      <div className="min-h-screen flex items-center justify-center p-4">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold mb-4">404 - Post Not Found</h1>
+          <p className="text-gray-600 mb-6">The requested blog post could not be found.</p>
+          <a
+            href="/blog"
+            className="px-4 py-2 bg-primary text-white rounded hover:bg-primary-dark transition-colors"
+          >
+            Back to Blog
+          </a>
+        </div>
+      </div>
+    );
   }
 
   return <BlogPostClient slug={slug} />;
