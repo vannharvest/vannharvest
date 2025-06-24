@@ -17,10 +17,12 @@ function findPostBySlug(slug: string) {
 
 // Generate metadata for the page
 export async function generateMetadata(
-  { params }: { params: { slug: string } },
+  { params }: { params: { slug: string } | Promise<{ slug: string }> },
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const { slug } = params;
+  // Handle both sync and async params
+  const resolvedParams = await Promise.resolve(params);
+  const { slug } = resolvedParams;
   const post = findPostBySlug(slug);
   
   if (!post) {
@@ -71,9 +73,17 @@ export async function generateMetadata(
   };
 }
 
+// Define the page props type
+type PageProps = {
+  params: { slug: string } | Promise<{ slug: string }>;
+};
+
 // Main page component (Server Component)
-export default function BlogPostPage({ params }: { params: { slug: string } }) {
-  const { slug } = params;
+export default async function BlogPostPage({ params }: PageProps) {
+  // Handle both synchronous and asynchronous params
+  const resolvedParams = await Promise.resolve(params);
+  const { slug } = resolvedParams;
+  
   const post = findPostBySlug(slug);
   
   if (!post) {
