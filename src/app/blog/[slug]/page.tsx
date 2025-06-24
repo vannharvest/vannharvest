@@ -20,7 +20,8 @@ export async function generateMetadata(
   { params }: { params: { slug: string } },
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const { slug } = params;
+  // Await the params to handle async nature in Next.js 15
+  const { slug } = await Promise.resolve(params);
   const post = findPostBySlug(slug);
   
   if (!post) {
@@ -77,8 +78,8 @@ export default async function BlogPostPage({
 }: {
   params: { slug: string };
 }) {
-  // Get the slug from params
-  const { slug } = params;
+  // Await the params to handle async nature in Next.js 15
+  const { slug } = await Promise.resolve(params);
   
   const post = findPostBySlug(slug);
   
