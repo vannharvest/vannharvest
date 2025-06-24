@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Head from 'next/head';
-import { ArrowLeft, Award, CheckCircle, Shield } from 'lucide-react';
+import { Award, CheckCircle, Shield } from 'lucide-react';
 import Link from 'next/link';
 
 const certifications = [
