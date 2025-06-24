@@ -20,15 +20,14 @@ export default function Sustainability() {
       <div className="relative h-[calc(100vh-10rem)] w-full max-w-[calc(100%-32px)] mx-auto rounded-2xl overflow-hidden mt-32">
         <div className="absolute inset-0 z-0">
           <Image 
-            src="/images/FarmBg.webp" 
+            src="/images/gallery/Sustainibility.avif" 
             alt="Sustainable Farming at Vann Harvest" 
             fill 
             className="object-cover"
             priority
             onError={(e) => {
               const target = e.target as HTMLImageElement;
-              target.src = 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.1.0&auto=format&fit=crop&w=1932&q=80';
-              target.onerror = null; // Prevent infinite loop if fallback also fails
+              target.style.display = 'none';
             }}
           />
           <div className="absolute inset-0 bg-black/40" />
@@ -95,7 +94,7 @@ export default function Sustainability() {
             <div>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-8">Our Commitment to a Greener Tomorrow</h2>
               <p className="text-lg text-gray-600 mb-12 max-w-4xl mx-auto">
-                At Vann Harvest, we don&apos;t just grow raisins—we cultivate a legacy of environmental stewardship and sustainable practices that nurture both people and planet.
+                At Vann Harvest, we don&apos;t just grow raisins-we cultivate a legacy of environmental stewardship and sustainable practices that nurture both people and planet.
               </p>
               <div className="space-y-6 text-gray-600">
                 <p>At Vann Harvest, sustainability is at the heart of everything we do. Our farms use organic methods that work in harmony with nature, not against it.</p>
@@ -105,14 +104,13 @@ export default function Sustainability() {
             </div>
             <div className="relative h-80 md:h-96 rounded-2xl overflow-hidden bg-gray-100 flex items-center justify-center">
               <Image 
-                src="/images/tree.png" 
+                src="/images/Greener_Tomorrow.jpg" 
                 alt="Sustainable farming practices" 
                 fill 
                 className="object-cover"
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
-                  target.src = 'https://images.unsplash.com/photo-1530836369250-ef7226af94a5?ixlib=rb-4.1.0&auto=format&fit=crop&w=1000&q=80';
-                  target.onerror = null; // Prevent infinite loop if fallback also fails
+                  target.style.display = 'none';
                 }}
               />
               <div className="absolute inset-0 bg-black/10" />
@@ -135,8 +133,7 @@ export default function Sustainability() {
                   className="object-cover"
                   onError={(e) => {
                     const target = e.target as HTMLImageElement;
-                    target.src = 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.1.0&auto=format&fit=crop&w=1000&q=80';
-                    target.onerror = null; // Prevent infinite loop if fallback also fails
+                    target.style.display = 'none';
                   }}
                 />
                 <div className="absolute inset-0 bg-black/10" />

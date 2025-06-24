@@ -25,12 +25,8 @@ const imageUrls = {
   drying: '/images/gallery/drying.avif',
   quality: '/images/gallery/quality.avif',
   
-  // Team and Relationships
+  // Team
   team: '/images/gallery/team.avif',
-  relationships: '/images/gallery/Relationships.avif',
-  
-  // Sustainability
-  sustainability: '/images/gallery/Sustainibility.avif',
   
   // Hero image
   hero: '/images/gallery/Farm.avif'
@@ -82,7 +78,7 @@ const galleryImages: GalleryImage[] = [
     category: 'Quality'
   },
   
-  // Team and Relationships
+  // Team
   {
     src: imageUrls.team,
     fallback: imageUrls.team,
@@ -90,24 +86,6 @@ const galleryImages: GalleryImage[] = [
     width: 1600,
     height: 900,
     category: 'Team'
-  },
-  {
-    src: imageUrls.relationships,
-    fallback: imageUrls.relationships,
-    alt: 'Building strong relationships with farmers',
-    width: 1600,
-    height: 900,
-    category: 'Relationships'
-  },
-  
-  // Sustainability
-  {
-    src: imageUrls.sustainability,
-    fallback: imageUrls.sustainability,
-    alt: 'Sustainable farming practices',
-    width: 1600,
-    height: 900,
-    category: 'Sustainability'
   }
 ];
 
