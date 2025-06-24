@@ -1,11 +1,21 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, use } from 'react';
 import { blogPosts, type BlogPost } from '../data';
 import BlogPostContent from './BlogPostContent';
 
-export default function BlogPostClient({ slug }: { slug: string }) {
+type BlogPostClientProps = {
+  slug: string | Promise<{ slug: string }>;
+};
+
+export default function BlogPostClient({ slug: slugProp }: BlogPostClientProps) {
+  // Use React.use to handle the Promise if needed
+  const resolvedSlug = typeof slugProp === 'string' 
+    ? slugProp 
+    : use(slugProp).slug;
+  
+  const slug = resolvedSlug;
   const [post, setPost] = useState<BlogPost | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();

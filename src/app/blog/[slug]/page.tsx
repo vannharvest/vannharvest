@@ -20,9 +20,9 @@ export async function generateMetadata(
   { params }: { params: { slug: string } },
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  // Ensure params is resolved before accessing its properties
-  const resolvedParams = await Promise.resolve(params);
-  const slug = resolvedParams.slug;
+  // Await the params to handle async nature in Next.js 15
+  const resolvedParams = await params;
+  const { slug } = resolvedParams;
   
   const post = findPostBySlug(slug);
   
@@ -34,7 +34,7 @@ export async function generateMetadata(
   }
 
   // Get parent metadata if available
-  const parentMetadata = await Promise.resolve(parent);
+  const parentMetadata = await parent;
   const previousImages = Array.isArray(parentMetadata?.openGraph?.images) 
     ? parentMetadata.openGraph.images 
     : [];
@@ -74,8 +74,19 @@ export async function generateMetadata(
   };
 }
 
+// Define the page params type
+type BlogPostPageParams = {
+  params: {
+    slug: string;
+  };
+};
+
 // Main page component (Server Component)
-export default function BlogPostPage({ params }: { params: { slug: string } }) {
-  // Access params directly as they are already resolved by Next.js
-  return <BlogPostClient slug={params.slug} />;
+export default async function BlogPostPage({ params }: BlogPostPageParams) {
+  // Await the params to handle async nature in Next.js 15
+  const resolvedParams = await params;
+  const { slug } = resolvedParams;
+  
+  // Pass the slug to the client component
+  return <BlogPostClient slug={slug} />;
 }
