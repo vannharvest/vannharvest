@@ -2,17 +2,22 @@ import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import { blogPosts, BlogPost } from '../data';
-import { Metadata } from 'next';
+import { Metadata, ResolvingMetadata } from 'next';
+
+type Props = {
+  params: { slug: string };
+  searchParams: { [key: string]: string | string[] | undefined };
+};
 
 // Generate metadata for the blog post
 export async function generateMetadata(
-  { params }: { params: { slug: string } }
+  { params, searchParams }: Props,
+  parent: ResolvingMetadata
 ): Promise<Metadata> {
-  // Ensure we have the slug before proceeding
-  const slug = await Promise.resolve(params.slug);
+  // Read route params
+  const slug = params.slug;
   
-  // Get the post synchronously since we're using static data
-  // In a real app, you might want to fetch this data
+  // Get the post
   const post = blogPosts.find((post: BlogPost) => post.slug === slug);
   
   if (!post) {
@@ -38,8 +43,8 @@ export async function generateMetadata(
   };
 }
 
-// This is a server component that receives the params
-export default function BlogPostPage({ params }: { params: { slug: string } }) {
+// Blog post page component
+export default function BlogPostPage({ params }: Props) {
   // Get the slug from params
   const { slug } = params;
   
