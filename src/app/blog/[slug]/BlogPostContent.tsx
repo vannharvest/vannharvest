@@ -80,22 +80,23 @@ export default function BlogPostContent({ post }: BlogPostContentProps) {
           </div>
 
           {/* Content */}
-          <div className="prose lg:prose-lg max-w-none">
-            <p className="text-lg text-gray-700 leading-relaxed">
-              {post.content ?? post.excerpt}
-            </p>
-
-            {/* Dummy additional content section */}
-            <div className="mt-8 space-y-4">
-              <p>
-                This is where the full blog post content would be displayed. In a production
-                application, this content would typically come from a CMS or markdown files.
-              </p>
-              <p>
-                You can enrich this content with images, headings, lists, quotes, and more using
-                markdown or a CMS integration.
-              </p>
-            </div>
+          <div className="prose prose-lg max-w-none">
+            <div 
+              className="text-gray-700 leading-relaxed"
+              dangerouslySetInnerHTML={{ 
+                __html: post.content 
+                  ? post.content
+                      .replace(/^# (.*$)/gim, '<h2 class="text-3xl font-bold mt-8 mb-4">$1</h2>')
+                      .replace(/^## (.*$)/gim, '<h3 class="text-2xl font-semibold mt-6 mb-3">$1</h3>')
+                      .replace(/^### (.*$)/gim, '<h4 class="text-xl font-medium mt-4 mb-2">$1</h4>')
+                      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                      .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                      .replace(/^- (.*$)/gim, '<li className="ml-4 list-disc">$1</li>')
+                      .replace(/\n\n/g, '</p><p className="mt-4">')
+                      .replace(/\n/g, '<br />')
+                  : post.excerpt 
+              }} 
+            />
           </div>
 
           {/* Sharing links */}
@@ -105,21 +106,21 @@ export default function BlogPostContent({ post }: BlogPostContentProps) {
               <Link
                 href={`https://twitter.com/intent/tweet?url=https://vannharvest.com/blog/${post.slug}&text=${encodeURIComponent(post.title)}`}
                 target="_blank"
-                className="hover:text-blue-500 underline text-sm"
+                className="text-gray-400 hover:text-blue-500 underline text-sm"
               >
                 Twitter
               </Link>
               <Link
                 href={`https://www.facebook.com/sharer/sharer.php?u=https://vannharvest.com/blog/${post.slug}`}
                 target="_blank"
-                className="hover:text-blue-700 underline text-sm"
+                className="text-gray-400 hover:text-blue-500 underline text-sm"
               >
                 Facebook
               </Link>
               <Link
                 href={`https://www.linkedin.com/sharing/share-offsite/?url=https://vannharvest.com/blog/${post.slug}`}
                 target="_blank"
-                className="hover:text-blue-600 underline text-sm"
+                className="text-gray-400 hover:text-blue-500 underline text-sm"
               >
                 LinkedIn
               </Link>
