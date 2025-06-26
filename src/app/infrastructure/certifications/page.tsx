@@ -47,7 +47,7 @@ const certifications = [
 
 export default function CertificationsPage() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen ">
       <Head>
         <title>Certifications | Vann Harvest | Quality Standards</title>
         <meta name="description" content="Explore our industry certifications and quality standards that ensure premium quality raisins from Vann Harvest." />

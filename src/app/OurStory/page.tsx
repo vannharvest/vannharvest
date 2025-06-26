@@ -52,13 +52,48 @@ export default function OurStory() {
   ];
 
   return (
-    <div ref={scrollRef} className="relative min-h-screen">
-      <motion.div className="fixed inset-0 -z-10" style={{ scale: bgScale, y: bgY }}>
-        <Image src={bgImageSrc} alt="Vann Harvest Farm Background" fill priority quality={90} className="object-cover" />
+    <div ref={scrollRef} className="relative w-full">
+      {/* Background Image Container */}
+      <motion.div 
+        className="fixed inset-0 -z-10 w-screen h-screen" 
+        style={{ 
+          scale: bgScale, 
+          y: bgY,
+          width: '100vw',
+          height: '100vh',
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0
+        }}
+      >
+        <div className="absolute inset-0 w-full h-full">
+          <Image 
+            src={bgImageSrc} 
+            alt="Vann Harvest Farm Background" 
+            fill
+            priority 
+            quality={90} 
+            className="object-cover w-full h-full"
+            sizes="100vw"
+            style={{
+              position: 'absolute',
+              width: '100%',
+              height: '100%',
+              left: 0,
+              top: 0,
+              right: 0,
+              bottom: 0,
+              objectFit: 'cover'
+            }}
+          />
+        </div>
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 to-black/70" />
       </motion.div>
 
-      <div className="relative z-10">
+      {/* Content Wrapper */}
+      <div className="relative z-10 min-h-screen">
         <PageWrapper className="text-white">
           <section className="min-h-screen flex items-center justify-center text-center px-4 pt-24 pb-16 md:pt-32">
             <motion.div 

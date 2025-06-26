@@ -153,7 +153,7 @@ export default function GalleryPage() {
   }, [closeLightbox, prevImage, nextImage]);
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen ">
       <Head>
         <title>Gallery | Vann Harvest Raisin Farms</title>
         <meta

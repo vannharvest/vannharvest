@@ -7,7 +7,7 @@ import { Leaf, Droplets, Recycle } from 'lucide-react';
 
 export default function Sustainability() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen ">
       <Head>
         <title>Sustainability at Vann Harvest | Eco-Friendly Raisin Production</title>
         <meta name="description" content="Explore how Vann Harvest integrates sustainability into every step — from organic farming and waste reduction to community empowerment." />
