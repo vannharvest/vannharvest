@@ -83,24 +83,105 @@ export default function OurStory() {
                   transition={{ delay: 0.4, duration: 0.8 }}
                 />
               </div>
-              <motion.p 
-                className="max-w-3xl mx-auto text-xl md:text-2xl lg:text-3xl text-white/90 leading-relaxed font-light tracking-wide"
+              <motion.div 
+                className="max-w-3xl mx-auto text-white/90 leading-relaxed font-light tracking-wide space-y-6 text-lg md:text-xl"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6, duration: 0.8 }}
               >
-                From a seed in Vijayapura to a global legacy - Vann Harvest brings you nature&apos;s finest raisins.
-              </motion.p>
+                <p>Founded in 1993, Vann Harvest Pvt. Ltd. is a premium raisin producer based in Vijayapura, Karnataka - India's heartland for high-quality grapes. What began as a small family-driven venture has grown into a trusted B2B supplier of sulphur-free, sun-dried raisins, serving both domestic and international markets.</p>
+                <p>At Vann Harvest, we combine age-old farming wisdom with modern processing technology to ensure every raisin meets the highest standards of purity, hygiene, and taste. Our vertically integrated operation - from vineyard to packaging - gives us unmatched control over quality and consistency.</p>
+              </motion.div>
             </motion.div>
           </section>
 
-          <section className="max-w-4xl mx-auto text-center py-24 px-4">
-            <motion.h2 className="text-3xl md:text-5xl font-bold text-white mb-6" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 1 }}>Our Journey</motion.h2>
-            <motion.p className="text-base md:text-lg text-white/80 leading-relaxed tracking-normal" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ delay: 0.2, duration: 1 }}>
-              Since 1993, Vann Harvest has cultivated premium raisins in the heart of Vijayapura, Karnataka. From humble beginnings, we&apos;ve grown into a 400-acre organic farm rooted in purity, passion, and purpose.
-              <br /><br />
-              Using natural ripening and chemical-free practices, we deliver raisins with unmatched taste and integrity. Our state-of-the-art facilities ensure every product meets the highest standards — from farm to global market.
-            </motion.p>
+          <section className="max-w-6xl mx-auto py-16 px-4">
+            <motion.div 
+              className="max-w-4xl mx-auto text-center mb-20"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              <h2 className="text-3xl md:text-5xl font-bold text-white mb-8">Rooted in Soil, <span className="text-green-400">Driven by Vision</span></h2>
+              <div className="space-y-6 text-white/80 text-lg leading-relaxed text-left">
+                <p>In 1993, on the fertile lands of Vijayapura, Karnataka, a visionary farmer with a deep respect for tradition and a spark of innovation planted the seeds of what would become Vann Harvest Pvt. Ltd.</p>
+                <p>Our founder came from a family of grape growers who believed in the power of nature, patience, and hard work. What began as a humble farm producing grapes for local markets soon evolved - through relentless learning, trials, and dedication - into a full-fledged raisin production enterprise with global standards.</p>
+                <p>Driven by a desire to offer healthier, chemical-free alternatives, we pioneered the sun-drying process of raisins, eliminating the need for artificial preservatives or sulphur treatment. This not only retained the natural sweetness and nutrients of the grapes but also laid the foundation for Vann Harvest's commitment to purity, sustainability, and quality.</p>
+              </div>
+            </motion.div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
+              <motion.div 
+                className="lg:col-span-2 space-y-8"
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+              >
+                <div className="space-y-6">
+                  <h3 className="text-2xl md:text-3xl font-bold text-green-400 flex items-center gap-3">
+                  From a Single Farm to a Global Footprint
+                  </h3>
+                  <div className="space-y-4 text-white/80 text-base md:text-lg leading-relaxed">
+                    <p>Today, Vann Harvest operates from a state-of-the-art facility with full control over every stage - from vineyard to value pack. We work closely with skilled farmers, uphold strict hygiene practices, and comply with international food safety standards.</p>
+                    <p>Our raisins are now trusted by exporters, wholesalers, and food brands across India and beyond, appreciated not just for their taste and shelf life, but for the ethics and care behind them.</p>
+                  </div>
+                </div>
+
+                <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 mt-8">
+                  <h3 className="text-2xl font-bold text-white mb-6">Our Purpose</h3>
+                  <p className="text-white/80 text-lg leading-relaxed">
+                    We exist to build a healthier world - one raisin at a time. From empowering rural farmers to preserving nature and delivering clean food, Vann Harvest is more than a business. It's a legacy in the making.
+                  </p>
+                </div>
+              </motion.div>
+              
+              <motion.div 
+                className="bg-gradient-to-br from-green-900/30 to-green-900/10 backdrop-blur-sm rounded-2xl p-8 border border-green-800/30"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4, duration: 0.8 }}
+                itemScope
+                itemType="https://schema.org/Organization"
+              >
+                <h3 className="text-2xl font-bold text-white mb-6">Why Businesses Choose Us</h3>
+                <ul className="space-y-4">
+                  <li className="flex items-start gap-3">
+                    <span className="text-green-400 mt-1">✓</span>
+                    <span>Premium <strong>sun-dried raisins from Vijayapura</strong></span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-green-400 mt-1">✓</span>
+                    <span>Trusted by <strong>raisin wholesalers, retail chains, and exporters</strong></span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-green-400 mt-1">✓</span>
+                    <span>Reliable <strong>bulk supply</strong>, fast shipping, and clean packaging</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-green-400 mt-1">✓</span>
+                    <span><strong>FSSAI and APEDA certified</strong> raisin producer in India</span>
+                  </li>
+                </ul>
+                <div className="mt-8 pt-6 border-t border-green-800/30">
+                  <div className="flex items-center gap-3">
+                    <div className="w-12 h-12 rounded-full bg-green-900/30 flex items-center justify-center text-green-400">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                      </svg>
+                    </div>
+                    <div>
+                      <p className="font-medium text-white">Established in 1993</p>
+                      <p className="text-sm text-green-300">30+ years of excellence</p>
+                    </div>
+                  </div>
+                </div>
+                <div itemProp="description" className="hidden">
+                  Vann Harvest Pvt. Ltd. is a leading producer of premium sun-dried, sulphur-free raisins in Vijayapura, Karnataka, India, 
+                  specializing in high-quality, natural raisins since 1993.
+                </div>
+              </motion.div>
+            </div>
           </section>
 
           <section className="max-w-6xl mx-auto py-24 px-4 flex flex-col md:flex-row items-center gap-10">
