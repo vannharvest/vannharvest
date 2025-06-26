@@ -186,7 +186,7 @@ export default function OurStory() {
 
           <section className="max-w-6xl mx-auto py-24 px-4 flex flex-col md:flex-row items-center gap-10">
             <motion.div className="w-full md:w-1/2 aspect-[3/4] relative rounded-2xl overflow-hidden shadow-lg" initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 1 }}>
-              <Image src="/images/founder.jpg" alt="Vann Harvest Founder" fill className="object-cover" />
+              <Image src="/images/founder.png" alt="Vann Harvest Founder" fill className="object-cover" />
             </motion.div>
 
             <motion.div className="w-full md:w-1/2 space-y-5 text-white/90 text-base md:text-lg leading-relaxed" initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 1 }}>
