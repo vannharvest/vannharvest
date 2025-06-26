@@ -89,7 +89,7 @@ export default function OurStory() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6, duration: 0.8 }}
               >
-                <p>Founded in 1993, Vann Harvest Pvt. Ltd. is a premium raisin producer based in Vijayapura, Karnataka - India's heartland for high-quality grapes. What began as a small family-driven venture has grown into a trusted B2B supplier of sulphur-free, sun-dried raisins, serving both domestic and international markets.</p>
+                <p>Founded in 1993, Vann Harvest Pvt. Ltd. is a premium raisin producer based in Vijayapura, Karnataka - India&apos;s heartland for high-quality grapes. What began as a small family-driven venture has grown into a trusted B2B supplier of sulphur-free, sun-dried raisins, serving both domestic and international markets.</p>
                 <p>At Vann Harvest, we combine age-old farming wisdom with modern processing technology to ensure every raisin meets the highest standards of purity, hygiene, and taste. Our vertically integrated operation - from vineyard to packaging - gives us unmatched control over quality and consistency.</p>
               </motion.div>
             </motion.div>
@@ -106,7 +106,7 @@ export default function OurStory() {
               <div className="space-y-6 text-white/80 text-lg leading-relaxed text-left">
                 <p>In 1993, on the fertile lands of Vijayapura, Karnataka, a visionary farmer with a deep respect for tradition and a spark of innovation planted the seeds of what would become Vann Harvest Pvt. Ltd.</p>
                 <p>Our founder came from a family of grape growers who believed in the power of nature, patience, and hard work. What began as a humble farm producing grapes for local markets soon evolved - through relentless learning, trials, and dedication - into a full-fledged raisin production enterprise with global standards.</p>
-                <p>Driven by a desire to offer healthier, chemical-free alternatives, we pioneered the sun-drying process of raisins, eliminating the need for artificial preservatives or sulphur treatment. This not only retained the natural sweetness and nutrients of the grapes but also laid the foundation for Vann Harvest's commitment to purity, sustainability, and quality.</p>
+                <p>Driven by a desire to offer healthier, chemical-free alternatives, we pioneered the sun-drying process of raisins, eliminating the need for artificial preservatives or sulphur treatment. This not only retained the natural sweetness and nutrients of the grapes but also laid the foundation for Vann Harvest&apos;s commitment to purity, sustainability, and quality.</p>
               </div>
             </motion.div>
 
@@ -130,7 +130,7 @@ export default function OurStory() {
                 <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 mt-8">
                   <h3 className="text-2xl font-bold text-white mb-6">Our Purpose</h3>
                   <p className="text-white/80 text-lg leading-relaxed">
-                    We exist to build a healthier world - one raisin at a time. From empowering rural farmers to preserving nature and delivering clean food, Vann Harvest is more than a business. It's a legacy in the making.
+                    We exist to build a healthier world - one raisin at a time. From empowering rural farmers to preserving nature and delivering clean food, Vann Harvest is more than a business. It&apos;s a legacy in the making.
                   </p>
                 </div>
               </motion.div>
@@ -192,7 +192,7 @@ export default function OurStory() {
             <motion.div className="w-full md:w-1/2 space-y-5 text-white/90 text-base md:text-lg leading-relaxed" initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 1 }}>
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-2">A Message from Our Founder</h2>
               <p>Vann Harvest was born from a vision: to revolutionize the raisin industry through transparency and education. Despite their popularity, raisins remain misunderstood in terms of quality and processing - something we strive to change.</p>
-              <p>Our mission goes beyond business. We’re addressing rural migration, rebuilding local economies, and ensuring farmers get fair equity for their work. We’ve turned our entire organization into a CSR movement, building not just a brand but a cause.</p>
+              <p>Our mission goes beyond business. We&apos;re addressing rural migration, rebuilding local economies, and ensuring farmers get fair equity for their work. We&apos;ve turned our entire organization into a CSR movement, building not just a brand but a cause.</p>
               <p>With over 30 years of expertise, cutting-edge infrastructure, and a deep respect for tradition, Vann Harvest is a promise - of quality, honesty, and community upliftment. Join us in a movement for better health, deeper knowledge, and a more sustainable future.</p>
             </motion.div>
           </section>

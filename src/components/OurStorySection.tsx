@@ -79,10 +79,10 @@ export default function OurStorySection() {
                 At Vann Harvest, every raisin tells a story - a story of sun-drenched vineyards, time-honored traditions, and a relentless pursuit of excellence. What began as a humble family farm has blossomed into a symbol of quality in the global raisin industry.
               </p>
               <p>
-                Nestled in the fertile lands of Vijayapura, our journey is one of passion meeting innovation. We've perfected the art of raisin-making while staying true to our roots, ensuring each golden piece carries the essence of our heritage.
+                Nestled in the fertile lands of Vijayapura, our journey is one of passion meeting innovation. We&apos;ve perfected the art of raisin-making while staying true to our roots, ensuring each golden piece carries the essence of our heritage.
               </p>
               <p className="font-medium text-gray-800">
-                Today, we stand proud as a bridge between traditional farming wisdom and modern food processing, bringing you nature's candy at its finest.
+                Today, we stand proud as a bridge between traditional farming wisdom and modern food processing, bringing you nature&apos;s candy at its finest.
               </p>
             </motion.div>
 
