@@ -6,9 +6,6 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { ChevronDown, Facebook, Instagram, Twitter, Menu, X } from 'lucide-react';
 
-// Import the MobileMenu component
-import MobileMenu from './MobileMenu';
-
 interface NavItemProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   href: string;
   children: React.ReactNode;
