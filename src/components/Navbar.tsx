@@ -43,20 +43,38 @@ export default function Navbar() {
     };
   }, [pathname]);
 
-  // Close mobile menu when clicking outside
+  // Close mobile menu when clicking outside or pressing escape
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target as Node)) {
+    const handleClickOutside = (event: MouseEvent | TouchEvent) => {
+      // Check if the click is outside both the hamburger button and mobile menu
+      const hamburgerButton = document.querySelector('[aria-label="Open main menu"], [aria-label="Close main menu"]');
+      const isClickOutside = 
+        !mobileMenuRef.current?.contains(event.target as Node) && 
+        !hamburgerButton?.contains(event.target as Node);
+      
+      if (isClickOutside) {
         setIsMenuOpen(false);
+        setIsDropdownOpen(false);
+      }
+    };
+
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setIsMenuOpen(false);
+        setIsDropdownOpen(false);
       }
     };
 
     if (isMenuOpen) {
       document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener('touchstart', handleClickOutside);
+      document.addEventListener('keydown', handleEscape);
     }
 
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('touchstart', handleClickOutside);
+      document.removeEventListener('keydown', handleEscape);
     };
   }, [isMenuOpen]);
 
@@ -69,10 +87,14 @@ export default function Navbar() {
   const isInfrastructureActive = () => {
     return pathname.startsWith('/infrastructure') ? 'text-orange-600' : 'text-green-800';
   };
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   return (
     <div className="fixed top-0 left-0 right-0 z-50 py-2">
       <div className="w-full max-w-[calc(100%-32px)] mx-auto mt-2">
-        <div className="w-full bg-white/80 border border-white/20 rounded-2xl backdrop-blur-lg shadow-lg transition-all duration-300">
+        <div ref={mobileMenuRef} className="w-full bg-white/80 border border-white/20 rounded-2xl backdrop-blur-lg shadow-lg transition-all duration-300">
           <div className="container mx-auto flex items-center justify-between py-3 px-4 sm:px-6 lg:px-8">
             {/* Logo - Optimized with priority and preload */}
             <div className="flex items-center">
@@ -113,7 +135,7 @@ export default function Navbar() {
             {/* Mobile menu button */}
             <div className="lg:hidden">
               <button
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                onClick={toggleMenu}
                 className="inline-flex items-center justify-center p-2 rounded-md text-green-800 hover:text-orange-600 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-orange-500 transition-colors"
                 aria-expanded={isMenuOpen}
                 aria-label={isMenuOpen ? 'Close main menu' : 'Open main menu'}
@@ -245,79 +267,115 @@ export default function Navbar() {
           {/* Mobile menu, show/hide based on menu state - shown on screens < 768px */}
           <div 
             id="mobile-menu"
-            className={`lg:hidden transition-all duration-300 ease-in-out ${isMenuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}`}
+            ref={mobileMenuRef}
+            className={`lg:hidden transition-all duration-300 ease-in-out transform w-full ${isMenuOpen ? 'max-h-screen opacity-100 translate-y-0 visible' : 'max-h-0 opacity-0 -translate-y-2 invisible'}`}
+            style={{
+              transitionProperty: 'opacity, transform, max-height, visibility',
+              willChange: 'opacity, transform, max-height, visibility',
+            }}
             aria-hidden={!isMenuOpen}
           >
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-              <NavLink 
-                href="/" 
-                isActive={isActive}
-                className="block px-3 py-2 rounded-md text-base font-medium"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Home
-              </NavLink>
-              
-              <NavLink 
-                href="/OurStory" 
-                isActive={isActive}
-                className="block px-3 py-2 rounded-md text-base font-medium"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Our Story
-              </NavLink>
-              
-              <NavLink 
-                href="/products" 
-                isActive={isActive}
-                className="block px-3 py-2 rounded-md text-base font-medium"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Products
-              </NavLink>
-              
-              <div className="px-3 py-2">
-                <button 
-                  onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                  className="flex items-center justify-between w-full text-left text-base font-medium text-green-800 hover:text-orange-600"
+            <div className="px-4 pt-3 pb-4 space-y-2">
+              <div className="px-1">
+                <NavLink 
+                  href="/" 
+                  isActive={isActive}
+                  className="block w-full px-3 py-2.5 rounded-lg text-base font-medium hover:bg-gray-50 transition-colors"
+                  onClick={() => setIsMenuOpen(false)}
                 >
-                  <span>Infrastructure</span>
-                  <ChevronDown className={`w-4 h-4 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
-                </button>
-                
-                {isDropdownOpen && (
-                  <div className="mt-2 pl-4 space-y-2 border-l-2 border-gray-200">
-                    <NavLink 
-                      href="/infrastructure/sustainability" 
-                      isActive={isActive}
-                      className="block px-3 py-2 rounded-md text-base font-medium"
-                      onClick={() => setIsMenuOpen(false)}
-                    >
-                      Sustainability
-                    </NavLink>
-                    <NavLink 
-                      href="/infrastructure/gallery" 
-                      isActive={isActive}
-                      className="block px-3 py-2 rounded-md text-base font-medium"
-                      onClick={() => setIsMenuOpen(false)}
-                    >
-                      Gallery
-                    </NavLink>
-                  </div>
-                )}
+                  Home
+                </NavLink>
               </div>
               
-              <NavLink 
-                href="/blog" 
-                isActive={isActive}
-                className="block px-3 py-2 rounded-md text-base font-medium"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Blog
-              </NavLink>
+              <div className="px-1">
+                <NavLink 
+                  href="/OurStory" 
+                  isActive={isActive}
+                  className="block w-full px-3 py-2.5 rounded-lg text-base font-medium hover:bg-gray-50 transition-colors"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Our Story
+                </NavLink>
+              </div>
               
-              <div className="pt-4 pb-2 border-t border-gray-200 mt-2">
-                <div className="flex items-center justify-start space-x-4 px-3 py-2">
+              <div className="px-1">
+                <NavLink 
+                  href="/products" 
+                  isActive={isActive}
+                  className="block w-full px-3 py-2.5 rounded-lg text-base font-medium hover:bg-gray-50 transition-colors"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Products
+                </NavLink>
+              </div>
+              
+              <div className="w-full px-1 py-1">
+                <button 
+                  onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                  className="flex items-center justify-between w-full text-left text-base font-medium px-3 py-2.5 rounded-lg hover:bg-gray-50 transition-colors"
+                  aria-expanded={isDropdownOpen}
+                  aria-controls="mobile-infrastructure-menu"
+                >
+                  <span className={isInfrastructureActive()}>Infrastructure</span>
+                  <ChevronDown 
+                    className={`w-5 h-5 text-green-800 transition-transform duration-200 ${isDropdownOpen ? 'rotate-180' : ''}`} 
+                    aria-hidden="true"
+                  />
+                </button>
+                
+                <div 
+                  id="mobile-infrastructure-menu"
+                  className={`mt-1 ml-3 pl-3 space-y-1 border-l-2 border-gray-200 overflow-hidden transition-all duration-200 ease-in-out ${isDropdownOpen ? 'max-h-40 opacity-100' : 'max-h-0 opacity-0'}`}
+                >
+                  <NavLink 
+                    href="/infrastructure/sustainability" 
+                    isActive={isActive}
+                    className="block px-3 py-2.5 rounded-lg text-base font-medium hover:bg-gray-50 transition-colors"
+                    onClick={() => {
+                      setIsMenuOpen(false);
+                      setIsDropdownOpen(false);
+                    }}
+                  >
+                    Sustainability
+                  </NavLink>
+                  <NavLink 
+                    href="/infrastructure/gallery" 
+                    isActive={isActive}
+                    className="block px-3 py-2.5 rounded-lg text-base font-medium hover:bg-gray-50 transition-colors"
+                    onClick={() => {
+                      setIsMenuOpen(false);
+                      setIsDropdownOpen(false);
+                    }}
+                  >
+                    Gallery
+                  </NavLink>
+                  <NavLink 
+                    href="/infrastructure/certifications" 
+                    isActive={isActive}
+                    className="block px-3 py-2.5 rounded-lg text-base font-medium hover:bg-gray-50 transition-colors"
+                    onClick={() => {
+                      setIsMenuOpen(false);
+                      setIsDropdownOpen(false);
+                    }}
+                  >
+                    Certifications
+                  </NavLink>
+                </div>
+              </div>
+              
+              <div className="px-1 mt-1">
+                <NavLink 
+                  href="/blog" 
+                  isActive={isActive}
+                  className="block w-full px-3 py-2.5 rounded-lg text-base font-medium hover:bg-gray-50 transition-colors"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Blog
+                </NavLink>
+              </div>
+              
+              <div className="mt-3 pt-4 pb-2 border-t border-gray-200">
+                <div className="flex items-center justify-center space-x-4 px-2 py-2">
                   <Link 
                     href="https://facebook.com" 
                     target="_blank" 
@@ -358,13 +416,6 @@ export default function Navbar() {
         </div>
       </div>
       
-      {/* Mobile Menu */}
-      <MobileMenu 
-        isOpen={isMenuOpen} 
-        onClose={() => setIsMenuOpen(false)}
-        isActive={isActive}
-        isInfrastructureActive={isInfrastructureActive}
-      />
     </div>
   );
 }
