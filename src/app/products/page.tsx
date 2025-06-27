@@ -165,8 +165,8 @@ function ProductsContent() {
         </div>
 
         {/* Product Grid */}
-        <div className="flex-1 px-4 sm:px-0 lg:pt-4">
-          <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="flex-1 px-2 sm:px-4 lg:px-0 lg:pt-4">
+          <section className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
             {products.length > 0 ? (
               products.map((product: Product, index: number) => (
                 <motion.div
@@ -175,7 +175,7 @@ function ProductsContent() {
                   whileInView={{ scale: 1, opacity: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: index * 0.05 }}
-                  className="bg-white rounded-3xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden group"
+                  className="bg-white rounded-2xl sm:rounded-3xl shadow-sm sm:shadow-md hover:shadow-lg sm:hover:shadow-xl transition-all duration-300 overflow-hidden group"
                 >
                   <div className="relative w-full aspect-[3/4] overflow-hidden">
                     <Image
@@ -183,15 +183,15 @@ function ProductsContent() {
                       alt={product.name}
                       fill
                       className="object-cover group-hover:scale-105 transition-transform duration-500"
-                      sizes="(max-width: 768px) 100vw, 33vw"
+                      sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
                     />
-                    <span className="absolute top-3 left-3 bg-green-100 text-green-800 text-xs font-semibold px-2 py-1 rounded-md">
+                    <span className="absolute top-2 left-2 sm:top-3 sm:left-3 bg-green-100 text-green-800 text-[10px] sm:text-xs font-semibold px-1.5 sm:px-2 py-0.5 sm:py-1 rounded sm:rounded-md">
                       Best Seller
                     </span>
                   </div>
-                  <div className="p-4 text-center">
-                    <h3 className="text-md font-semibold text-green-900">{product.name}</h3>
-                    <p className="text-sm text-green-700 mt-1">
+                  <div className="p-2 sm:p-4 text-center">
+                    <h3 className="text-sm sm:text-md font-semibold text-green-900 line-clamp-2 h-10 sm:h-auto">{product.name}</h3>
+                    <p className="text-xs sm:text-sm text-green-700 mt-0.5 sm:mt-1">
                       {categoryLabels[product.category.trim().toLowerCase()] || product.category}
                     </p>
                   </div>

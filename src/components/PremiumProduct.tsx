@@ -54,13 +54,13 @@ export default function PremiumProduct() {
         </div>
 
         {/* Product Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 px-4">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6 px-2 sm:px-4">
           {featuredProducts.map((product: Product) => (
             <Link
               key={product.id}
               href={`/products?category=${encodeURIComponent(product.category)}`}
               onClick={(e) => handleProductClick(e, product.category)}
-              className={`group relative block rounded-2xl overflow-hidden border border-gray-200 shadow-sm transition-all hover:shadow-xl h-[580px] bg-white ${
+              className={`group relative block rounded-xl sm:rounded-2xl overflow-hidden border border-gray-200 shadow-sm transition-all hover:shadow-lg sm:hover:shadow-xl h-[300px] sm:h-[400px] md:h-[500px] lg:h-[580px] bg-white ${
                 navigatingId === product.category ? 'opacity-80' : ''
               }`}
               aria-disabled={navigatingId === product.category}
@@ -76,18 +76,16 @@ export default function PremiumProduct() {
                   src={product.image}
                   alt={product.name}
                   fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  className="object-cover transition-transform duration-700 ease-in-out group-hover:scale-105"
-                  quality={100}
+                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                  className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-105"
+                  quality={90}
                   priority
                   loading="eager"
-                  placeholder="blur"
-                  blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg=="
                 />
 
                 {/* Product info */}
-                <div className="absolute bottom-0 w-full bg-white/90 py-4 px-4">
-                  <h3 className="text-base font-medium text-gray-800 leading-tight">{product.name}</h3>
+                <div className="absolute bottom-0 w-full bg-white/90 py-2 sm:py-3 md:py-4 px-2 sm:px-3 md:px-4">
+                  <h3 className="text-sm sm:text-base font-medium text-gray-800 leading-tight line-clamp-2">{product.name}</h3>
                 </div>
               </div>
             </Link>
