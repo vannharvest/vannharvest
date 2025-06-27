@@ -36,9 +36,7 @@ const nextConfig = {
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     dangerouslyAllowSVG: true,
     contentDispositionType: 'attachment',
-    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
-    // Use the TypeScript image loader
-    loaderFile: './src/lib/image-loader.ts',
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;"
   },
   reactStrictMode: true,
   compress: true,
