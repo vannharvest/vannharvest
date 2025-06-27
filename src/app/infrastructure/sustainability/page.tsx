@@ -1,9 +1,10 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import Image from 'next/image';
 import Head from 'next/head';
 import { Leaf, Droplets, Recycle } from 'lucide-react';
+import { useState } from 'react';
+import Image from '@/components/ui/Image';
 
 export default function Sustainability() {
   return (
@@ -19,17 +20,16 @@ export default function Sustainability() {
       {/* Hero Section - Matches Home Page Style */}
       <div className="relative h-[calc(100vh-10rem)] w-full max-w-[calc(100%-32px)] mx-auto rounded-2xl overflow-hidden mt-32">
         <div className="absolute inset-0 z-0">
-          <Image 
-            src="/images/gallery/Sustainibility.avif" 
-            alt="Sustainable Farming at Vann Harvest" 
-            fill 
-            className="object-cover"
-            priority
-            onError={(e) => {
-              const target = e.target as HTMLImageElement;
-              target.style.display = 'none';
-            }}
-          />
+          <div className="w-full h-full relative">
+            <Image 
+              src="/images/Greener_Tomorrow.jpg" 
+              alt="Sustainable Farming at Vann Harvest" 
+              fill 
+              className="object-cover"
+              priority
+              fallbackSrc="/images/fallback.jpg"
+            />
+          </div>
           <div className="absolute inset-0 bg-black/40" />
         </div>
 
@@ -103,16 +103,15 @@ export default function Sustainability() {
               </div>
             </div>
             <div className="relative h-80 md:h-96 rounded-2xl overflow-hidden bg-gray-100 flex items-center justify-center">
-              <Image 
-                src="/images/Greener_Tomorrow.jpg" 
-                alt="Sustainable farming practices" 
-                fill 
-                className="object-cover"
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement;
-                  target.style.display = 'none';
-                }}
-              />
+              <div className="w-full h-full relative">
+                <Image 
+                  src="/images/Greener_Tomorrow.jpg" 
+                  alt="Sustainable farming practices" 
+                  fill
+                  className="object-cover"
+                  fallbackSrc="/images/fallback.jpg"
+                />
+              </div>
               <div className="absolute inset-0 bg-black/10" />
             </div>
           </motion.section>
@@ -126,16 +125,15 @@ export default function Sustainability() {
           >
             <div className="order-2 md:order-1">
               <div className="relative h-80 md:h-96 rounded-2xl overflow-hidden bg-gray-100 flex items-center justify-center">
-                <Image 
-                  src="/images/founder.jpg" 
-                  alt="Community impact" 
-                  fill 
-                  className="object-cover"
-                  onError={(e) => {
-                    const target = e.target as HTMLImageElement;
-                    target.style.display = 'none';
-                  }}
-                />
+                <div className="w-full h-full relative">
+                  <Image 
+                    src="/images/soil.jpg" 
+                    alt="Community impact" 
+                    fill
+                    className="object-cover"
+                    fallbackSrc="/images/fallback.jpg"
+                  />
+                </div>
                 <div className="absolute inset-0 bg-black/10" />
               </div>
             </div>

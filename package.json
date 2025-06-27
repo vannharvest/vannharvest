@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "analyze": "set ANALYZE=true && next build",
+    "analyze:dev": "set ANALYZE=true && next dev"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.2.3",
@@ -25,6 +27,7 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@next/bundle-analyzer": "^15.3.4",
     "@tailwindcss/postcss": "^4",
     "@types/next": "^8.0.7",
     "@types/node": "^20.19.1",

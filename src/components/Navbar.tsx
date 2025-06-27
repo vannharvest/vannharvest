@@ -1,10 +1,14 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, lazy, Suspense } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
+import dynamic from 'next/dynamic';
 import { ChevronDown, Facebook, Instagram, Twitter, Menu, X } from 'lucide-react';
+
+// Import the MobileMenu component
+import MobileMenu from './MobileMenu';
 
 interface NavItemProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   href: string;
@@ -75,9 +79,13 @@ export default function Navbar() {
       <div className="w-full max-w-[calc(100%-32px)] mx-auto mt-2">
         <div className="w-full bg-white/80 border border-white/20 rounded-2xl backdrop-blur-lg shadow-lg transition-all duration-300">
           <div className="container mx-auto flex items-center justify-between py-3 px-4 sm:px-6 lg:px-8">
-            {/* Logo */}
+            {/* Logo - Optimized with priority and preload */}
             <div className="flex items-center">
-              <Link href="/" className="block h-16 w-auto">
+              <Link 
+                href="/" 
+                className="block h-16 w-auto relative"
+                aria-label="Vann Harvest Home"
+              >
                 <Image
                   src="/images/logo/Vann-Harvest-Original-Logo.png"
                   alt="Vann Harvest Logo"
@@ -85,20 +93,39 @@ export default function Navbar() {
                   height={64}
                   className="h-full w-auto object-contain"
                   priority
+                  quality={85}
+                  loading="eager"
+                  fetchPriority="high"
+                  sizes="(max-width: 768px) 120px, 180px"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.onerror = null;
+                    target.src = '/images/logo/fallback-logo.png';
+                  }}
+                />
+                {/* Preload the logo for better LCP */}
+                <link 
+                  rel="preload" 
+                  as="image" 
+                  href="/images/logo/Vann-Harvest-Original-Logo.png" 
+                  imageSrcSet="
+                    /images/logo/Vann-Harvest-Original-Logo.png 1x,
+                    /images/logo/Vann-Harvest-Original-Logo@2x.png 2x"
                 />
               </Link>
             </div>
 
-            {/* Mobile menu button - shown on screens < 768px */}
+            {/* Mobile menu button */}
             <div className="lg:hidden">
-              <button 
-                type="button" 
-                className="lg:hidden text-green-800 hover:text-orange-600 focus:outline-none"
-                onClick={toggleMobileMenu}
+              <button
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                className="inline-flex items-center justify-center p-2 rounded-md text-green-800 hover:text-orange-600 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-orange-500 transition-colors"
                 aria-expanded={isMenuOpen}
-                aria-controls="mobile-menu"
+                aria-label={isMenuOpen ? 'Close main menu' : 'Open main menu'}
               >
-                <span className="sr-only">Open main menu</span>
+                <span className="sr-only">
+                  {isMenuOpen ? 'Close main menu' : 'Open main menu'}
+                </span>
                 {isMenuOpen ? (
                   <X className="block h-6 w-6" aria-hidden="true" />
                 ) : (
@@ -335,6 +362,14 @@ export default function Navbar() {
           </div>
         </div>
       </div>
+      
+      {/* Mobile Menu */}
+      <MobileMenu 
+        isOpen={isMenuOpen} 
+        onClose={() => setIsMenuOpen(false)}
+        isActive={isActive}
+        isInfrastructureActive={isInfrastructureActive}
+      />
     </div>
   );
 }

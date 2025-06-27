@@ -1,9 +1,35 @@
 'use client';
 
+import { useEffect, useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 
 export default function Hero() {
+  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+
+  // Lazy load the YouTube iframe
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setIsVideoLoaded(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '200px' } // Load when within 200px of viewport
+    );
+
+    if (iframeRef.current) {
+      observer.observe(iframeRef.current);
+    }
+
+    return () => {
+      if (iframeRef.current) {
+        observer.unobserve(iframeRef.current);
+      }
+    };
+  }, []);
 
   return (
     <div className="relative w-full h-[calc(100vh-10rem)] mt-32 overflow-hidden rounded-2xl max-w-[calc(100%-32px)] mx-auto 4xl:max-w-none 4xl:mx-0 4xl:rounded-none 4xl:mt-0 4xl:h-screen">
@@ -20,23 +46,56 @@ export default function Hero() {
           }
         }
       `}</style>
-      {/* YouTube Background Video */}
-      <div className="absolute inset-0 z-0 w-full h-full overflow-hidden">
+      {/* YouTube Background Video - Lazy Loaded */}
+      <div className="absolute inset-0 z-0 w-full h-full overflow-hidden" ref={iframeRef}>
         <div className="absolute inset-0 w-full h-full">
-          <iframe
-            src="https://www.youtube.com/embed/mpYtM-4s27g?autoplay=1&mute=1&loop=1&playlist=mpYtM-4s27g&controls=0&modestbranding=1&rel=0&showinfo=0"
-            title="Background Video"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-            className="video-iframe absolute top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto -translate-x-[53%] -translate-y-1/2 md:-translate-x-1/2"
-            style={{
-              minWidth: '200vh',
-              minHeight: '100%',
-              width: '200vh',
-              height: '200vh',
-            }}
-          />
+          {isVideoLoaded && (
+            <>
+              {/* Preload a low-quality poster image for better LCP */}
+              <link 
+                rel="preload" 
+                as="image"
+                href="https://img.youtube.com/vi/mpYtM-4s27g/maxresdefault.jpg"
+                imageSrcSet="
+                  https://img.youtube.com/vi/mpYtM-4s27g/maxresdefault.jpg 1920w,
+                  https://img.youtube.com/vi/mpYtM-4s27g/hqdefault.jpg 480w"
+              />
+              <iframe
+                src={`https://www.youtube.com/embed/mpYtM-4s27g?autoplay=1&mute=1&loop=1&playlist=mpYtM-4s27g&controls=0&modestbranding=1&rel=0&showinfo=0&autohide=1&playsinline=1`}
+                title="Background Video"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                loading="lazy"
+                className="video-iframe absolute top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto -translate-x-[53%] -translate-y-1/2 md:-translate-x-1/2"
+                style={{
+                  minWidth: '200vh',
+                  minHeight: '100%',
+                  width: '200vh',
+                  height: '200vh',
+                  opacity: isVideoLoaded ? 1 : 0,
+                  transition: 'opacity 0.5s ease-in-out',
+                  backgroundColor: '#000',
+                }}
+                onLoad={() => {
+                  // Fade in when loaded
+                  if (iframeRef.current) {
+                    iframeRef.current.style.opacity = '1';
+                  }
+                }}
+              />
+            </>
+          )}
+          {/* Fallback image in case the video doesn't load */}
+          {!isVideoLoaded && (
+            <div 
+              className="absolute inset-0 bg-cover bg-center"
+              style={{
+                backgroundImage: 'url(https://img.youtube.com/vi/mpYtM-4s27g/maxresdefault.jpg)'
+              }}
+              aria-hidden="true"
+            />
+          )}
         </div>
       </div>
 
