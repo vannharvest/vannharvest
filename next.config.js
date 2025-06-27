@@ -37,6 +37,8 @@ const nextConfig = {
     dangerouslyAllowSVG: true,
     contentDispositionType: 'attachment',
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    // Use the TypeScript image loader
+    loaderFile: './src/lib/image-loader.ts',
   },
   reactStrictMode: true,
   compress: true,

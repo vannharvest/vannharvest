@@ -10,6 +10,10 @@ export default function Hero() {
 
   // Lazy load the YouTube iframe
   useEffect(() => {
+    const currentRef = iframeRef.current;
+    
+    if (!currentRef) return;
+
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
@@ -20,16 +24,14 @@ export default function Hero() {
       { rootMargin: '200px' } // Load when within 200px of viewport
     );
 
-    if (iframeRef.current) {
-      observer.observe(iframeRef.current);
-    }
+    observer.observe(currentRef);
 
     return () => {
-      if (iframeRef.current) {
-        observer.unobserve(iframeRef.current);
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
-  }, []);
+  }, [iframeRef]);
 
   return (
     <div className="relative w-full h-[calc(100vh-10rem)] mt-32 overflow-hidden rounded-2xl max-w-[calc(100%-32px)] mx-auto 4xl:max-w-none 4xl:mx-0 4xl:rounded-none 4xl:mt-0 4xl:h-screen">

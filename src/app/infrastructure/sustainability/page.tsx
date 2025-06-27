@@ -3,7 +3,6 @@
 import { motion } from 'framer-motion';
 import Head from 'next/head';
 import { Leaf, Droplets, Recycle } from 'lucide-react';
-import { useState } from 'react';
 import Image from '@/components/ui/Image';
 
 export default function Sustainability() {

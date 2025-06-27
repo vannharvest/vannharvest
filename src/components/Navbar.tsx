@@ -1,10 +1,9 @@
 'use client';
 
-import { useState, useEffect, useRef, lazy, Suspense } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
-import dynamic from 'next/dynamic';
 import { ChevronDown, Facebook, Instagram, Twitter, Menu, X } from 'lucide-react';
 
 // Import the MobileMenu component

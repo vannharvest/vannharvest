@@ -15,7 +15,7 @@ export default function Image({
   onError,
   ...props
 }: ImageProps) {
-  const [imgSrc, setImgSrc] = useState<string | any>(src);
+  const [imgSrc, setImgSrc] = useState<string>(typeof src === 'string' ? src : '');
   const [hasError, setHasError] = useState(false);
 
   const handleError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
