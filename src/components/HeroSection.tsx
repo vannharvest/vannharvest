@@ -1,8 +1,10 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 export default function Hero() {
+
   return (
     <div className="relative w-full h-[calc(100vh-10rem)] mt-32 overflow-hidden rounded-2xl max-w-[calc(100%-32px)] mx-auto 4xl:max-w-none 4xl:mx-0 4xl:rounded-none 4xl:mt-0 4xl:h-screen">
       <style jsx>{`
@@ -56,12 +58,13 @@ export default function Hero() {
           producing naturally sun-dried, sulphur-free raisins from our farms in Vijayapura, Karnataka.
         </p>
         <div className="flex">
-          <button 
-            className="px-8 sm:px-10 py-3 sm:py-3.5 bg-green-600 hover:bg-green-700 rounded-full text-white font-medium transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 text-base sm:text-lg"
+          <Link 
+            href="/products"
+            className="inline-block px-8 sm:px-10 py-3 sm:py-3.5 bg-green-600 hover:bg-green-700 rounded-full text-white font-medium transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 text-base sm:text-lg"
             aria-label="Explore our premium raisin products"
           >
             Explore Our Products
-          </button>
+          </Link>
         </div>
       </motion.div>
     </div>

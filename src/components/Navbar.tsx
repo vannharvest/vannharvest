@@ -113,12 +113,12 @@ export default function Navbar() {
                 Home
               </NavLink>
               
-              <NavLink href="/products" isActive={isActive}>
-                Products
-              </NavLink>
-              
               <NavLink href="/OurStory" isActive={isActive}>
                 Our Story
+              </NavLink>
+              
+              <NavLink href="/products" isActive={isActive}>
+                Products
               </NavLink>
               
               {/* Infrastructure Dropdown */}
@@ -237,21 +237,21 @@ export default function Navbar() {
               </NavLink>
               
               <NavLink 
-                href="/products" 
-                isActive={isActive}
-                className="block px-3 py-2 rounded-md text-base font-medium"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Products
-              </NavLink>
-              
-              <NavLink 
                 href="/OurStory" 
                 isActive={isActive}
                 className="block px-3 py-2 rounded-md text-base font-medium"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Our Story
+              </NavLink>
+              
+              <NavLink 
+                href="/products" 
+                isActive={isActive}
+                className="block px-3 py-2 rounded-md text-base font-medium"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Products
               </NavLink>
               
               <div className="px-3 py-2">
