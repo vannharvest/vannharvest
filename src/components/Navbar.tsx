@@ -60,11 +60,7 @@ export default function Navbar() {
     };
   }, [isMenuOpen]);
 
-  const toggleMobileMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
-  // Scroll effect removed as it wasn't being used
+  // Menu state is managed by isMenuOpen state
 
   const isActive = (path: string) => {
     return pathname === path ? 'text-orange-600' : 'text-green-800';
