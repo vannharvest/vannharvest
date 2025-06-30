@@ -60,9 +60,8 @@ export default function PremiumProduct() {
               key={product.id}
               href={`/products?category=${encodeURIComponent(product.category)}`}
               onClick={(e) => handleProductClick(e, product.category)}
-              className={`group relative block rounded-xl sm:rounded-2xl overflow-hidden border border-gray-200 shadow-sm transition-all hover:shadow-lg sm:hover:shadow-xl h-[300px] sm:h-[400px] md:h-[500px] lg:h-[580px] bg-white ${
-                navigatingId === product.category ? 'opacity-80' : ''
-              }`}
+              className={`group relative block rounded-xl sm:rounded-2xl overflow-hidden border border-gray-200 shadow-sm transition-all hover:shadow-lg sm:hover:shadow-xl h-[300px] sm:h-[400px] md:h-[500px] lg:h-[580px] bg-white ${navigatingId === product.category ? 'opacity-80' : ''
+                }`}
               aria-disabled={navigatingId === product.category}
             >
               {navigatingId === product.category && (
