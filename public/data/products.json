@@ -43,7 +43,7 @@
     {
       "id": 5,
       "name": "Golden Round A",
-      "image": "/images/products/Golden Round.jpg",
+      "image": "/images/products/Golden Round A.webp",
       "category": "golden-round",
       "price": 13.99,
       "rating": 4.4,
@@ -73,7 +73,7 @@
     {
       "id": 8,
       "name": "Golden Round Premium",
-      "image": "/images/products/Golden Round premium.jpg",
+      "image": "/images/products/Golden Round Premium.webp",
       "category": "golden-round",
       "price": 23.99,
       "rating": 5.0,

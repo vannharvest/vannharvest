@@ -1,5 +1,6 @@
-import { ImageProps as NextImageProps } from 'next/image';
+import { ImageProps as NextImageProps, StaticImageData } from 'next/image';
 
+// Extend the existing StaticImageData interface
 declare module 'next/image' {
   interface StaticImageData {
     src: string;
@@ -7,12 +8,14 @@ declare module 'next/image' {
     width: number;
     blurDataURL?: string;
   }
-
-  type ImageProps = Omit<NextImageProps, 'src'> & {
-    src: string | StaticImageData;
-    fallbackSrc?: string | StaticImageData;
-  };
-
-  const Image: React.FC<ImageProps>;
-  export default Image;
 }
+
+// Define the props for our custom Image component
+type CustomImageProps = Omit<NextImageProps, 'src'> & {
+  src: string | StaticImageData;
+  fallbackSrc?: string | StaticImageData;
+};
+
+// Export the custom props type
+export type { CustomImageProps as ImageProps };
+
