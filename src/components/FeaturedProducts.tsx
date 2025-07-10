@@ -1,28 +1,18 @@
 'use client';
 
 import { useState } from 'react';
-import Head from 'next/head';
+import { Loader2 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { Loader2 } from 'lucide-react';
-import products from '../../public/data/products.json';
 
 interface Product {
-  id: number | string;
+  id: string;
   name: string;
   image: string;
   category: string;
   inStock: boolean;
 }
-
-interface ProductsData {
-  bestSellers: Product[];
-  blackProducts?: Product[];
-}
-
-// Type assertion with validation
-const typedProducts = products as unknown as ProductsData;
 
 export default function PremiumProduct() {
   const router = useRouter();
@@ -71,8 +61,6 @@ export default function PremiumProduct() {
     setNavigatingId(category);
     router.push(`/products?category=${encodeURIComponent(category)}`);
   };
-
-  const duplicatedProducts = [...featuredProducts, ...featuredProducts];
 
   return (
     <>
