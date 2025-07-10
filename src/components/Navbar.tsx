@@ -108,6 +108,7 @@ export default function Navbar() {
                   className="h-full w-auto object-contain"
                   priority
                   quality={85}
+                  unoptimized={process.env.NODE_ENV !== 'production'}
                   loading="eager"
                   fetchPriority="high"
                   sizes="(max-width: 768px) 120px, 180px"

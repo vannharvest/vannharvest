@@ -51,6 +51,7 @@ function ProductsContent() {
 
   // Filter products when selectedCategory or selectedName changes
   useEffect(() => {
+    console.log('Filtering products with:', { selectedCategory, selectedName });
     let filtered = [...typedProductsData.bestSellers];
     
     if (selectedCategory !== 'all') {
@@ -63,6 +64,7 @@ function ProductsContent() {
       filtered = filtered.filter((product) => product.name === selectedName);
     }
     
+    console.log('Filtered products:', filtered);
     setProducts(filtered);
   }, [selectedCategory, selectedName]);
 
@@ -81,6 +83,7 @@ function ProductsContent() {
       );
     }
     
+    // Get unique names while preserving original case
     const names = filtered.map(p => p.name);
     return ['all', ...new Set(names)];
   };
@@ -178,13 +181,17 @@ function ProductsContent() {
                   className="bg-white rounded-2xl sm:rounded-3xl shadow-sm sm:shadow-md hover:shadow-lg sm:hover:shadow-xl transition-all duration-300 overflow-hidden group"
                 >
                   <div className="relative w-full aspect-[3/4] overflow-hidden">
-                    <Image
-                      src={product.image}
-                      alt={product.name}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-500"
-                      sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                    />
+                    <div className="relative w-full h-full">
+                      <Image
+                        src={product.image.replace(/ /g, '%20')}
+                        alt={product.name}
+                        fill
+                        priority={index < 4} // Prioritize first 4 images for LCP
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                        unoptimized={process.env.NODE_ENV !== 'production'} // Only optimize in production
+                      />
+                    </div>
                     <span className="absolute top-2 left-2 sm:top-3 sm:left-3 bg-green-100 text-green-800 text-[10px] sm:text-xs font-semibold px-1.5 sm:px-2 py-0.5 sm:py-1 rounded sm:rounded-md">
                       Best Seller
                     </span>
