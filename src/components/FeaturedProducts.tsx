@@ -6,14 +6,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
-interface Product {
-  id: string;
-  name: string;
-  image: string;
-  category: string;
-  inStock: boolean;
-}
-
 export default function PremiumProduct() {
   const router = useRouter();
   const [navigatingId, setNavigatingId] = useState<string | null>(null);
