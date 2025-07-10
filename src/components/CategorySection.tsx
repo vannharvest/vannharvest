@@ -32,7 +32,7 @@ const getCategories = (): Category[] => {
       'Golden Long': 'Golden long A.webp',
       'Golden Round': 'Golden Round A.webp',
       'Green Long': 'Green long A.webp',
-      'Green Round': 'Green Round A-01.webp'
+      'Green Round': 'Green Round A.webp'
     };
     
     const cleanName = cat.name.replace(/\s+/g, '-').toLowerCase();

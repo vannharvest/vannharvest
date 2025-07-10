@@ -1,5 +1,5 @@
 import HeroSection from "@/components/HeroSection";
-import PremiumProduct from "@/components/PremiumProduct";
+import FeaturedProducts from "@/components/FeaturedProducts";
 import PromotionSection from "@/components/PromotionSection";
 import CategorySection from "@/components/CategorySection";
 import OurStorySection from "@/components/OurStorySection";
@@ -14,7 +14,7 @@ export default function Home() {
       <HeroSection />
 
       {/* 🔥 Best Sellers */}
-      <PremiumProduct />
+      <FeaturedProducts />
 
       {/* 🛒 Promotional Banner */}
       <PromotionSection

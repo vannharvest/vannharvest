@@ -100,32 +100,31 @@ export default function Navbar() {
                 className="block h-16 w-auto relative"
                 aria-label="Vann Harvest Home"
               >
-                <Image
-                  src="/images/logo/Vann-Harvest-Original-Logo.png"
-                  alt="Vann Harvest Logo"
-                  width={180}
-                  height={64}
-                  className="h-full w-auto object-contain"
-                  priority
-                  quality={85}
-                  unoptimized={process.env.NODE_ENV !== 'production'}
-                  loading="eager"
-                  fetchPriority="high"
-                  sizes="(max-width: 768px) 120px, 180px"
-                  onError={(e) => {
-                    const target = e.target as HTMLImageElement;
-                    target.onerror = null;
-                    target.src = '/images/logo/fallback-logo.png';
-                  }}
-                />
+                <div className="relative h-16 w-auto" style={{ aspectRatio: '180/64' }}>
+                  <Image
+                    src="/images/logo/Vann-Harvest-Original-Logo.png"
+                    alt="Vann Harvest Logo"
+                    fill
+                    className="object-contain"
+                    priority
+                    quality={85}
+                    unoptimized={process.env.NODE_ENV !== 'production'}
+                    loading="eager"
+                    fetchPriority="high"
+                    sizes="(max-width: 768px) 120px, 180px"
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.onerror = null;
+                      target.src = '/images/logo/fallback-logo.png';
+                    }}
+                  />
+                </div>
                 {/* Preload the logo for better LCP */}
                 <link 
                   rel="preload" 
                   as="image" 
-                  href="/images/logo/Vann-Harvest-Original-Logo.png" 
-                  imageSrcSet="
-                    /images/logo/Vann-Harvest-Original-Logo.png 1x,
-                    /images/logo/Vann-Harvest-Original-Logo@2x.png 2x"
+                  href="/images/logo/Vann-Harvest-Original-Logo.png"
+                  imageSrcSet="/images/logo/Vann-Harvest-Original-Logo.png"
                 />
               </Link>
             </div>

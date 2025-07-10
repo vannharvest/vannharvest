@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, Suspense } from 'react';
+import { useState, useEffect, Suspense, useMemo } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
@@ -8,21 +8,25 @@ import productsData from '../../../public/data/products.json';
 import Loading from './loading';
 
 interface Product {
-  id: number;
+  id: number | string;  // Allow both number and string IDs
   name: string;
   image: string;
   category: string;
-  price: number;
-  rating: number;
-  reviews: number;
   inStock: boolean;
 }
 
 interface ProductsData {
   bestSellers: Product[];
+  blackProducts?: Product[];
 }
 
 const typedProductsData = productsData as ProductsData;
+
+// Combine all products from different categories with unique IDs
+const allProducts = [
+  ...(typedProductsData.bestSellers?.map(p => ({...p, id: `b-${p.id}`})) || []),
+  ...(typedProductsData.blackProducts?.map(p => ({...p, id: `blk-${p.id}`})) || [])
+];
 
 // ✅ Friendly labels for dropdown
 const categoryLabels: Record<string, string> = {
@@ -30,6 +34,7 @@ const categoryLabels: Record<string, string> = {
   'golden-round': 'Golden Round',
   'green-long': 'Green Long',
   'green-round': 'Green Round',
+  'black': 'Black',
 };
 
 import PageWrapper from '@/components/PageWrapper';
@@ -37,7 +42,7 @@ import PageWrapper from '@/components/PageWrapper';
 // This component is wrapped in Suspense to handle client-side features
 function ProductsContent() {
   const searchParams = useSearchParams();
-  const [products, setProducts] = useState(typedProductsData.bestSellers);
+  const [products, setProducts] = useState(allProducts);
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [selectedName, setSelectedName] = useState('all');
 
@@ -49,15 +54,22 @@ function ProductsContent() {
     }
   }, [searchParams]);
 
-  // Filter products when selectedCategory or selectedName changes
-  useEffect(() => {
+  // Memoize filtered products to prevent unnecessary re-renders
+  const filteredProducts = useMemo(() => {
     console.log('Filtering products with:', { selectedCategory, selectedName });
-    let filtered = [...typedProductsData.bestSellers];
+    let filtered = [...allProducts];
     
     if (selectedCategory !== 'all') {
-      filtered = filtered.filter(
-        (product) => product.category.trim().toLowerCase() === selectedCategory
-      );
+      if (selectedCategory === 'black') {
+        // Show all black products
+        filtered = filtered.filter(
+          (product) => product.category === 'black'
+        );
+      } else {
+        filtered = filtered.filter(
+          (product) => product.category.trim().toLowerCase() === selectedCategory
+        );
+      }
     }
     
     if (selectedName !== 'all') {
@@ -65,17 +77,22 @@ function ProductsContent() {
     }
     
     console.log('Filtered products:', filtered);
-    setProducts(filtered);
-  }, [selectedCategory, selectedName]);
+    return filtered;
+  }, [selectedCategory, selectedName, allProducts]);
+
+  // Update products when filtered products change
+  useEffect(() => {
+    setProducts(filteredProducts);
+  }, [filteredProducts]);
 
   // Get unique categories from all products
-  const allCategories = typedProductsData.bestSellers.map(p => p.category.trim().toLowerCase());
+  const allCategories = allProducts.map(p => p.category.trim().toLowerCase());
   const uniqueCategories = [...new Set(allCategories)];
   const categories = ['all', ...uniqueCategories];
 
   // Get unique product names based on selected category
   const getFilteredProductNames = () => {
-    let filtered = [...typedProductsData.bestSellers];
+    let filtered = [...allProducts];
     
     if (selectedCategory !== 'all') {
       filtered = filtered.filter(
@@ -182,15 +199,23 @@ function ProductsContent() {
                 >
                   <div className="relative w-full aspect-[3/4] overflow-hidden">
                     <div className="relative w-full h-full">
-                      <Image
-                        src={product.image.replace(/ /g, '%20')}
-                        alt={product.name}
-                        fill
-                        priority={index < 4} // Prioritize first 4 images for LCP
-                        className="object-cover group-hover:scale-105 transition-transform duration-500"
-                        sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                        unoptimized={process.env.NODE_ENV !== 'production'} // Only optimize in production
-                      />
+                      <div className="relative w-full h-full">
+                        <Image
+                          src={product.image}
+                          alt={product.name}
+                          fill
+                          priority={index < 4} // Prioritize first 4 images for LCP
+                          className="object-cover group-hover:scale-105 transition-transform duration-500"
+                          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                          unoptimized={process.env.NODE_ENV !== 'production'} // Only optimize in production
+                          onError={(e) => {
+                            console.error('Error loading image:', product.image, e);
+                            // Try to load the image with encoded spaces as a fallback
+                            const img = e.target as HTMLImageElement;
+                            img.src = encodeURI(product.image);
+                          }}
+                        />
+                      </div>
                     </div>
                     <span className="absolute top-2 left-2 sm:top-3 sm:left-3 bg-green-100 text-green-800 text-[10px] sm:text-xs font-semibold px-1.5 sm:px-2 py-0.5 sm:py-1 rounded sm:rounded-md">
                       Best Seller

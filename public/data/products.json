@@ -5,9 +5,6 @@
       "name": "Golden long A",
       "image": "/images/products/Golden long A.webp",
       "category": "golden-long",
-      "price": 12.99,
-      "rating": 4.5,
-      "reviews": 45,
       "inStock": true
     },
     {
@@ -15,9 +12,6 @@
       "name": "Golden long AA",
       "image": "/images/products/Golden long AA.webp",
       "category": "golden-long",
-      "price": 15.99,
-      "rating": 4.7,
-      "reviews": 62,
       "inStock": true
     },
     {
@@ -25,9 +19,6 @@
       "name": "Golden long AAA",
       "image": "/images/products/Golden long AAA.webp",
       "category": "golden-long",
-      "price": 18.99,
-      "rating": 4.9,
-      "reviews": 78,
       "inStock": true
     },
     {
@@ -35,9 +26,6 @@
       "name": "Golden long Premium",
       "image": "/images/products/Golden long Premium.webp",
       "category": "golden-long",
-      "price": 22.99,
-      "rating": 5.0,
-      "reviews": 95,
       "inStock": true
     },
     {
@@ -45,9 +33,6 @@
       "name": "Golden Round A",
       "image": "/images/products/Golden Round A.webp",
       "category": "golden-round",
-      "price": 13.99,
-      "rating": 4.4,
-      "reviews": 38,
       "inStock": true
     },
     {
@@ -55,9 +40,6 @@
       "name": "Golden Round AA",
       "image": "/images/products/Golden Round AA.webp",
       "category": "golden-round",
-      "price": 16.99,
-      "rating": 4.6,
-      "reviews": 54,
       "inStock": true
     },
     {
@@ -65,9 +47,6 @@
       "name": "Golden Round AAA",
       "image": "/images/products/Golden Round AAA.webp",
       "category": "golden-round",
-      "price": 19.99,
-      "rating": 4.8,
-      "reviews": 72,
       "inStock": true
     },
     {
@@ -75,9 +54,6 @@
       "name": "Golden Round Premium",
       "image": "/images/products/Golden Round Premium.webp",
       "category": "golden-round",
-      "price": 23.99,
-      "rating": 5.0,
-      "reviews": 88,
       "inStock": true
     },
     {
@@ -85,9 +61,6 @@
       "name": "Green long A",
       "image": "/images/products/Green long A.webp",
       "category": "green-long",
-      "price": 11.99,
-      "rating": 4.3,
-      "reviews": 42,
       "inStock": true
     },
     {
@@ -95,9 +68,6 @@
       "name": "Green long AA",
       "image": "/images/products/Green long AA.webp",
       "category": "green-long",
-      "price": 14.99,
-      "rating": 4.6,
-      "reviews": 58,
       "inStock": true
     },
     {
@@ -105,9 +75,6 @@
       "name": "Green long AAA",
       "image": "/images/products/Green long AAA.webp",
       "category": "green-long",
-      "price": 17.99,
-      "rating": 4.8,
-      "reviews": 65,
       "inStock": true
     },
     {
@@ -115,19 +82,13 @@
       "name": "Green long Premium",
       "image": "/images/products/Green long Premium.webp",
       "category": "green-long",
-      "price": 21.99,
-      "rating": 4.9,
-      "reviews": 82,
       "inStock": true
     },
     {
       "id": 13,
-      "name": "Green Round A-01",
-      "image": "/images/products/Green Round A-01.webp",
+      "name": "Green Round A",
+      "image": "/images/products/Green Round A.webp",
       "category": "green-round",
-      "price": 10.99,
-      "rating": 4.7,
-      "reviews": 76,
       "inStock": true
     },
     {
@@ -135,9 +96,6 @@
       "name": "Green Round AA",
       "image": "/images/products/Green Round AA.webp",
       "category": "green-round",
-      "price": 12.99,
-      "rating": 4.8,
-      "reviews": 91,
       "inStock": true
     },
     {
@@ -145,9 +103,6 @@
       "name": "Green Round AAA",
       "image": "/images/products/Green Round AAA.webp",
       "category": "green-round",
-      "price": 8.99,
-      "rating": 4.2,
-      "reviews": 34,
       "inStock": true
     },
     {
@@ -155,9 +110,22 @@
       "name": "Green Round Premium",
       "image": "/images/products/Green Round Premium.webp",
       "category": "green-round",
-      "price": 8.99,
-      "rating": 4.2,
-      "reviews": 34,
+      "inStock": true
+    }
+  ],
+  "blackProducts": [
+    {
+      "id": 101,
+      "name": "Black Long",
+      "image": "/images/products/Black long.webp",
+      "category": "black",
+      "inStock": true
+    },
+    {
+      "id": 201,
+      "name": "Black Round",
+      "image": "/images/products/Black Round.webp",
+      "category": "black",
       "inStock": true
     }
   ]
