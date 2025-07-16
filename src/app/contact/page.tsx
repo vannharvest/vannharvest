@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Mail, Phone, Globe, ArrowRight, Clock, MapPin, Building2, Users, Leaf, LucideIcon } from 'lucide-react';
+import { Mail, Phone, Globe, ArrowRight, Clock, Building2, Users, Leaf, LucideIcon } from 'lucide-react';
 
 const contactMethods = [
   {
@@ -101,7 +101,7 @@ export default function ContactPage() {
       >
         <h1 className="text-4xl md:text-5xl font-bold text-green-800 mb-4 pt-36">Get in Touch</h1>
         <p className="text-gray-700 text-lg max-w-2xl mx-auto">
-          We're here to help and answer any questions. Reach out for inquiries, partnerships, or just to say hello!
+          We&apos;re here to help and answer any questions. Reach out for inquiries, partnerships, or just to say hello!
         </p>
       </motion.div>
 

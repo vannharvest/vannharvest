@@ -30,7 +30,7 @@ export const blogPosts: BlogPost[] = [
   {
     title: 'The Hidden Dangers of Adulteration in Raisins',
     excerpt: 'Learn about the significant issue of adulteration in raisins and how to ensure you\'re getting pure, high-quality products.',
-    image: '/images/blog/hidden-dangers-adulteration-raisins.webp',
+    image: '/images/blog/hidden-dangers-adulteration-raisins.jpg',
     slug: 'hidden-dangers-adulteration-raisins',
     date: '2025-05-28',
     category: 'Health',

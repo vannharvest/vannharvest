@@ -56,16 +56,25 @@ function ProductsContent() {
 
   // Memoize filtered products to prevent unnecessary re-renders
   const filteredProducts = useMemo(() => {
-    console.log('Filtering products with:', { selectedCategory, selectedName });
     let filtered = [...allProducts];
     
-    if (selectedCategory !== 'all') {
-      if (selectedCategory === 'black') {
-        // Show all black products
-        filtered = filtered.filter(
-          (product) => product.category === 'black'
-        );
-      } else {
+    if (selectedCategory && selectedCategory !== 'all') {
+      // Check if the selected category matches any of our predefined categories
+      const categoryMap: {[key: string]: string} = {
+        'black-raisins': 'black',
+        'golden-raisins': 'golden',
+        'green-raisins': 'green',
+        'sultanas': 'sultanas',
+        'currants': 'currants',
+        'organic-raisins': 'organic',
+        'seedless-raisins': 'seedless',
+        'jumbo-raisins': 'jumbo',
+        'flame-raisins': 'flame',
+        'munakka-raisins': 'munakka'
+      };
+
+      const categoryValue = categoryMap[selectedCategory];
+      if (categoryValue) {
         filtered = filtered.filter(
           (product) => product.category.trim().toLowerCase() === selectedCategory
         );
@@ -78,7 +87,7 @@ function ProductsContent() {
     
     console.log('Filtered products:', filtered);
     return filtered;
-  }, [selectedCategory, selectedName, allProducts]);
+  }, [selectedCategory, selectedName]);
 
   // Update products when filtered products change
   useEffect(() => {
