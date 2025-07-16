@@ -1,12 +1,12 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Award, Sun, Globe, CheckCircle, PackageCheck, ShieldCheck, Award as Trophy } from 'lucide-react';
+import { Medal, Sun, Globe, Check, Package, ShieldCheck } from 'lucide-react';
 
 export default function WhyChooseUsSection() {
   const features = [
     {
-      icon: <Trophy className="text-green-600" size={24} />,
+      icon: <Medal className="text-green-600" size={24} />,
       title: "Unmatched Quality Since 1993",
       description: "With over three decades of experience, we deliver premium-grade raisins carefully cultivated using a blend of traditional techniques and modern innovation."
     },
@@ -21,7 +21,7 @@ export default function WhyChooseUsSection() {
       description: "We proudly supply to leading distributors, exporters, and food manufacturers across India and overseas, ensuring consistency, hygiene, and compliance with global food standards."
     },
     {
-      icon: <PackageCheck className="text-green-700" size={24} />,
+      icon: <Package className="text-green-700" size={24} />,
       title: "Farm-to-Factory Control",
       description: "From cultivation in our own farms in Vijayapura to in-house processing and packaging, we maintain full control over quality at every step."
     },
@@ -96,7 +96,7 @@ export default function WhyChooseUsSection() {
           >
             <div className="flex flex-col items-center text-center mb-10">
               <div className="w-16 h-16 rounded-2xl bg-green-100 flex items-center justify-center text-green-600 mb-6">
-                <Award className="w-8 h-8" />
+                <Medal className="w-8 h-8" />
               </div>
               <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">Our Commitment to Excellence</h3>
               <p className="text-gray-600 text-lg max-w-3xl">
@@ -111,7 +111,7 @@ export default function WhyChooseUsSection() {
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  <CheckCircle className="w-3.5 h-3.5 text-green-500 mr-2 flex-shrink-0" />
+                  <Check className="w-3.5 h-3.5 text-green-500 mr-2 flex-shrink-0" />
                   {keyword}
                 </motion.span>
               ))}

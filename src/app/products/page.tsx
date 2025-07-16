@@ -59,7 +59,7 @@ function ProductsContent() {
     let filtered = [...allProducts];
     
     if (selectedCategory && selectedCategory !== 'all') {
-      // Check if the selected category matches any of our predefined categories
+      // Map URL-friendly category names to actual category values in products
       const categoryMap: {[key: string]: string} = {
         'black-raisins': 'black',
         'golden-raisins': 'golden',
@@ -70,19 +70,23 @@ function ProductsContent() {
         'seedless-raisins': 'seedless',
         'jumbo-raisins': 'jumbo',
         'flame-raisins': 'flame',
-        'munakka-raisins': 'munakka'
+        'munakka-raisins': 'munakka',
+        'golden-long': 'golden-long',
+        'golden-round': 'golden-round',
+        'green-long': 'green-long',
+        'green-round': 'green-round'
       };
 
-      const categoryValue = categoryMap[selectedCategory];
-      if (categoryValue) {
-        filtered = filtered.filter(
-          (product) => product.category.trim().toLowerCase() === selectedCategory
-        );
-      }
+      const categoryValue = categoryMap[selectedCategory] || selectedCategory;
+      filtered = filtered.filter(
+        (product) => product.category.toLowerCase() === categoryValue.toLowerCase()
+      );
     }
     
     if (selectedName !== 'all') {
-      filtered = filtered.filter((product) => product.name === selectedName);
+      filtered = filtered.filter((product) => 
+        product.name.toLowerCase() === selectedName.toLowerCase()
+      );
     }
     
     console.log('Filtered products:', filtered);
@@ -101,16 +105,19 @@ function ProductsContent() {
 
   // Get unique product names based on selected category
   const getFilteredProductNames = () => {
-    let filtered = [...allProducts];
-    
-    if (selectedCategory !== 'all') {
-      filtered = filtered.filter(
-        (product) => product.category.trim().toLowerCase() === selectedCategory
-      );
+    // If no category is selected, return all unique product names
+    if (selectedCategory === 'all') {
+      const allNames = allProducts.map(p => p.name);
+      return ['all', ...new Set(allNames)];
     }
     
-    // Get unique names while preserving original case
-    const names = filtered.map(p => p.name);
+    // Otherwise, filter by the selected category first
+    const filteredByCategory = allProducts.filter(
+      product => product.category.toLowerCase() === selectedCategory.toLowerCase()
+    );
+    
+    // Then get unique names from the filtered list
+    const names = filteredByCategory.map(p => p.name);
     return ['all', ...new Set(names)];
   };
   

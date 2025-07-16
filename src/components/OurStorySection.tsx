@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
-import { FaLeaf, FaSeedling } from 'react-icons/fa';
+import { Leaf, Sprout } from 'lucide-react';
 
 const container = {
   hidden: { opacity: 0 },
@@ -62,7 +62,7 @@ export default function OurStorySection() {
           >
             <motion.div variants={item}>
               <span className="inline-flex items-center gap-2 text-green-600 text-sm font-semibold tracking-wider uppercase mb-4">
-                <FaLeaf className="w-4 h-4" /> Our Journey
+                <Leaf className="w-4 h-4" /> Our Journey
               </span>
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
                 Rooted in Tradition, <span className="text-green-600">Growing with Innovation</span>
@@ -87,7 +87,7 @@ export default function OurStorySection() {
                 className="px-8 py-4 bg-green-600 hover:bg-green-700 text-white font-medium rounded-full flex items-center gap-2 transition-colors group"
               >
                 Discover Our Story
-                <FaSeedling className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                <Sprout className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link 
                 href="/products" 

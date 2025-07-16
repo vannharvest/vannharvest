@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Head from 'next/head';
-import { Award, CheckCircle, Shield } from 'lucide-react';
+import { Medal, Check, Shield } from 'lucide-react';
 import Link from 'next/link';
 
 const certifications = [
@@ -112,7 +112,7 @@ export default function CertificationsPage() {
 
                 {/* Fallback icon */}
                 <div className="absolute inset-0 flex items-center justify-center p-8 transition-opacity duration-300 group-hover:opacity-0">
-                  <Award className="w-16 h-16 text-green-200" />
+                  <Medal className="w-16 h-16 text-green-200" />
                 </div>
 
                 {/* Main image */}
@@ -138,7 +138,7 @@ export default function CertificationsPage() {
 
               <div className="p-6 flex-1 flex flex-col">
                 <div className="flex items-start mb-3">
-                  <CheckCircle className="w-5 h-5 text-green-600 mr-2 mt-0.5 flex-shrink-0" />
+                  <Check className="w-5 h-5 text-green-600 mr-2 mt-0.5 flex-shrink-0" />
                   <div>
                     <h3 className="text-xl font-semibold text-gray-900 mb-2">{cert.title}</h3>
                     <p className="text-gray-600 text-sm leading-relaxed">{cert.description}</p>
