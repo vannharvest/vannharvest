@@ -71,8 +71,8 @@ export default function PremiumProduct() {
         }
       `}</style>
       
-      <section className="py-10 w-full bg-white overflow-hidden">
-        <div className="w-full max-w-[calc(100%-32px)] mx-auto">
+      <section className="py-6 w-full overflow-hidden">
+        <div className="w-full max-w-[calc(100%-32px)] mx-auto bg-white rounded-2xl p-4">
           {/* Header */}
           <div className="flex flex-col md:flex-row justify-between items-center mb-8 px-2">
             <h2 className="text-xl md:text-2xl font-semibold text-gray-900">

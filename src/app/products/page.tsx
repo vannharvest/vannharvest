@@ -1,14 +1,15 @@
 'use client';
 
-import { useState, useEffect, Suspense, useMemo } from 'react';
+import { useMemo, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import productsData from '../../../public/data/products.json';
 import Loading from './loading';
+import PageWrapper from '@/components/PageWrapper';
 
 interface Product {
-  id: number | string;  // Allow both number and string IDs
+  id: number | string;
   name: string;
   image: string;
   category: string;
@@ -22,13 +23,13 @@ interface ProductsData {
 
 const typedProductsData = productsData as ProductsData;
 
-// Combine all products from different categories with unique IDs
-const allProducts = [
-  ...(typedProductsData.bestSellers?.map(p => ({...p, id: `b-${p.id}`})) || []),
-  ...(typedProductsData.blackProducts?.map(p => ({...p, id: `blk-${p.id}`})) || [])
+// Combine all products with unique prefixed IDs
+const allProducts: Product[] = [
+  ...typedProductsData.bestSellers.map(p => ({ ...p, id: `b-${p.id}` })),
+  ...(typedProductsData.blackProducts?.map(p => ({ ...p, id: `blk-${p.id}` })) || []),
 ];
 
-// ✅ Friendly labels for dropdown
+// Maps for labels and URL categories
 const categoryLabels: Record<string, string> = {
   'golden-long': 'Golden Long',
   'golden-round': 'Golden Round',
@@ -37,209 +38,154 @@ const categoryLabels: Record<string, string> = {
   'black': 'Black',
 };
 
-import PageWrapper from '@/components/PageWrapper';
+const urlCategoryMap: Record<string, string> = {
+  'black-raisins': 'black',
+  'golden-raisins': 'golden',
+  'green-raisins': 'green',
+  'sultanas': 'sultanas',
+  'currants': 'currants',
+  'organic-raisins': 'organic',
+  'seedless-raisins': 'seedless',
+  'jumbo-raisins': 'jumbo',
+  'flame-raisins': 'flame',
+  'munakka-raisins': 'munakka',
+  'golden-long': 'golden-long',
+  'golden-round': 'golden-round',
+  'green-long': 'green-long',
+  'green-round': 'green-round'
+};
 
-// This component is wrapped in Suspense to handle client-side features
 function ProductsContent() {
   const searchParams = useSearchParams();
-  const [products, setProducts] = useState(allProducts);
-  const [selectedCategory, setSelectedCategory] = useState('all');
-  const [selectedName, setSelectedName] = useState('all');
 
-  // Get category from URL on component mount
-  useEffect(() => {
-    const category = searchParams.get('category');
-    if (category) {
-      setSelectedCategory(category);
-    }
-  }, [searchParams]);
+  const selectedCategory = searchParams.get('category') || 'all';
+  const selectedName = searchParams.get('name') || 'all';
 
-  // Memoize filtered products to prevent unnecessary re-renders
+  // Memoized filtered products
   const filteredProducts = useMemo(() => {
-    let filtered = [...allProducts];
-    
-    if (selectedCategory && selectedCategory !== 'all') {
-      // Map URL-friendly category names to actual category values in products
-      const categoryMap: {[key: string]: string} = {
-        'black-raisins': 'black',
-        'golden-raisins': 'golden',
-        'green-raisins': 'green',
-        'sultanas': 'sultanas',
-        'currants': 'currants',
-        'organic-raisins': 'organic',
-        'seedless-raisins': 'seedless',
-        'jumbo-raisins': 'jumbo',
-        'flame-raisins': 'flame',
-        'munakka-raisins': 'munakka',
-        'golden-long': 'golden-long',
-        'golden-round': 'golden-round',
-        'green-long': 'green-long',
-        'green-round': 'green-round'
-      };
+    let filtered = allProducts;
 
-      const categoryValue = categoryMap[selectedCategory] || selectedCategory;
+    if (selectedCategory !== 'all') {
+      const categoryValue = urlCategoryMap[selectedCategory] || selectedCategory;
       filtered = filtered.filter(
-        (product) => product.category.toLowerCase() === categoryValue.toLowerCase()
+        (p) => p.category.trim().toLowerCase() === categoryValue.toLowerCase()
       );
     }
-    
+
     if (selectedName !== 'all') {
-      filtered = filtered.filter((product) => 
-        product.name.toLowerCase() === selectedName.toLowerCase()
+      filtered = filtered.filter(
+        (p) => p.name.trim().toLowerCase() === selectedName.toLowerCase()
       );
     }
-    
-    console.log('Filtered products:', filtered);
+
     return filtered;
   }, [selectedCategory, selectedName]);
 
-  // Update products when filtered products change
-  useEffect(() => {
-    setProducts(filteredProducts);
-  }, [filteredProducts]);
+  // Unique categories for dropdown
+  const categories = useMemo(() => {
+    const unique = Array.from(new Set(allProducts.map(p => p.category.trim().toLowerCase())));
+    return ['all', ...unique];
+  }, []);
 
-  // Get unique categories from all products
-  const allCategories = allProducts.map(p => p.category.trim().toLowerCase());
-  const uniqueCategories = [...new Set(allCategories)];
-  const categories = ['all', ...uniqueCategories];
-
-  // Get unique product names based on selected category
-  const getFilteredProductNames = () => {
-    // If no category is selected, return all unique product names
+  // Unique product names for dropdown, filtered by selected category
+  const productNames = useMemo(() => {
     if (selectedCategory === 'all') {
-      const allNames = allProducts.map(p => p.name);
-      return ['all', ...new Set(allNames)];
+      return ['all', ...new Set(allProducts.map(p => p.name))];
     }
-    
-    // Otherwise, filter by the selected category first
-    const filteredByCategory = allProducts.filter(
-      product => product.category.toLowerCase() === selectedCategory.toLowerCase()
+    const filtered = allProducts.filter(
+      (p) => p.category.trim().toLowerCase() === selectedCategory.toLowerCase()
     );
-    
-    // Then get unique names from the filtered list
-    const names = filteredByCategory.map(p => p.name);
-    return ['all', ...new Set(names)];
-  };
-  
-  const productNames = getFilteredProductNames();
-  
-  // Update URL when name changes
-  const updateName = (name: string) => {
-    const params = new URLSearchParams(searchParams.toString());
-    if (name === 'all') {
-      params.delete('name');
-    } else {
-      params.set('name', name);
-    }
-    window.history.pushState({}, '', `?${params.toString()}`);
-    setSelectedName(name);
-  };
-  
-  // Get name from URL on component mount
-  useEffect(() => {
-    const name = searchParams.get('name');
-    if (name) {
-      setSelectedName(name);
-    }
-  }, [searchParams]);
+    return ['all', ...new Set(filtered.map(p => p.name))];
+  }, [selectedCategory]);
 
-  // Update URL when category changes
-  const updateCategory = (category: string) => {
+  // URL helpers
+  const updateParam = (key: string, value: string) => {
     const params = new URLSearchParams(searchParams.toString());
-    if (category === 'all') {
-      params.delete('category');
+    if (value === 'all') {
+      params.delete(key);
     } else {
-      params.set('category', category);
+      params.set(key, value);
     }
     window.history.pushState({}, '', `?${params.toString()}`);
-    setSelectedCategory(category);
   };
 
   return (
     <PageWrapper className="pt-28">
       <div className="flex flex-col lg:flex-row gap-6">
-        {/* Sticky Sidebar Filters - Sticky on all devices */}
-        <div className="sticky top-28 z-10 lg:z-0 mt-4 lg:mt-0 h-fit">
+        {/* Sidebar Filters */}
+        <aside className="sticky top-28 z-10 lg:z-0 mt-4 lg:mt-0 h-fit">
           <div className="lg:sticky lg:top-32 lg:w-64">
-            <div className="bg-white p-4 sm:p-6 rounded-xl shadow-sm space-y-4 sm:space-y-6 border border-gray-100 mx-4 sm:mx-0 lg:mx-0">
+            <div className="bg-white p-4 sm:p-6 rounded-xl shadow-sm border border-gray-100 mx-4 sm:mx-0">
               <h2 className="text-lg font-bold text-green-900">Filters</h2>
-              <div>
-                <label className="block mb-2 text-sm font-medium text-green-800">Filter by Category</label>
-                <select
-                  value={selectedCategory}
-                  onChange={(e) => updateCategory(e.target.value)}
-                  className="w-full text-sm border border-gray-300 rounded-lg p-2 bg-white text-green-800 focus:ring-2 focus:ring-green-500 focus:border-transparent"
-                >
-                  {categories.map((cat) => (
-                    <option key={cat} value={cat}>
-                      {cat === 'all' ? 'All Categories' : categoryLabels[cat] || cat}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              <div>
-                <label className="block mb-2 text-sm font-medium text-green-800">Filter by Product</label>
-                <select
-                  value={selectedName}
-                  onChange={(e) => updateName(e.target.value)}
-                  className="w-full text-sm border border-gray-300 rounded-lg p-2 bg-white text-green-800 focus:ring-2 focus:ring-green-500 focus:border-transparent"
-                  disabled={productNames.length <= 1}
-                >
-                  {productNames.map((name) => (
-                    <option key={name} value={name}>
-                      {name === 'all' ? 'All Products' : name}
-                    </option>
-                  ))}
-                  {productNames.length <= 1 && (
-                    <option value="all">No other products in this category</option>
-                  )}
-                </select>
+              <div className="space-y-4 mt-4">
+                <div>
+                  <label className="block mb-2 text-sm font-medium text-green-800">Filter by Category</label>
+                  <select
+                    value={selectedCategory}
+                    onChange={(e) => updateParam('category', e.target.value)}
+                    className="w-full text-sm border rounded-lg p-2 bg-white text-green-800 focus:ring-2 focus:ring-green-500"
+                  >
+                    {categories.map((cat) => (
+                      <option key={cat} value={cat}>
+                        {cat === 'all' ? 'All Categories' : categoryLabels[cat] || cat}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                <div>
+                  <label className="block mb-2 text-sm font-medium text-green-800">Filter by Product</label>
+                  <select
+                    value={selectedName}
+                    onChange={(e) => updateParam('name', e.target.value)}
+                    className="w-full text-sm border rounded-lg p-2 bg-white text-green-800 focus:ring-2 focus:ring-green-500"
+                    disabled={productNames.length <= 1}
+                  >
+                    {productNames.map((name) => (
+                      <option key={name} value={name}>
+                        {name === 'all' ? 'All Products' : name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </aside>
 
         {/* Product Grid */}
-        <div className="flex-1 px-2 sm:px-4 lg:px-0 lg:pt-4">
+        <main className="flex-1 px-2 sm:px-4 lg:px-0 lg:pt-4">
           <section className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
-            {products.length > 0 ? (
-              products.map((product: Product, index: number) => (
+            {filteredProducts.length > 0 ? (
+              filteredProducts.map((product, index) => (
                 <motion.div
                   key={product.id}
                   initial={{ scale: 0.95, opacity: 0 }}
                   whileInView={{ scale: 1, opacity: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: index * 0.05 }}
-                  className="bg-white rounded-2xl sm:rounded-3xl shadow-sm sm:shadow-md hover:shadow-lg sm:hover:shadow-xl transition-all duration-300 overflow-hidden group"
+                  className="bg-white rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden group"
                 >
-                  <div className="relative w-full aspect-[3/4] overflow-hidden">
-                    <div className="relative w-full h-full">
-                      <div className="relative w-full h-full">
-                        <Image
-                          src={product.image}
-                          alt={product.name}
-                          fill
-                          priority={index < 4} // Prioritize first 4 images for LCP
-                          className="object-cover group-hover:scale-105 transition-transform duration-500"
-                          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                          unoptimized={process.env.NODE_ENV !== 'production'} // Only optimize in production
-                          onError={(e) => {
-                            console.error('Error loading image:', product.image, e);
-                            // Try to load the image with encoded spaces as a fallback
-                            const img = e.target as HTMLImageElement;
-                            img.src = encodeURI(product.image);
-                          }}
-                        />
-                      </div>
-                    </div>
-                    <span className="absolute top-2 left-2 sm:top-3 sm:left-3 bg-green-100 text-green-800 text-[10px] sm:text-xs font-semibold px-1.5 sm:px-2 py-0.5 sm:py-1 rounded sm:rounded-md">
+                  <div className="relative w-full aspect-[3/4]">
+                    <Image
+                      src={product.image}
+                      alt={product.name}
+                      fill
+                      priority={index < 4}
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                      unoptimized={process.env.NODE_ENV !== 'production'}
+                      onError={(e) => {
+                        const img = e.target as HTMLImageElement;
+                        img.src = encodeURI(product.image);
+                      }}
+                    />
+                    <span className="absolute top-2 left-2 bg-green-100 text-green-800 text-xs font-semibold px-2 py-1 rounded">
                       Best Seller
                     </span>
                   </div>
-                  <div className="p-2 sm:p-4 text-center">
-                    <h3 className="text-sm sm:text-md font-semibold text-green-900 line-clamp-2 h-10 sm:h-auto">{product.name}</h3>
-                    <p className="text-xs sm:text-sm text-green-700 mt-0.5 sm:mt-1">
+                  <div className="p-2 text-center">
+                    <h3 className="text-sm font-semibold text-green-900 line-clamp-2">{product.name}</h3>
+                    <p className="text-xs text-green-700 mt-1">
                       {categoryLabels[product.category.trim().toLowerCase()] || product.category}
                     </p>
                   </div>
@@ -251,7 +197,7 @@ function ProductsContent() {
               </div>
             )}
           </section>
-        </div>
+        </main>
       </div>
     </PageWrapper>
   );

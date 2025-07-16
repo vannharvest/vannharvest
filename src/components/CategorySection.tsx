@@ -113,14 +113,14 @@ export default function CategorySection() {
           </Link>
         </div>
 
-        {/* Category Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 px-4">
+        {/* Category Grid - 2 columns on mobile, 4 on larger screens */}
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6 px-2 sm:px-4">
           {categories.map((category) => (
             <Link
               key={category.id}
               href={`/products?category=${category.slug}`}
               onClick={(e) => handleCategoryClick(e, category.slug)}
-              className={`group relative block rounded-[28px] overflow-hidden border border-gray-200 shadow-sm transition-all hover:shadow-2xl h-[580px] bg-white ${
+              className={`group relative block rounded-2xl sm:rounded-[28px] overflow-hidden border border-gray-200 shadow-sm transition-all hover:shadow-2xl h-[280px] sm:h-[580px] bg-white ${
                 isNavigating === category.slug ? 'opacity-70' : ''
               }`}
               aria-disabled={isNavigating === category.slug}
