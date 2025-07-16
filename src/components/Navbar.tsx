@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ChevronDown, Facebook, Instagram, Twitter, Menu, X } from 'lucide-react';
+import { ChevronDown, Facebook, Instagram, Menu, X } from 'lucide-react';
 
 const NAV_ITEMS = [
   { label: 'Home', href: '/' },
