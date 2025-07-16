@@ -30,11 +30,11 @@ export const blogPosts: BlogPost[] = [
   {
     title: 'The Hidden Dangers of Adulteration in Raisins',
     excerpt: 'Learn about the significant issue of adulteration in raisins and how to ensure you\'re getting pure, high-quality products.',
-    image: 'https://images.pexels.com/photos/1002703/pexels-photo-1002703.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    image: '/images/blog/hidden-dangers-adulteration-raisins.webp',
     slug: 'hidden-dangers-adulteration-raisins',
     date: '2025-05-28',
     category: 'Health',
-    author: 'Dr. Priya Sharma',
+    author: 'Akhil Warrier',
     readTime: 6,
     content: `Raisins, the humble dried fruits, are a staple in many households. But did you know that many raisin products on the market today contain harmful additives and adulterants? At Vann Harvest, we believe in transparency and purity, which is why we're shedding light on this important issue.
 
@@ -58,11 +58,11 @@ At Vann Harvest, we take pride in our commitment to pure, unadulterated raisins.
   {
     title: 'Vijayapura: Stands First in Grape Production in Karnataka State',
     excerpt: 'Discover how Vijayapura has emerged as the leader in grape production with its fertile soil and rich viticulture heritage.',
-    image: 'https://images.pexels.com/photos/2132185/pexels-photo-2132185.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    image: '/images/blog/vijayapura.webp',
     slug: 'vijayapura-grape-production-karnataka',
     date: '2025-05-15',
     category: 'Sustainability',
-    author: 'Rajesh Kumar',
+    author: 'Aishwarya Pawar',
     readTime: 8,
     content: `Vijayapura, formerly known as Bijapur, has earned its reputation as the grape capital of Karnataka, contributing significantly to India's position as one of the top grape producers globally. The region's unique combination of climate, soil, and traditional farming knowledge has created the perfect environment for grape cultivation.
 
@@ -88,7 +88,7 @@ Grape farming has transformed the local economy, providing employment to thousan
   {
     title: 'From Vine to Dried Delights: The Fascinating Journey of Raisins',
     excerpt: 'Explore the meticulous process of raisin production from vine to your table, combining tradition and modern techniques.',
-    image: 'https://images.pexels.com/photos/7365578/pexels-photo-7365578.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    image: '/images/blog/From Vine to Dried Delights.webp',
     slug: 'vine-to-dried-delights-raisin-journey',
     date: '2025-04-22',
     category: 'Production',
@@ -132,11 +132,11 @@ At Vann Harvest, we take pride in every step of this process, ensuring that only
   {
     title: 'The Natural Power of Raisins: Why They Belong in Your Daily Diet',
     excerpt: 'Discover the health benefits of sun-dried raisins and how Vann Harvest ensures purity in every pack.',
-    image: blogImages.health,
+    image: '/images/blog/natural-power-of-raisins.webp',
     slug: 'natural-power-of-raisins',
     date: '2025-06-20',
     category: 'Health',
-    author: 'Dr. Ananya Patel',
+    author: 'Sumedha Bansode',
     readTime: 7,
     content: `Raisins are nature's candy, packed with essential nutrients and health benefits. At Vann Harvest, we believe in harnessing the natural goodness of raisins to promote overall well-being.
 
@@ -173,11 +173,11 @@ At Vann Harvest, we ensure that our raisins retain maximum nutritional value thr
   {
     title: 'Inside Our Sustainable Farming: A Journey to Organic Excellence',
     excerpt: 'Learn how Vann Harvest practices zero-waste farming and supports local communities.',
-    image: blogImages.sustainability,
+    image: '/images/blog/Sustainable Farming.webp',
     slug: 'sustainable-farming-journey',
     date: '2025-06-15',
     category: 'Sustainability',
-    author: 'Meera Deshpande',
+    author: 'Vann Harvest Team',
     readTime: 9,
     content: `At Vann Harvest, sustainability isn't just a buzzword—it's the foundation of everything we do. Our commitment to organic farming and environmental stewardship sets us apart in the agricultural industry.
 
@@ -216,7 +216,7 @@ By choosing Vann Harvest, you're not just getting premium quality raisins—you'
   {
     title: 'Raisin Trends 2025: Why Consumers Are Choosing Quality Over Quantity',
     excerpt: 'Premium raisins are making headlines — here\'s why quality sourcing matters now more than ever.',
-    image: blogImages.industry,
+    image: '/images/blog/raisin-trends-2025.webp',
     slug: 'raisin-trends-2025',
     date: '2025-06-05',
     category: 'Industry',

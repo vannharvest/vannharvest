@@ -21,7 +21,7 @@ export default function Sustainability() {
         <div className="absolute inset-0 z-0">
           <div className="w-full h-full relative">
             <Image 
-              src="/images/Greener_Tomorrow.jpg" 
+              src="/images/gallery/Sustainibility.avif" 
               alt="Sustainable Farming at Vann Harvest" 
               fill 
               className="object-cover"

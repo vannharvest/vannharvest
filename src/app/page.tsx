@@ -22,8 +22,8 @@ export default function Home() {
         subheading="Experience the freshness of our farm-to-table produce. Limited stock available!"
         buttonText="Shop Now"
         buttonLink="/products"
-        imageSrc="https://images.unsplash.com/photo-1661096058717-89f2cd8fd695?q=80&w=2131&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-        imageAlt="Fresh organic vegetables and fruits from Upstock"
+        imageSrc="/images/promotional/grapes_promo_2.png"
+        imageAlt="Fresh organic grapes from our farm"
       />
 
       {/* 🧺 Product Categories */}

@@ -16,7 +16,9 @@ interface Category {
 }
 
 const getCategories = (): Category[] => {
-  // These are the base categories we want to display
+  // Add a version parameter to force cache refresh
+  const version = new Date().getTime(); // This will make the URL unique on each build
+  
   const baseCategories = [
     { name: 'Golden Long', displayName: 'Golden Long Raisins' },
     { name: 'Golden Round', displayName: 'Golden Round Raisins' },
@@ -24,10 +26,7 @@ const getCategories = (): Category[] => {
     { name: 'Green Round', displayName: 'Green Round Raisins' },
   ];
 
-  // In a real app, you would fetch this from an API or use require.context
-  // For now, we'll use the existing image paths
   return baseCategories.map((cat, index) => {
-    // Map each category to its corresponding image filename
     const imageMap: Record<string, string> = {
       'Golden Long': 'Golden long A.webp',
       'Golden Round': 'Golden Round A.webp',
@@ -36,11 +35,13 @@ const getCategories = (): Category[] => {
     };
     
     const cleanName = cat.name.replace(/\s+/g, '-').toLowerCase();
+    const imagePath = `/images/products/${imageMap[cat.name as keyof typeof imageMap]}`;
+    
     return {
       id: `cat-${index + 1}`,
       name: cat.displayName,
       slug: cleanName,
-      image: `/images/products/${imageMap[cat.name as keyof typeof imageMap]}`,
+      image: `${imagePath}?v=${version}`, // Add version parameter
       alt: cat.displayName,
       category: 'Premium Quality',
     };

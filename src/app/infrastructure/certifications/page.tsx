@@ -10,37 +10,37 @@ const certifications = [
   {
     title: 'APEDA Registered',
     description: 'Registered with the Agricultural and Processed Food Products Export Development Authority for quality exports.',
-    image: 'https://upload.wikimedia.org/wikipedia/en/thumb/6/6d/APEDA_Logo.svg/1200px-APEDA_Logo.svg.png',
+    image: '/images/certification/APEDA.avif',
     alt: 'APEDA Registration'
   },
   {
     title: 'APMC Licensed',
     description: 'Licensed by the Agricultural Produce Market Committee for fair trade practices.',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/APMC_Logo.svg/1200px-APMC_Logo.svg.png',
+    image: '/images/certification/APMC.avif',
     alt: 'APMC License'
   },
   {
     title: 'FSSAI Certified',
     description: 'Certified by the Food Safety and Standards Authority of India for food safety compliance.',
-    image: 'https://upload.wikimedia.org/wikipedia/en/thumb/6/6d/FSSAI_Logo.svg/1200px-FSSAI_Logo.svg.png',
+    image: '/images/certification/FSSAI.avif',
     alt: 'FSSAI Certification'
   },
   {
     title: 'ISO 22000:2018',
     description: 'Food Safety Management System Certification ensuring safe food production processes.',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/ISO_Certification_Logo.svg/1200px-ISO_Certification_Logo.svg.png',
+    image: '/images/certification/iso 22000-2018.avif',
     alt: 'ISO 22000:2018 Certification'
   },
   {
     title: 'HACCP Certified',
     description: 'Hazard Analysis and Critical Control Points certification for food safety.',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/HACCP_Logo.svg/1200px-HACCP_Logo.svg.png',
+    image: '/images/certification/HACCP.avif',
     alt: 'HACCP Certification'
   },
   {
     title: 'Organic Certified',
     description: 'Certified organic production methods ensuring chemical-free, natural raisins.',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Organic_Seal_Color_5-2010.svg/1200px-Organic_Seal_Color_5-2010.svg.png',
+    image: '/images/certification/organic.avif',
     alt: 'Organic Certification'
   }
 ];
@@ -59,16 +59,16 @@ export default function CertificationsPage() {
       {/* Hero Section */}
       <div className="relative h-[calc(100vh-10rem)] w-full max-w-[calc(100%-32px)] mx-auto rounded-2xl overflow-hidden mt-32">
         <div className="absolute inset-0 z-0">
-          <Image 
-            src="https://images.unsplash.com/photo-1606787366850-de6330128bfc?ixlib=rb-4.1.0&auto=format&fit=crop&w=1950&q=80" 
-            alt="Certifications at Vann Harvest" 
-            fill 
+          <Image
+            src="/images/gallery/team.avif"
+            alt="Certifications at Vann Harvest"
+            fill
             unoptimized={true}
             className="object-cover"
             priority
             onError={(e) => {
               const target = e.target as HTMLImageElement;
-              target.src = 'https://images.unsplash.com/photo-1606787366850-de6330128bfc?ixlib=rb-4.1.0&auto=format&fit=crop&w=1950&q=80';
+              target.src = '/images/gallery/team.avif';
               target.onerror = null;
             }}
           />
@@ -98,7 +98,7 @@ export default function CertificationsPage() {
         {/* Certifications Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
           {certifications.map((cert, index) => (
-            <motion.div 
+            <motion.div
               key={index}
               className="group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-green-100 flex flex-col h-full"
               initial={{ opacity: 0, y: 20 }}
@@ -109,12 +109,12 @@ export default function CertificationsPage() {
               <div className="h-56 bg-gray-50 relative overflow-hidden">
                 {/* Background pattern */}
                 <div className="absolute inset-0 bg-gradient-to-br from-green-50 to-white opacity-70"></div>
-                
+
                 {/* Fallback icon */}
                 <div className="absolute inset-0 flex items-center justify-center p-8 transition-opacity duration-300 group-hover:opacity-0">
                   <Award className="w-16 h-16 text-green-200" />
                 </div>
-                
+
                 {/* Main image */}
                 <div className="relative h-full w-full flex items-center justify-center p-6">
                   <Image
@@ -131,13 +131,11 @@ export default function CertificationsPage() {
                     }}
                   />
                 </div>
-                
+
                 {/* Hover overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-                  <span className="text-white text-sm font-medium bg-black/60 px-2 py-1 rounded">View Details</span>
-                </div>
+
               </div>
-              
+
               <div className="p-6 flex-1 flex flex-col">
                 <div className="flex items-start mb-3">
                   <CheckCircle className="w-5 h-5 text-green-600 mr-2 mt-0.5 flex-shrink-0" />
