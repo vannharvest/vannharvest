@@ -1,12 +1,12 @@
-'use client';
+// 'use client';
 
-import dynamic from 'next/dynamic';
+// import dynamic from 'next/dynamic';
 
-const CookieConsent = dynamic(
-  () => import('@/components/CookieConsent'),
-  { ssr: false }
-);
+// const CookieConsent = dynamic(
+//   () => import('@/components/CookieConsent'),
+//   { ssr: false }
+// );
 
-export default function CookieConsentWrapper() {
-  return <CookieConsent />;
-}
+// export default function CookieConsentWrapper() {
+//   return <CookieConsent />;
+// }
