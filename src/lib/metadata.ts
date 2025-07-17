@@ -116,7 +116,7 @@ export function generateMetadata({
     if (siteConfig.verification.bing) verification.bing = siteConfig.verification.bing;
     if (siteConfig.verification.me) verification.me = siteConfig.verification.me;
     
-    // @ts-ignore - verification is a valid property but not in the type definition
+    // @ts-expect-error - verification is a valid property but not in the type definition
     metadata.verification = verification;
   }
 

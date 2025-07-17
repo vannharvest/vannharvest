@@ -1,5 +1,3 @@
-import type { Metadata } from 'next';
-
 type Robots = {
   rules: {
     userAgent: string;

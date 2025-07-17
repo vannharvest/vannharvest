@@ -56,7 +56,7 @@ export default function OurStory() {
       img.removeEventListener('load', handleLoad);
       img.removeEventListener('error', handleError);
     };
-  }, [bgImageSrc, isClient]);
+  }, [bgImageSrc, isClient, scrollY]);
 
   if (isLoading) {
     return (
