@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ChevronDown, Facebook, Instagram, Menu, X } from 'lucide-react';
+import { ChevronDown, Facebook, Instagram, Linkedin, Menu, X } from 'lucide-react';
 
 const NAV_ITEMS = [
   { label: 'Home', href: '/' },
@@ -166,11 +166,14 @@ export default function Navbar() {
 
         {/* DESKTOP SOCIAL */}
         <div className="hidden lg:flex items-center gap-4">
-          <Link href="https://facebook.com" target="_blank" aria-label="Facebook">
+          <Link href="https://www.facebook.com/share/16zWe2gB4k/" target="_blank" aria-label="Facebook">
             <Facebook className="w-5 h-5 text-green-800 hover:text-orange-600 transition" />
           </Link>
-          <Link href="https://instagram.com" target="_blank" aria-label="Instagram">
+          <Link href="https://www.instagram.com/vannharvest" target="_blank" aria-label="Instagram">
             <Instagram className="w-5 h-5 text-green-800 hover:text-orange-600 transition" />
+          </Link>
+          <Link href="https://www.linkedin.com/company/vann-harvest/" target="_blank" aria-label="LinkedIn">
+            <Linkedin className="w-5 h-5 text-green-800 hover:text-orange-600 transition" />
           </Link>
         </div>
       </div>
@@ -217,11 +220,14 @@ export default function Navbar() {
             )
           )}
           <div className="flex items-center justify-center gap-4 pt-4 border-t border-gray-200">
-            <Link href="https://facebook.com" target="_blank" aria-label="Facebook">
+            <Link href="https://www.facebook.com/share/16zWe2gB4k/" target="_blank" aria-label="Facebook">
               <Facebook className="w-5 h-5 text-green-800 hover:text-orange-600" />
             </Link>
-            <Link href="https://instagram.com" target="_blank" aria-label="Instagram">
+            <Link href="https://www.instagram.com/vannharvest" target="_blank" aria-label="Instagram">
               <Instagram className="w-5 h-5 text-green-800 hover:text-orange-600" />
+            </Link>
+            <Link href="https://www.linkedin.com/company/vann-harvest/" target="_blank" aria-label="LinkedIn">
+              <Linkedin className="w-5 h-5 text-green-800 hover:text-orange-600" />
             </Link>
           </div>
           <div className="px-3 pt-3">
