@@ -1,7 +1,7 @@
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
 import { siteConfig } from '@/config/site';
 
-type MetaDataProps = {
+interface MetaDataProps {
   title?: string;
   description?: string;
   image?: string;
@@ -13,17 +13,30 @@ type MetaDataProps = {
   author?: string;
   section?: string;
   tags?: string[];
+}
+
+// Extend the base Metadata type to include our custom properties
+type ExtendedMetadata = Metadata & {
+  openGraph: Metadata['openGraph'] & {
+    siteName?: string;
+    publishedTime?: string;
+    modifiedTime?: string;
+    authors?: string | string[];
+    section?: string;
+    tags?: string[];
+  };
+  twitter: Metadata['twitter'] & {
+    creator?: string;
+    site?: string;
+  };
+  other?: Record<string, string>;
 };
 
-// Ensure image URL is absolute
 const getAbsoluteUrl = (path: string) => {
   if (path.startsWith('http')) return path;
   return `${siteConfig.url}${path.startsWith('/') ? '' : '/'}${path}`;
 };
 
-/**
- * Generates complete metadata for a page with SEO optimizations
- */
 export function generateMetadata({
   title = siteConfig.name,
   description = siteConfig.description,
@@ -36,112 +49,56 @@ export function generateMetadata({
   author,
   section,
   tags = [],
-}: MetaDataProps = {}): Metadata {
+}: MetaDataProps = {}): ExtendedMetadata {
   const pageTitle = title === siteConfig.name ? title : `${title} | ${siteConfig.name}`;
   const absoluteUrl = getAbsoluteUrl(url);
   const absoluteImageUrl = getAbsoluteUrl(image);
-  
-  // Combine default keywords with any additional tags
+
   const allKeywords = [
     ...["premium raisins", "Indian raisins", "export quality dry fruits", "Vann Harvest products", "dry fruits exporter", "Indian raisins supplier", "best quality raisins"],
     ...tags
   ];
 
-  const openGraph = {
-    type,
-    locale: 'en_US',
-    siteName: siteConfig.name,
+  // Build base metadata with type assertion
+  const metadata = {
     title: pageTitle,
     description,
-    url: absoluteUrl,
-    images: [
-      {
-        url: absoluteImageUrl,
-        width: 1200,
-        height: 630,
-        alt: pageTitle,
-      },
-    ],
-    publishedTime,
-    modifiedTime,
-    authors: author ? [author] : undefined,
-    section,
-    tags: tags.length > 0 ? tags : undefined,
-  };
-
-  const twitter = {
-    card: 'summary_large_image' as const,
-    title: pageTitle,
-    description,
-    images: [absoluteImageUrl],
-    creator: siteConfig.social.twitter ? `@${siteConfig.social.twitter}` : undefined,
-    site: siteConfig.social.twitter ? `@${siteConfig.social.twitter}` : undefined,
-  };
-
-  const robots = {
-    index: !noIndex,
-    follow: !noIndex,
-    googleBot: {
+    metadataBase: new URL(siteConfig.url),
+    alternates: {
+      canonical: absoluteUrl,
+    },
+    robots: {
       index: !noIndex,
       follow: !noIndex,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
+      googleBot: {
+        index: !noIndex,
+        follow: !noIndex,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
     },
-  };
-
-  // Build and return the metadata object with proper typing
-  return {
-    title: pageTitle,
-    description,
-    generator: 'Next.js',
     keywords: allKeywords.join(', '),
-    
-    // OpenGraph metadata
     openGraph: {
       type,
       title: pageTitle,
       description,
       url: absoluteUrl,
-      // @ts-ignore - siteName is valid but not in the type definition
       siteName: siteConfig.name,
       locale: 'en_US',
-      images: [
-        {
-          url: absoluteImageUrl,
-          width: 1200,
-          height: 630,
-          alt: pageTitle,
-        },
-      ],
+      images: [{
+        url: absoluteImageUrl,
+        width: 1200,
+        height: 630,
+        alt: pageTitle,
+      }],
     },
-    
-    // Twitter card metadata
     twitter: {
       card: 'summary_large_image',
       title: pageTitle,
       description,
       images: [absoluteImageUrl],
-      // @ts-ignore - creator is valid but not in the type definition
-      creator: siteConfig.social.twitter ? `@${siteConfig.social.twitter}` : undefined,
-      // @ts-ignore - site is valid but not in the type definition
-      site: siteConfig.social.twitter ? `@${siteConfig.social.twitter}` : undefined,
     },
-    
-    // Robots meta tags
-    robots: robots,
-    
-    // Verification meta tags
-    ...(siteConfig.verification && {
-      verification: {
-        google: siteConfig.verification.google,
-        yandex: siteConfig.verification.yandex,
-        yahoo: siteConfig.verification.yahoo,
-        me: siteConfig.verification.me,
-      },
-    }),
-    
-    // Additional meta tags
     other: {
       'application-name': siteConfig.name,
       'msapplication-TileColor': '#ffffff',
@@ -150,15 +107,45 @@ export function generateMetadata({
       'apple-mobile-web-app-title': siteConfig.name,
       'apple-mobile-web-app-status-bar-style': 'default',
     },
-    
-    // Canonical URL
-    alternates: {
-      canonical: absoluteUrl,
-    },
   };
+
+  // Add verification
+  if (siteConfig.verification.google) {
+    const verification: Record<string, string> = { google: siteConfig.verification.google };
+    if (siteConfig.verification.yandex) verification.yandex = siteConfig.verification.yandex;
+    if (siteConfig.verification.bing) verification.bing = siteConfig.verification.bing;
+    if (siteConfig.verification.me) verification.me = siteConfig.verification.me;
+    
+    // @ts-ignore - verification is a valid property but not in the type definition
+    metadata.verification = verification;
+  }
+
+  // Create a new OpenGraph object with all properties
+  const openGraph = {
+    ...metadata.openGraph,
+    ...(publishedTime && { publishedTime }),
+    ...(modifiedTime && { modifiedTime }),
+    ...(author && { authors: [author] }),
+    ...(section && { section }),
+    ...(tags.length > 0 && { tags })
+  };
+
+  // Create a new Twitter object with all properties
+  const twitter = {
+    ...metadata.twitter,
+    ...(siteConfig.social?.twitter && {
+      creator: `@${siteConfig.social.twitter}`,
+      site: `@${siteConfig.social.twitter}`
+    })
+  };
+
+  // Update metadata with the new objects
+  metadata.openGraph = openGraph;
+  metadata.twitter = twitter;
+
+  return metadata as unknown as ExtendedMetadata;
 }
 
-// Viewport configuration for responsive design
 export const viewport = {
   themeColor: [
     { media: '(prefers-color-scheme: light)', color: 'white' },
@@ -170,8 +157,9 @@ export const viewport = {
   userScalable: true,
 } as const;
 
-// Helper function for JSON-LD structured data
-export function jsonLd<T extends Record<string, any>>(data: T): string {
+type JsonLdData = Record<string, unknown>;
+
+export function jsonLd<T extends JsonLdData>(data: T): string {
   return JSON.stringify({
     '@context': 'https://schema.org',
     ...data,
