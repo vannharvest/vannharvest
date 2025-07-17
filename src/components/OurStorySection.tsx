@@ -44,7 +44,7 @@ export default function OurStorySection() {
             <div className="relative rounded-3xl overflow-hidden shadow-2xl border-2 border-white/10">
               <div className="absolute inset-0 bg-gradient-to-tr from-green-600/20 to-amber-500/10 mix-blend-overlay"></div>
               <Image
-                src="/images/soil.jpg"
+                src="/images/soil.webp"
                 alt="Vann Harvest Legacy - Premium Raisin Production"
                 width={800}
                 height={1000}

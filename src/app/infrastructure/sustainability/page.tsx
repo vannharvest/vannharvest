@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import Head from 'next/head';
 import { Leaf, Droplets, Recycle } from 'lucide-react';
-import Image from '@/components/ui/Image';
+import Image from 'next/image';
 
 export default function Sustainability() {
   return (
@@ -23,10 +23,10 @@ export default function Sustainability() {
             <Image 
               src="/images/gallery/Sustainibility.avif" 
               alt="Sustainable Farming at Vann Harvest" 
-              fill 
-              className="object-cover"
+              fill
               priority
-              fallbackSrc="/images/fallback.jpg"
+              sizes="(max-width: 768px) 100vw, 80vw"
+              className="object-cover"
             />
           </div>
           <div className="absolute inset-0 bg-black/40" />
@@ -104,11 +104,12 @@ export default function Sustainability() {
             <div className="relative h-80 md:h-96 rounded-2xl overflow-hidden bg-gray-100 flex items-center justify-center">
               <div className="w-full h-full relative">
                 <Image 
-                  src="/images/Greener_Tomorrow.jpg" 
+                  src="/images/Greener_Tomorrow.webp" 
                   alt="Sustainable farming practices" 
                   fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
                   className="object-cover"
-                  fallbackSrc="/images/fallback.jpg"
+                  priority={false}
                 />
               </div>
               <div className="absolute inset-0 bg-black/10" />
@@ -126,11 +127,12 @@ export default function Sustainability() {
               <div className="relative h-80 md:h-96 rounded-2xl overflow-hidden bg-gray-100 flex items-center justify-center">
                 <div className="w-full h-full relative">
                   <Image 
-                    src="/images/soil.jpg" 
+                    src="/images/soil.webp" 
                     alt="Community impact" 
                     fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
                     className="object-cover"
-                    fallbackSrc="/images/fallback.jpg"
+                    priority={false}
                   />
                 </div>
                 <div className="absolute inset-0 bg-black/10" />

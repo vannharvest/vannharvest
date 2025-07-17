@@ -22,7 +22,7 @@ export default function Home() {
         subheading="Experience the freshness of our farm-to-table produce. Limited stock available!"
         buttonText="Shop Now"
         buttonLink="/products"
-        imageSrc="/images/promotional/grapes_promo_2.png"
+        imageSrc="/images/promotional/grapes_promo_2.webp"
         imageAlt="Fresh organic grapes from our farm"
       />
 
