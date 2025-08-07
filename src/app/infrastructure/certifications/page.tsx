@@ -2,60 +2,17 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import Head from 'next/head';
-import { Medal, Check, Shield } from 'lucide-react';
 import Link from 'next/link';
+import { Shield } from 'lucide-react';
+import { certifications } from '@/config/certifications';
+import { CertificationCard } from '@/components/CertificationCard';
 
-const certifications = [
-  {
-    title: 'APEDA Registered',
-    description: 'Registered with the Agricultural and Processed Food Products Export Development Authority for quality exports.',
-    image: '/images/certification/APEDA.avif',
-    alt: 'APEDA Registration'
-  },
-  {
-    title: 'APMC Licensed',
-    description: 'Licensed by the Agricultural Produce Market Committee for fair trade practices.',
-    image: '/images/certification/APMC.avif',
-    alt: 'APMC License'
-  },
-  {
-    title: 'FSSAI Certified',
-    description: 'Certified by the Food Safety and Standards Authority of India for food safety compliance.',
-    image: '/images/certification/FSSAI.avif',
-    alt: 'FSSAI Certification'
-  },
-  {
-    title: 'ISO 22000:2018',
-    description: 'Food Safety Management System Certification ensuring safe food production processes.',
-    image: '/images/certification/iso 22000-2018.avif',
-    alt: 'ISO 22000:2018 Certification'
-  },
-  {
-    title: 'HACCP Certified',
-    description: 'Hazard Analysis and Critical Control Points certification for food safety.',
-    image: '/images/certification/HACCP.avif',
-    alt: 'HACCP Certification'
-  },
-  {
-    title: 'Organic Certified',
-    description: 'Certified organic production methods ensuring chemical-free, natural raisins.',
-    image: '/images/certification/organic.avif',
-    alt: 'Organic Certification'
-  }
-];
+// This is a Client Component - no need for metadata export here
+// Metadata is now handled by the metadata.ts file in the same directory
 
 export default function CertificationsPage() {
   return (
-    <div className="min-h-screen ">
-      <Head>
-        <title>Certifications | Vann Harvest | Quality Standards</title>
-        <meta name="description" content="Explore our industry certifications and quality standards that ensure premium quality raisins from Vann Harvest." />
-        <meta name="keywords" content="Vann Harvest, Certifications, Food Safety, Quality Standards, ISO 22000, HACCP, Organic Certification, Kosher, Halal, FSSC 22000" />
-        <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://vannharvest.com/infrastructure/certifications" />
-      </Head>
-
+    <div className="min-h-screen">
       {/* Hero Section */}
       <div className="relative h-[calc(100vh-10rem)] w-full max-w-[calc(100%-32px)] mx-auto rounded-2xl overflow-hidden mt-32">
         <div className="absolute inset-0 z-0">
@@ -63,12 +20,15 @@ export default function CertificationsPage() {
             src="/images/gallery/team.avif"
             alt="Certifications at Vann Harvest"
             fill
-            unoptimized={true}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1400px"
             className="object-cover"
             priority
+            quality={80}
+            placeholder="blur"
+            blurDataURL="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNDAwIiBoZWlnaHQ9Ijg0MCI+PHJlY3Qgd2lkdGg9IjE0MDAiIGhlaWdodD0iODQwIiBmaWxsPSIjZjNmM2YzIi8+PHRleHQgeD0iNTAlIiB5PSI1JSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjI0IiBmb250LXdlaWdodD0iYm9sZCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2RkZCI+VmFubiBIYXJ2ZXN0IENlcnRpZmljYXRpb25zPC90ZXh0Pjwvc3ZnPg=="
             onError={(e) => {
               const target = e.target as HTMLImageElement;
-              target.src = '/images/gallery/team.avif';
+              target.src = '/images/fallback/team-fallback.jpg';
               target.onerror = null;
             }}
           />
@@ -81,85 +41,47 @@ export default function CertificationsPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h1 className="text-5xl font-bold leading-tight drop-shadow-lg text-white">Our Certifications</h1>
-          <p className="text-2xl mt-2 font-light text-white/90">Ensuring quality and safety at every step</p>
+          <h1 className="text-4xl sm:text-5xl font-bold leading-tight drop-shadow-lg text-white">
+            Our Certifications
+          </h1>
+          <p className="text-xl sm:text-2xl mt-2 font-light text-white/90">
+            Ensuring quality and safety at every step
+          </p>
         </motion.div>
       </div>
 
       {/* Main Content */}
-      <div className="max-w-6xl mx-auto px-4 py-20">
-        <div className="prose max-w-4xl mx-auto text-center mb-16">
-          <h2 className="text-3xl font-bold text-gray-900 mb-6">Our Commitment to Excellence</h2>
-          <p className="text-lg text-gray-600">
+      <div className="max-w-6xl mx-auto px-4 py-12 sm:py-20">
+        <div className="prose max-w-4xl mx-auto text-center mb-12 sm:mb-16">
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 sm:mb-6">
+            Our Commitment to Excellence
+          </h2>
+          <p className="text-base sm:text-lg text-gray-600">
             At Vann Harvest, we adhere to the highest industry standards. Our certifications demonstrate our dedication to quality, safety, and sustainability in every batch of raisins we produce.
           </p>
         </div>
 
         {/* Certifications Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-16 sm:mb-20">
           {certifications.map((cert, index) => (
-            <motion.div
-              key={index}
-              className="group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-green-100 flex flex-col h-full"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-            >
-              <div className="h-56 bg-gray-50 relative overflow-hidden">
-                {/* Background pattern */}
-                <div className="absolute inset-0 bg-gradient-to-br from-green-50 to-white opacity-70"></div>
-
-                {/* Fallback icon */}
-                <div className="absolute inset-0 flex items-center justify-center p-8 transition-opacity duration-300 group-hover:opacity-0">
-                  <Medal className="w-16 h-16 text-green-200" />
-                </div>
-
-                {/* Main image */}
-                <div className="relative h-full w-full flex items-center justify-center p-6">
-                  <Image
-                    src={cert.image}
-                    alt={cert.alt}
-                    width={200}
-                    height={150}
-                    unoptimized={true}
-                    className="h-auto max-h-full w-auto max-w-full object-contain transition-transform duration-300 group-hover:scale-105"
-                    onError={(e) => {
-                      const target = e.target as HTMLImageElement;
-                      target.src = 'https://via.placeholder.com/300x200?text=Certificate+Not+Found';
-                      target.onerror = null; // Prevent infinite loop
-                    }}
-                  />
-                </div>
-
-                {/* Hover overlay */}
-
-              </div>
-
-              <div className="p-6 flex-1 flex flex-col">
-                <div className="flex items-start mb-3">
-                  <Check className="w-5 h-5 text-green-600 mr-2 mt-0.5 flex-shrink-0" />
-                  <div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2">{cert.title}</h3>
-                    <p className="text-gray-600 text-sm leading-relaxed">{cert.description}</p>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
+            <CertificationCard key={cert.title} cert={cert} index={index} />
           ))}
         </div>
 
         {/* CTA Section */}
-        <div className="bg-gradient-to-r from-green-700 to-green-800 rounded-2xl p-12 text-center text-white">
+        <div className="bg-gradient-to-r from-green-700 to-green-800 rounded-2xl p-8 sm:p-12 text-center text-white">
           <div className="max-w-3xl mx-auto">
-            <Shield className="w-12 h-12 mx-auto mb-6 text-green-300" />
-            <h2 className="text-3xl font-bold mb-4">Have Questions About Our Certifications?</h2>
-            <p className="text-lg text-green-100 mb-8 max-w-2xl mx-auto">
+            <Shield className="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-4 sm:mb-6 text-green-300" />
+            <h2 className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4">
+              Have Questions About Our Certifications?
+            </h2>
+            <p className="text-base sm:text-lg text-green-100 mb-6 sm:mb-8 max-w-2xl mx-auto">
               Our quality assurance team is ready to provide detailed information about our certifications and quality standards.
             </p>
             <Link
               href="/contact"
-              className="inline-flex items-center px-8 py-3 border border-transparent text-base font-medium rounded-full text-green-800 bg-white hover:bg-green-50 transition-colors shadow-lg hover:shadow-xl"
+              className="inline-flex items-center px-6 sm:px-8 py-2 sm:py-3 border border-transparent text-sm sm:text-base font-medium rounded-full text-green-800 bg-white hover:bg-green-50 transition-colors shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+              aria-label="Contact our team about certifications"
             >
               Contact Our Team
             </Link>

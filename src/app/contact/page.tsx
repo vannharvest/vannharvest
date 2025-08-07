@@ -46,6 +46,14 @@ interface Location {
   map: string;
 }
 
+interface Location {
+  title: string;
+  type: LocationType;
+  desc: string;
+  address: string[];
+  map: string;
+}
+
 const typeIcon: Record<LocationType, LucideIcon> = {
   office: Building2,
   factory: Users,
