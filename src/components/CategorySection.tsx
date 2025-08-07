@@ -1,164 +1,138 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { Loader2 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { Info } from 'lucide-react';
 
-interface Category {
-  id: string;
-  name: string;
-  slug: string;
-  image: string;
-  alt: string;
-  category: string;
-}
+export default function PremiumProduct() {
+  const router = useRouter();
+  const [navigatingId, setNavigatingId] = useState<string | null>(null);
 
-const getCategories = (): Category[] => {
-  // Add a version parameter to force cache refresh
-  const version = new Date().getTime(); // This will make the URL unique on each build
-  
-  const baseCategories = [
-    { name: 'Golden Long', displayName: 'Golden Long Raisins' },
-    { name: 'Golden Round', displayName: 'Golden Round Raisins' },
-    { name: 'Green Long', displayName: 'Green Long Raisins' },
-    { name: 'Green Round', displayName: 'Green Round Raisins' },
+  const featuredProducts = [
+    {
+      id: 'gold-long',
+      name: 'Gold Long',
+      image: '/images/products/top-img/Golden-Long.avif',
+      category: 'golden-long',
+      inStock: true
+    },
+    {
+      id: 'gold-round',
+      name: 'Gold Round',
+      image: '/images/products/top-img/Golden-Round.avif',
+      category: 'golden-round',
+      inStock: true
+    },
+    {
+      id: 'green-long',
+      name: 'Green Long',
+      image: '/images/products/top-img/Green-Long.avif',
+      category: 'green-long',
+      inStock: true
+    },
+      {
+      id: 'green-round',
+      name: 'Green Round',
+      image: '/images/products/top-img/Green-Round.avif',
+      category: 'green-round',
+      inStock: true
+    },
+    {
+      id: 'black-round-seedless',
+      name: 'Black Round Seedless',
+      image: '/images/products/top-img/Black-Round-Seedless.avif',
+      category: 'black',
+      inStock: true
+    },
+    {
+      id: 'black-round-seeded',
+      name: 'Black Round Seeded',
+      image: '/images/products/top-img/Black-Round-Seeded.avif',
+      category: 'black',
+      inStock: true
+    }
   ];
 
-  return baseCategories.map((cat, index) => {
-    const imageMap: Record<string, string> = {
-      'Golden Long': 'Golden long A.webp',
-      'Golden Round': 'Golden Round A.webp',
-      'Green Long': 'Green long A.webp',
-      'Green Round': 'Green Round A.webp'
-    };
-    
-    const cleanName = cat.name.replace(/\s+/g, '-').toLowerCase();
-    const imagePath = `/images/products/${imageMap[cat.name as keyof typeof imageMap]}`;
-    
-    return {
-      id: `cat-${index + 1}`,
-      name: cat.displayName,
-      slug: cleanName,
-      image: `${imagePath}?v=${version}`, // Add version parameter
-      alt: cat.displayName,
-      category: 'Premium Quality',
-    };
-  });
-};
-
-export default function CategorySection() {
-  const router = useRouter();
-  const [categories, setCategories] = useState<Category[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [isNavigating, setIsNavigating] = useState<string | null>(null);
-  const [error, setError] = useState<string | null>(null);
-
-  const handleCategoryClick = (e: React.MouseEvent, slug: string) => {
+  const handleProductClick = (e: React.MouseEvent, category: string) => {
     e.preventDefault();
-    setIsNavigating(slug);
-    // Redirect to products page with category filter
-    router.push(`/products?category=${slug}`);
+    setNavigatingId(category);
+    router.push(`/products?category=${encodeURIComponent(category)}`);
   };
 
-  useEffect(() => {
-    try {
-      // In a real app, you would fetch this from an API
-      // For now, we'll use our local function
-      const fetchedCategories = getCategories();
-      setCategories(fetchedCategories);
-      setIsLoading(false);
-    } catch (err) {
-      setError('Failed to load categories');
-      setIsLoading(false);
-      console.error('Error loading categories:', err);
-    }
-  }, []);
+  return (
+    <>
+      <style jsx global>{`
+        @keyframes marquee {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(calc(-300px * 4 - 2rem * 3)); }
+        }
+        .animate-marquee {
+          animation: marquee 25s linear infinite;
+          display: flex;
+          width: max-content;
+        }
+        .animate-marquee:hover {
+          animation-play-state: paused;
+        }
+      `}</style>
+      
+      <section className="py-6 w-full overflow-hidden">
+        <div className="w-full max-w-[calc(100%-32px)] mx-auto bg-white rounded-2xl p-4">
+          {/* Header */}
+          <div className="flex flex-col md:flex-row justify-between items-center mb-8 px-2">
+            <h2 className="text-xl md:text-2xl font-semibold text-gray-900">
+              Our Products
+            </h2>
+            <Link
+              href="/products"
+              className="text-amber-600 hover:text-amber-700 text-sm font-medium transition-colors whitespace-nowrap"
+            >
+              View All →
+            </Link>
+          </div>
 
-  if (isLoading) {
-    return (
-      <section className="bg-[#f9f9f9] py-20 w-full">
-        <div className="w-full max-w-[calc(100%-32px)] mx-auto px-4">
-          <div className="flex justify-center items-center h-64">
-            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-amber-600"></div>
+          {/* Horizontal Scrolling Runner */}
+          <div className="relative">
+            <div className="overflow-hidden">
+              <div className="animate-marquee">
+                {[...featuredProducts, ...featuredProducts].map((product, index) => (
+                  <div 
+                    key={`${product.id}-${index}`}
+                    className="relative group flex-shrink-0 w-[300px] mx-4 first:ml-0"
+                  >
+                    <Link 
+                      href={`/products?category=${encodeURIComponent(product.category)}`}
+                      onClick={(e) => handleProductClick(e, product.category)}
+                      className="block"
+                    >
+                      <div className="relative w-full aspect-square mb-3 overflow-hidden rounded-lg">
+                        <Image
+                          src={product.image}
+                          alt={product.name}
+                          fill
+                          className="object-cover transition-transform duration-300 group-hover:scale-105"
+                          quality={90}
+                          priority={index < 4}
+                        />
+                      </div>
+                      <div className="text-center">
+                        <h3 className="text-gray-900 font-medium">{product.name}</h3>
+                      </div>
+                    </Link>
+                    {navigatingId === product.category && (
+                      <div className="absolute inset-0 bg-black/20 flex items-center justify-center rounded-lg">
+                        <Loader2 className="h-8 w-8 animate-spin text-white" />
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
-    );
-  }
-
-
-  if (error) {
-    return (
-      <section className="bg-[#f9f9f9] py-20 w-full">
-        <div className="w-full max-w-[calc(100%-32px)] mx-auto px-4">
-          <div className="text-center text-red-600">{error}</div>
-        </div>
-      </section>
-    );
-  }
-
-  return (
-    <section className="bg-[#f9f9f9] py-20 w-full">
-      <div className="w-full max-w-[calc(100%-32px)] mx-auto">
-        {/* Header */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 px-4">
-          <h2 className="text-3xl md:text-4xl font-semibold text-gray-900 mb-4 md:mb-0">Our Categories</h2>
-          <Link
-            href="/products"
-            className="inline-block bg-white border-2 border-amber-600 text-amber-600 rounded-full px-6 py-2.5 text-sm font-semibold hover:bg-amber-600 hover:text-white transition-all duration-300 shadow-sm"
-          >
-            View All Categories
-          </Link>
-        </div>
-
-        {/* Category Grid - 2 columns on mobile, 4 on larger screens */}
-        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6 px-2 sm:px-4">
-          {categories.map((category) => (
-            <Link
-              key={category.id}
-              href={`/products?category=${category.slug}`}
-              onClick={(e) => handleCategoryClick(e, category.slug)}
-              className={`group relative block rounded-2xl sm:rounded-[28px] overflow-hidden border border-gray-200 shadow-sm transition-all hover:shadow-2xl h-[280px] sm:h-[580px] bg-white ${
-                isNavigating === category.slug ? 'opacity-70' : ''
-              }`}
-              aria-disabled={isNavigating === category.slug}
-            >
-              {isNavigating === category.slug && (
-                <div className="absolute inset-0 bg-black bg-opacity-30 z-10 flex items-center justify-center">
-                  <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-white"></div>
-                </div>
-              )}
-              {/* Full Height Image */}
-              <div className="relative w-full h-full">
-                <Image
-                  src={category.image}
-                  alt={category.alt}
-                  fill
-                  className="object-cover transition-transform duration-700 ease-in-out group-hover:scale-105"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  priority
-                />
-
-                {/* Premium Badge */}
-                <div className="absolute top-4 right-4">
-                  <span className="bg-yellow-100 text-yellow-800 text-xs font-semibold px-2.5 py-1 rounded-full flex items-center shadow-sm">
-                    <Info className="w-3 h-3 mr-1" />
-                    Categories
-                  </span>
-                </div>
-
-                {/* White box at bottom with text */}
-                <div className="absolute bottom-0 w-full bg-white py-5 px-4">
-                  <p className="text-xs text-gray-400">{category.category}</p>
-                  <h3 className="text-base font-medium text-gray-800 mt-1 leading-tight line-clamp-2">{category.name}</h3>
-                </div>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </div>
-    </section>
+    </>
   );
 }

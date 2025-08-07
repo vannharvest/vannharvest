@@ -3,112 +3,112 @@
     {
       "id": 1,
       "name": "Golden long A",
-      "image": "/images/products/Golden long A.webp",
+      "image": "/images/products/verticle-img/Golden long A.avif",
       "category": "golden-long",
       "inStock": true
     },
     {
       "id": 2,
       "name": "Golden long AA",
-      "image": "/images/products/Golden long AA.webp",
+      "image": "/images/products/verticle-img/Golden Long AA.avif",
       "category": "golden-long",
       "inStock": true
     },
     {
       "id": 3,
       "name": "Golden long AAA",
-      "image": "/images/products/Golden long AAA.webp",
+      "image": "/images/products/verticle-img/Golden Long AAA.avif",
       "category": "golden-long",
       "inStock": true
     },
     {
       "id": 4,
       "name": "Golden long Premium",
-      "image": "/images/products/Golden long Premium.webp",
+      "image": "/images/products/verticle-img/Golden Long Premium.avif",
       "category": "golden-long",
       "inStock": true
     },
     {
       "id": 5,
       "name": "Golden Round A",
-      "image": "/images/products/Golden Round A.webp",
+      "image": "/images/products/verticle-img/Golden Round A.avif",
       "category": "golden-round",
       "inStock": true
     },
     {
       "id": 6,
       "name": "Golden Round AA",
-      "image": "/images/products/Golden Round AA.webp",
+      "image": "/images/products/verticle-img/Golden Round AA.avif",
       "category": "golden-round",
       "inStock": true
     },
     {
       "id": 7,
       "name": "Golden Round AAA",
-      "image": "/images/products/Golden Round AAA.webp",
+      "image": "/images/products/verticle-img/Golden Round AAA.avif",
       "category": "golden-round",
       "inStock": true
     },
     {
       "id": 8,
       "name": "Golden Round Premium",
-      "image": "/images/products/Golden Round Premium.webp",
+      "image": "/images/products/verticle-img/Golden Round premium.avif",
       "category": "golden-round",
       "inStock": true
     },
     {
       "id": 9,
       "name": "Green long A",
-      "image": "/images/products/Green long A.webp",
+      "image": "/images/products/verticle-img/Green Long A.avif",
       "category": "green-long",
       "inStock": true
     },
     {
       "id": 10,
       "name": "Green long AA",
-      "image": "/images/products/Green long AA.webp",
+      "image": "/images/products/verticle-img/Green Long AA.avif",
       "category": "green-long",
       "inStock": true
     },
     {
       "id": 11,
       "name": "Green long AAA",
-      "image": "/images/products/Green long AAA.webp",
+      "image": "/images/products/verticle-img/Green Long AAA.avif",
       "category": "green-long",
       "inStock": true
     },
     {
       "id": 12,
       "name": "Green long Premium",
-      "image": "/images/products/Green long Premium.webp",
+      "image": "/images/products/verticle-img/Green Long Premium.avif",
       "category": "green-long",
       "inStock": true
     },
     {
       "id": 13,
       "name": "Green Round A",
-      "image": "/images/products/Green Round A.webp",
+      "image": "/images/products/verticle-img/Green Round A.avif",
       "category": "green-round",
       "inStock": true
     },
     {
       "id": 14,
       "name": "Green Round AA",
-      "image": "/images/products/Green Round AA.webp",
+      "image": "/images/products/verticle-img/Green Round AA.avif",
       "category": "green-round",
       "inStock": true
     },
     {
       "id": 15,
       "name": "Green Round AAA",
-      "image": "/images/products/Green Round AAA.webp",
+      "image": "/images/products/verticle-img/Green Round AAA.avif",
       "category": "green-round",
       "inStock": true
     },
     {
       "id": 16,
       "name": "Green Round Premium",
-      "image": "/images/products/Green Round Premium.webp",
+      "image": "/images/products/verticle-img/Green Round Premium.avif",
       "category": "green-round",
       "inStock": true
     }
@@ -117,14 +117,14 @@
     {
       "id": 101,
       "name": "Black Long",
-      "image": "/images/products/Black long.webp",
+      "image": "/images/products/verticle-img/Black-Round-Seeded.avif",
       "category": "black",
       "inStock": true
     },
     {
       "id": 201,
       "name": "Black Round",
-      "image": "/images/products/Black Round.webp",
+      "image": "/images/products/verticle-img/Black-Round-Seedless.avif",
       "category": "black",
       "inStock": true
     }
