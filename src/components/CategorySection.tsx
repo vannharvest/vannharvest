@@ -112,6 +112,7 @@ export default function PremiumProduct() {
                           src={product.image}
                           alt={product.name}
                           fill
+                          sizes="(max-width: 768px) 300px, (max-width: 1200px) 400px, 500px"
                           className="object-cover transition-transform duration-300 group-hover:scale-105"
                           quality={90}
                           priority={index < 4}

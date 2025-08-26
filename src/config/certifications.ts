@@ -50,12 +50,5 @@ export const certifications: Certification[] = [
     width: 180,
     height: 180
   },
-  {
-    title: 'Organic Certified',
-    description: 'Certified organic production methods ensuring chemical-free, natural raisins.',
-    image: '/images/certification/Organic.avif',
-    alt: 'Organic Certification',
-    width: 180,
-    height: 180
-  }
+ 
 ];

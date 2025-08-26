@@ -1,14 +1,11 @@
-// Blog post images with fallbacks
-const blogImages = {
-  // Health - Fresh raisins
-  health: 'https://images.pexels.com/photos/1002703/pexels-photo-1002703.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-  // Sustainability - Organic farming
-  sustainability: 'https://images.pexels.com/photos/2132185/pexels-photo-2132185.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-  // Industry - Dried fruits production
-  industry: 'https://images.pexels.com/photos/7365578/pexels-photo-7365578.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-  // Hero - Fresh grapes and raisins
-  hero: 'https://images.pexels.com/photos/1002703/pexels-photo-1002703.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-  // Fallback image
+import type { BlogImageType } from '@/types/blog';
+
+// Blog post images with local paths
+const blogImages: BlogImageType = {
+  health: '/images/blog/natural-power-of-raisins.webp',
+  sustainability: '/images/blog/Sustainable Farming.webp',
+  industry: '/images/blog/From Vine to Dried Delights.webp',
+  hero: '/images/blog/natural-power-of-raisins.webp',
   fallback: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiB2aWV3Qm94PSIwIDAgMjQgMjQiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2NjYyIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxyZWN0IHg9IjMiIHk9IjMiIHdpZHRoPSIxOCIgaGVpZ2h0PSIxOCIgcng9IjIiIHJ5PSIyIj48L3JlY3Q+PGNpcmNsZSBjeD0iOC41IiBjeT0iOC41IiByPSIyLjUiPjwvY2lyY2xlPjxwb2x5bGluZSBwb2ludHM9IjIxIDE1IDE2IDEwIDUgMjEiPjwvcG9seWxpbmU+PC9zdmc+'
 } as const;
 
@@ -30,7 +27,7 @@ export const blogPosts: BlogPost[] = [
   {
     title: 'The Hidden Dangers of Adulteration in Raisins',
     excerpt: 'Learn about the significant issue of adulteration in raisins and how to ensure you\'re getting pure, high-quality products.',
-    image: '/images/blog/hidden-dangers-adulteration-raisins.jpg',
+    image: '/images/blog/hidden-dangers-adulteration-raisins.webp',
     slug: 'hidden-dangers-adulteration-raisins',
     date: '2025-05-28',
     category: 'Health',
@@ -58,7 +55,7 @@ At Vann Harvest, we take pride in our commitment to pure, unadulterated raisins.
   {
     title: 'Vijayapura: Stands First in Grape Production in Karnataka State',
     excerpt: 'Discover how Vijayapura has emerged as the leader in grape production with its fertile soil and rich viticulture heritage.',
-    image: '/images/blog/vijayapura.webp',
+    image: '/images/blog/Vijayapura.webp',
     slug: 'vijayapura-grape-production-karnataka',
     date: '2025-05-15',
     category: 'Sustainability',

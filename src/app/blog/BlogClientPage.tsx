@@ -24,6 +24,13 @@ export function BlogClientPage() {
             fill
             className="object-cover"
             priority
+            quality={90}
+            sizes="(max-width: 768px) 100vw, 80vw"
+            onError={(e) => {
+              const target = e.target as HTMLImageElement;
+              target.src = blogImages.fallback;
+              target.onerror = null;
+            }}
           />
           <div className="absolute inset-0 bg-black/40" />
         </div>
@@ -59,7 +66,9 @@ export function BlogClientPage() {
                   alt={post.title}
                   fill
                   className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 50vw, 33vw"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  quality={85}
+                  priority={index < 3} // Load first 3 images with higher priority
                   onError={(e) => {
                     const target = e.target as HTMLImageElement;
                     target.src = blogImages.fallback;

@@ -1,43 +1,101 @@
 import { siteConfig } from '@/config/site';
 
-type Sitemap = Array<{
+type SitemapEntry = {
   url: string;
   lastModified?: string | Date;
-  changeFrequency?: 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never';
+  changeFrequency?: 
+    | 'always' 
+    | 'hourly' 
+    | 'daily' 
+    | 'weekly' 
+    | 'monthly' 
+    | 'yearly' 
+    | 'never';
   priority?: number;
-}>;
+  alternates?: {
+    languages?: Record<string, string>;
+  };
+  images?: Array<{
+    url: string;
+    title?: string;
+    caption?: string;
+    geoLocation?: string;
+    license?: string;
+  }>;
+};
 
-// This function generates the sitemap for your website
-export default function sitemap(): Sitemap {
+// Generate sitemap with enhanced metadata
+export default async function sitemap(): Promise<SitemapEntry[]> {
   const baseUrl = siteConfig.url;
   const lastModified = new Date().toISOString().split('T')[0];
   
-  // Define your routes with metadata
-  const routes = [
+  // Common image assets
+  const logoImage = {
+    url: `${baseUrl}/images/logo/Vann-Harvest-Original-Logo.webp`,
+    title: 'Vann Harvest - Premium Quality Raisins',
+    caption: 'Exporting Premium Quality Raisins from India to Worldwide',
+    geoLocation: 'India',
+    license: 'https://vannharvest.com/terms'
+  };
+
+  // Define your routes with enhanced metadata
+  const routes: SitemapEntry[] = [
+    // Homepage
     {
       url: baseUrl,
       lastModified,
-      changeFrequency: 'daily' as const,
+      changeFrequency: 'daily',
       priority: 1.0,
+      alternates: {
+        languages: {
+          en: `${baseUrl}/en`,
+          hi: `${baseUrl}/hi`,
+        },
+      },
+      images: [logoImage],
     },
+    
+    // Products
     {
       url: `${baseUrl}/products`,
       lastModified,
-      changeFrequency: 'weekly' as const,
+      changeFrequency: 'daily',
       priority: 0.9,
+      images: [
+        logoImage,
+        {
+          url: `${baseUrl}/images/products/raisins-1.webp`,
+          title: 'Premium Quality Raisins',
+          caption: 'Our finest selection of raisins'
+        }
+      ]
     },
+    
+    // About Us
     {
       url: `${baseUrl}/about`,
       lastModified,
-      changeFrequency: 'monthly' as const,
+      changeFrequency: 'weekly',
       priority: 0.8,
+      images: [logoImage]
     },
+    
+    // Infrastructure
     {
       url: `${baseUrl}/infrastructure`,
       lastModified,
-      changeFrequency: 'monthly' as const,
+      changeFrequency: 'monthly',
       priority: 0.7,
+      images: [
+        {
+          url: `${baseUrl}/images/infrastructure/facility-1.webp`,
+          title: 'Our Processing Facility',
+          caption: 'State-of-the-art processing facility'
+        }
+      ]
     },
+    
+    // Certifications
     {
       url: `${baseUrl}/certifications`,
       lastModified,

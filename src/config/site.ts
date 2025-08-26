@@ -1,8 +1,20 @@
 export const siteConfig = {
-  name: "Vann Harvest",
-  description: "Premium Quality Raisins from India - Exporting Worldwide",
+  name: "Vann Harvest - Premium Raisin Exporters from India",
+  description: "Vann Harvest is a leading exporter of premium quality raisins from India, specializing in natural, sun-dried, and organic raisin varieties. We export worldwide with a focus on quality and sustainability.",
   url: "https://vannharvest.com",
   ogImage: "/images/og-image.webp",
+  keywords: [
+    "raisin exporters India",
+    "premium raisins",
+    "organic raisins",
+    "Vann Harvest",
+    "Indian raisin suppliers",
+    "bulk raisins",
+    "wholesale raisins",
+    "export quality raisins"
+  ],
+  author: "Vann Harvest Pvt. Ltd.",
+  locale: "en_US",
   
   // Social media usernames (without @)
   social: {

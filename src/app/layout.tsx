@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Montserrat } from "next/font/google";
+
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { siteConfig } from "@/config/site";
@@ -8,34 +9,35 @@ import { Toaster } from "@/components/ui/toaster";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-// Optimized font loading with display swap
+// Montserrat font with variable support
 const fontSans = Montserrat({
   subsets: ["latin"],
-  display: 'swap',
-  variable: "--font-sans",
+  display: "swap",
   weight: ["300", "400", "500", "600", "700"],
+  style: ["normal", "italic"],
   preload: true,
-  fallback: ['system-ui', 'sans-serif'],
+  fallback: ["system-ui", "sans-serif"],
   adjustFontFallback: true,
-});
+  // @ts-ignore - variable is a valid property on the returned font object
+}) as any;
 
-// Ensure image URL is absolute
-const ogImageUrl = siteConfig.ogImage.startsWith('http') 
-  ? siteConfig.ogImage 
-  : `${siteConfig.url}${siteConfig.ogImage.startsWith('/') ? '' : '/'}${siteConfig.ogImage}`;
+// Ensure absolute OG image URL
+const ogImageUrl = siteConfig.ogImage.startsWith("http")
+  ? siteConfig.ogImage
+  : `${siteConfig.url}${siteConfig.ogImage.startsWith("/") ? "" : "/"}${siteConfig.ogImage}`;
 
-// Define metadata with optimization
-export const metadata: Metadata = {
+export const metadata = {
   title: {
     default: siteConfig.name,
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
+  alternates: { canonical: siteConfig.url },
   openGraph: {
     type: "website",
+    url: siteConfig.url,
     title: siteConfig.name,
     description: siteConfig.description,
-    url: siteConfig.url,
     images: [
       {
         url: ogImageUrl,
@@ -51,8 +53,23 @@ export const metadata: Metadata = {
     description: siteConfig.description,
     images: [ogImageUrl],
   },
-  // Icons are defined in the head section of the document
-  // using the Next.js Head component in the root layout
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large' as const,
+      'max-snippet': -1,
+    },
+  },
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon-16x16.png",
+    apple: "/apple-touch-icon.png",
+  },
+  manifest: "/site.webmanifest",
 };
 
 export const viewport: Viewport = {
@@ -62,41 +79,90 @@ export const viewport: Viewport = {
   ],
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  // Show footer on all pages by default
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   const hideFooter = false;
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: siteConfig.name,
+    url: siteConfig.url,
+    logo: `${siteConfig.url}/images/logo.png`,
+    sameAs: [
+      siteConfig.links.twitter,
+      siteConfig.links.facebook,
+      siteConfig.links.instagram,
+      siteConfig.links.linkedin,
+    ],
+    contactPoint: [
+      {
+        "@type": "ContactPoint",
+        telephone: siteConfig.contact.phone,
+        contactType: "customer service",
+        email: siteConfig.contact.email,
+        areaServed: "IN",
+        availableLanguage: ["English", "Hindi"],
+      },
+    ],
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: siteConfig.contact.address,
+      addressCountry: "IN",
+      addressRegion: "Maharashtra",
+      postalCode: "411044",
+    },
+  };
 
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <meta charSet="utf-8" />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=5.0"
+        />
+        <meta name="theme-color" content="#fff8f1" />
+        <meta name="robots" content="index, follow, max-image-preview:large" />
+        <link rel="canonical" href={siteConfig.url} />
+
+        {/* Keywords & authors for SEO */}
+        <meta name="keywords" content={siteConfig.keywords.join(", ")} />
+        <meta name="author" content={siteConfig.author} />
+        <meta name="twitter:creator" content={`@${siteConfig.social.twitter}`} />
+
+        {/* Preconnect & preload */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="preload" as="image" href="/images/logo.png" />
+
+        {/* Structured data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
       </head>
       <body
-        className={cn(
-          "min-h-screen bg-[#fff8f1] font-sans antialiased",
-          fontSans.variable
-        )}
+        className={cn("min-h-screen bg-[#fff8f1] font-sans antialiased", fontSans.variable)}
+        itemScope
+        itemType="https://schema.org/WebPage"
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="light"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <div className="min-h-screen flex flex-col bg-[#fff8f1] relative">
-            <Navbar />
-            <main className="flex-grow relative z-0">
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
+          <div className="relative flex min-h-screen flex-col">
+            <header itemScope itemType="https://schema.org/WPHeader">
+              <Navbar />
+            </header>
+            <main
+              className="flex-1"
+              itemScope
+              itemProp="mainContentOfPage"
+              itemType="https://schema.org/WebPageElement"
+            >
               {children}
             </main>
             {!hideFooter && (
-              <div className="relative z-10">
+              <footer itemScope itemType="https://schema.org/WPFooter">
                 <Footer />
-              </div>
+              </footer>
             )}
           </div>
           <Toaster />

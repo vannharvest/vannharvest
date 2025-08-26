@@ -179,9 +179,9 @@ function ProductsContent() {
                         img.src = encodeURI(product.image);
                       }}
                     />
-                    <span className="absolute top-2 left-2 bg-green-100 text-green-800 text-xs font-semibold px-2 py-1 rounded">
+                    {/* <span className="absolute top-2 left-2 bg-green-100 text-green-800 text-xs font-semibold px-2 py-1 rounded">
                       Best Seller
-                    </span>
+                    </span> */}
                   </div>
                   <div className="p-2 text-center">
                     <h3 className="text-sm font-semibold text-green-900 line-clamp-2">{product.name}</h3>

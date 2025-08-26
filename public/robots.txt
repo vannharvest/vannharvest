@@ -1,4 +1,42 @@
+# https://www.robotstxt.org/robotstxt.html
 User-agent: *
 Allow: /
+Disallow: /api/
+Disallow: /_next/static/
+Disallow: /_next/image/
+Disallow: /_next/data/
+Disallow: /private/
+Disallow: /*?*
 
+# Sitemaps
 Sitemap: https://vannharvest.com/sitemap.xml
+
+# Crawl-delay: 10  # Uncomment if needed to reduce server load
+
+# Block specific crawlers if needed
+# User-agent: AhrefsBot
+# Crawl-delay: 10
+# Disallow: /
+
+# Block access to admin and login pages
+Disallow: /admin/
+Disallow: /login/
+Disallow: /wp-admin/
+Disallow: /wp-login.php
+
+# Allow media files
+Allow: /*.css$
+Allow: /*.js$
+Allow: /*.webp$
+Allow: /*.jpg$
+Allow: /*.png$
+Allow: /*.svg$
+
+# Block access to query strings that sort or filter
+Disallow: /*?*sort=
+Disallow: /*?*filter=
+Disallow: /*?*page=
+
+# Allow Google Image Search to index all images
+User-agent: Googlebot-Image
+Allow: /*

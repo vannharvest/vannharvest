@@ -13,11 +13,42 @@ export const metadata: Metadata = {
       url: blogImages.hero,
       width: 1200,
       height: 630,
-      alt: 'Vann Harvest Blog',
+      alt: 'Vann Harvest Blog - Premium Dried Fruits & Nuts',
     }],
   },
 };
 
+// Add keywords and robots meta tags in a custom head component
+const BlogHead = () => {
+  const keywords = [
+    'dried fruits blog',
+    'healthy snacks',
+    'premium nuts',
+    'Vann Harvest articles',
+    'nutrition tips',
+    'healthy eating',
+    'food industry insights',
+    'raisins',
+    'almonds',
+    'cashews',
+    'pistachios',
+    'dates',
+  ].join(', ');
+
+  return (
+    <>
+      <meta name="keywords" content={keywords} />
+      <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+      <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1" />
+    </>
+  );
+};
+
 export default function BlogPage() {
-  return <BlogClientPage />;
+  return (
+    <>
+      <BlogHead />
+      <BlogClientPage />
+    </>
+  );
 }
