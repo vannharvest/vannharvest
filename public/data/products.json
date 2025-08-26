@@ -116,14 +116,14 @@
   "blackProducts": [
     {
       "id": 101,
-      "name": "Black Long",
+      "name": "Black Seeded",
       "image": "/images/products/verticle-img/Black-Round-Seeded.avif",
       "category": "black",
       "inStock": true
     },
     {
       "id": 201,
-      "name": "Black Round",
+      "name": "Black Seedless",
       "image": "/images/products/verticle-img/Black-Round-Seedless.avif",
       "category": "black",
       "inStock": true
