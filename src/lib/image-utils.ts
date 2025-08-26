@@ -1,4 +1,4 @@
-import type { ImageLoaderProps as NextImageLoaderProps } from 'next/image';
+// Next.js Image types are used indirectly
 import { imageConfig } from '@/config/images';
 
 export interface ImageDimensions {
@@ -71,14 +71,17 @@ export const isWhitelistedImage = (url: string): boolean => {
     const imageUrl = new URL(url);
     const whitelist = imageConfig.contentSecurityPolicy.imgSrc;
     
+    // Type assertion for whitelist to handle readonly array
+    const whitelistArray = whitelist as readonly string[];
+    
     // Check for wildcard or self
-    if (whitelist.includes('*' as any) || 
-        (whitelist.includes('self' as any) && !url.startsWith('http'))) {
+    if (whitelistArray.includes('*') || 
+        (whitelistArray.includes('self') && !url.startsWith('http'))) {
       return true;
     }
     
     // Check domain patterns
-    return whitelist.some(domain => {
+    return whitelistArray.some(domain => {
       if (typeof domain === 'string' && domain.startsWith('http')) {
         try {
           const domainUrl = new URL(domain);
@@ -89,7 +92,12 @@ export const isWhitelistedImage = (url: string): boolean => {
       }
       return false;
     });
-  } catch (e) {
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error('Error checking whitelisted image:', error.message);
+    } else {
+      console.error('An unknown error occurred while checking whitelisted image');
+    }
     return false;
   }
 };
@@ -130,8 +138,12 @@ export const optimizeImageUrl = (
     
     url.search = params.toString();
     return url.toString();
-  } catch (e) {
-    // If URL parsing fails, return the original src
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error('Error optimizing image URL:', error.message);
+    } else {
+      console.error('An unknown error occurred while optimizing image URL');
+    }
     return src;
   }
 };
