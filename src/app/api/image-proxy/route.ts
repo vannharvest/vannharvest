@@ -6,8 +6,9 @@ export const dynamic = 'force-dynamic';
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const url = searchParams.get('url');
-  const width = parseInt(searchParams.get('w') || '0');
-  const quality = parseInt(searchParams.get('q') || '80');
+  // Width and quality parameters are reserved for future image optimization
+  // const width = parseInt(searchParams.get('w') || '0');
+  // const quality = parseInt(searchParams.get('q') || '80');
 
   if (!url) {
     return new NextResponse('Missing image URL', { status: 400 });

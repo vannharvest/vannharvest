@@ -182,7 +182,34 @@ export const createSrcSet = (
     .join(', ');
 };
 
-export default {
+// Check if an image is local
+const isLocalImage = (src: string): boolean => {
+  return !src.startsWith('http') || src.startsWith('/');
+};
+
+// Custom image loader for Next.js Image component
+const imageLoader = ({
+  src,
+  width,
+  quality = imageConfig.defaultQuality
+}: {
+  src: string;
+  width: number;
+  quality?: number;
+}): string => {
+  // If it's a local image or from a whitelisted domain, use the optimized URL
+  if (isLocalImage(src) || isWhitelistedImage(src)) {
+    return optimizeImageUrl(src, {
+      width,
+      quality,
+    });
+  }
+
+  // For external images that aren't whitelisted, return as-is
+  return src;
+};
+
+const imageUtils = {
   getImageDimensions,
   generateBlurDataURL,
   isWhitelistedImage,
@@ -190,33 +217,7 @@ export default {
   preloadImage,
   fileToBase64,
   createSrcSet,
+  imageLoader,
 };
 
-// Extend Next.js ImageLoaderProps with our custom types
-export interface ImageLoaderProps extends Omit<NextImageLoaderProps, 'src'> {
-  src: string | { src: string; width?: number; height?: number };
-  quality?: number;
-}
-
-export const imageLoader = ({ 
-  src, 
-  width, 
-  quality = imageConfig.defaultQuality 
-}: ImageLoaderProps): string => {
-  const srcUrl = typeof src === 'string' ? src : src.src;
-  
-  if (srcUrl.startsWith('http') || srcUrl.startsWith('https')) {
-    const isWhitelisted = isWhitelistedImage(srcUrl);
-    
-    if (isWhitelisted) {
-      return `/_next/image?url=${encodeURIComponent(srcUrl)}&w=${width}&q=${quality}`;
-    }
-    return srcUrl; // Return the URL as-is if not whitelisted
-  }
-
-  // Handle local images
-  const cleanSrc = srcUrl.startsWith('/') ? srcUrl.slice(1) : srcUrl;
-  
-  // For local images, use Next.js default loader
-  return `/_next/image?url=/${cleanSrc}&w=${width}&q=${quality}`;
-};
+export default imageUtils;

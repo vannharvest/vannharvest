@@ -36,9 +36,13 @@ export function BlogImage({
   rounded = true,
   ...props
 }: BlogImageProps) {
+  // Ensure there's always an alt text
+  const alt = props.alt || 'Blog post image';
+  
   return (
     <Image
       {...props}
+      alt={alt}
       size={size}
       className={cn(
         'w-full h-auto transition-opacity duration-300',

@@ -121,13 +121,14 @@ export function Image({
     
     return (
       <div className={cn('relative', containerClassName)}>
-        <img
+        <NextImage
           src={fallbackSrcStr}
           alt={alt}
           className={cn('w-full h-auto', className)}
+          width={fallbackWidth || 800}
+          height={fallbackHeight || 600}
           loading="lazy"
-          width={fallbackWidth}
-          height={fallbackHeight}
+          unoptimized
         />
         {caption && (
           <figcaption className="mt-2 text-sm text-gray-500 text-center">
@@ -170,9 +171,12 @@ export function Image({
           {...props}
         />
       ) : (
-        <img
+        <NextImage
           {...commonProps}
+          width={typeof imgSrc === 'object' ? imgSrc.width : 800}
+          height={typeof imgSrc === 'object' ? imgSrc.height : 600}
           loading={priority ? 'eager' : 'lazy'}
+          unoptimized
           {...props}
         />
       )}

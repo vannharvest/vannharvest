@@ -1,4 +1,4 @@
-import type { Metadata, Viewport } from "next";
+import type { Viewport } from "next";
 import { Montserrat } from "next/font/google";
 
 import "./globals.css";
@@ -18,8 +18,8 @@ const fontSans = Montserrat({
   preload: true,
   fallback: ["system-ui", "sans-serif"],
   adjustFontFallback: true,
-  // @ts-ignore - variable is a valid property on the returned font object
-}) as any;
+  variable: "--font-montserrat"
+});
 
 // Ensure absolute OG image URL
 const ogImageUrl = siteConfig.ogImage.startsWith("http")

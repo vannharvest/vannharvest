@@ -1,6 +1,5 @@
 import React from 'react';
 import Head from 'next/head';
-import { siteConfig } from '@/config/site';
 
 export default function ResourceHints() {
   return (
