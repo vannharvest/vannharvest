@@ -1,6 +1,11 @@
-const { writeFileSync } = require('fs');
-const { join } = require('path');
-const { glob } = require('glob');
+import { writeFileSync } from 'fs';
+import { join } from 'path';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+import { glob } from 'glob';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const SITE_URL = 'https://vannharvest.com';
 const PAGES_DIR = join(process.cwd(), 'src/app');

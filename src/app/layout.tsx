@@ -27,6 +27,7 @@ const ogImageUrl = siteConfig.ogImage.startsWith("http")
   : `${siteConfig.url}${siteConfig.ogImage.startsWith("/") ? "" : "/"}${siteConfig.ogImage}`;
 
 export const metadata = {
+  metadataBase: new URL(siteConfig.url),
   title: {
     default: siteConfig.name,
     template: `%s | ${siteConfig.name}`,
