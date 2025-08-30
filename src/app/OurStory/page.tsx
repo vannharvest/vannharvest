@@ -21,7 +21,6 @@ export default function OurStory() {
   const bgImageSrc = '/images/FarmBg.webp';
 
   useEffect(() => {
-    // Set isClient to true after component mounts
     setIsClient(true);
 
     // Load background image
@@ -44,7 +43,6 @@ export default function OurStory() {
       }
     };
 
-    // Add scroll listener
     if (isClient) {
       window.addEventListener('scroll', handleScroll, { passive: true });
       handleScroll(); // Initial call
@@ -60,7 +58,7 @@ export default function OurStory() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-100">
+      <div className="min-h-screen flex items-center justify-center bg-green-800">
         <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-green-600"></div>
       </div>
     );
@@ -76,20 +74,13 @@ export default function OurStory() {
   ];
 
   return (
-    <div ref={containerRef} className="relative w-full">
+    <div ref={containerRef} className="relative w-full overflow-hidden">
       {/* Background Image Container */}
       <motion.div
-        className="fixed inset-0 -z-10 w-screen h-screen"
+        className="fixed inset-0 -z-10 w-full h-screen"
         style={{
           scale: bgScale,
-          y: bgY,
-          width: '100vw',
-          height: '100vh',
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0
+          y: bgY
         }}
       >
         <div className="absolute inset-0 w-full h-full">
@@ -101,16 +92,6 @@ export default function OurStory() {
             quality={90}
             className="object-cover w-full h-full"
             sizes="100vw"
-            style={{
-              position: 'absolute',
-              width: '100%',
-              height: '100%',
-              left: 0,
-              top: 0,
-              right: 0,
-              bottom: 0,
-              objectFit: 'cover'
-            }}
           />
         </div>
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 to-black/70" />
@@ -128,7 +109,7 @@ export default function OurStory() {
             >
               <div className="mb-8">
                 <motion.h1
-                  className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 tracking-tight leading-tight"
+                  className="text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-bold mb-6 tracking-tight leading-tight"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2, duration: 0.8 }}
@@ -143,7 +124,7 @@ export default function OurStory() {
                 />
               </div>
               <motion.div
-                className="max-w-3xl mx-auto text-white/90 leading-relaxed font-light tracking-wide space-y-6 text-lg md:text-xl"
+                className="max-w-3xl mx-auto text-white/90 leading-relaxed font-light tracking-wide space-y-6 text-base sm:text-lg md:text-xl"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6, duration: 0.8 }}
@@ -161,8 +142,10 @@ export default function OurStory() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <h2 className="text-3xl md:text-5xl font-bold text-white mb-8">Rooted in Soil, <span className="text-green-400">Driven by Vision</span></h2>
-              <div className="space-y-6 text-white/80 text-lg leading-relaxed text-left">
+              <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-white mb-8">
+                Rooted in Soil, <span className="text-green-400">Driven by Vision</span>
+              </h2>
+              <div className="space-y-6 text-white/80 text-base sm:text-lg leading-relaxed text-left">
                 <p>In 1993, on the fertile lands of Vijayapura, Karnataka, a visionary farmer with a deep respect for tradition and a spark of innovation planted the seeds of what would become Vann Harvest Pvt. Ltd.</p>
                 <p>Our founder came from a family of grape growers who believed in the power of nature, patience, and hard work. What began as a humble farm producing grapes for local markets soon evolved - through relentless learning, trials, and dedication - into a full-fledged raisin production enterprise with global standards.</p>
                 <p>Driven by a desire to offer healthier, chemical-free alternatives, we pioneered the sun-drying process of raisins, eliminating the need for artificial preservatives or sulphur treatment. This not only retained the natural sweetness and nutrients of the grapes but also laid the foundation for Vann Harvest&apos;s commitment to purity, sustainability, and quality.</p>
@@ -177,33 +160,34 @@ export default function OurStory() {
                 transition={{ duration: 0.8, delay: 0.2 }}
               >
                 <div className="space-y-6">
-                  <h3 className="text-2xl md:text-3xl font-bold text-green-400 flex items-center gap-3">
+                  <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-green-400 flex items-center gap-3">
                     From a Single Farm to a Global Footprint
                   </h3>
-                  <div className="space-y-4 text-white/80 text-base md:text-lg leading-relaxed">
+                  <div className="space-y-4 text-white/80 text-base sm:text-lg leading-relaxed">
                     <p>Today, Vann Harvest operates from a state-of-the-art facility with full control over every stage - from vineyard to value pack. We work closely with skilled farmers, uphold strict hygiene practices, and comply with international food safety standards.</p>
                     <p>Our raisins are now trusted by exporters, wholesalers, and food brands across India and beyond, appreciated not just for their taste and shelf life, but for the ethics and care behind them.</p>
                   </div>
                 </div>
 
-                <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 mt-8">
-                  <h3 className="text-2xl font-bold text-white mb-6">Our Purpose</h3>
-                  <p className="text-white/80 text-lg leading-relaxed">
+                <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-white/10 mt-8">
+                  <h3 className="text-xl sm:text-2xl font-bold text-white mb-6">Our Purpose</h3>
+                  <p className="text-white/80 text-base sm:text-lg leading-relaxed">
                     We exist to build a healthier world - one raisin at a time. From empowering rural farmers to preserving nature and delivering clean food, Vann Harvest is more than a business. It&apos;s a legacy in the making.
                   </p>
                 </div>
               </motion.div>
 
+              {/* Sidebar Card */}
               <motion.div
-                className="bg-gradient-to-br from-green-900/30 to-green-900/10 backdrop-blur-sm rounded-2xl p-8 border border-green-800/30"
+                className="bg-gradient-to-br from-green-900/30 to-green-900/10 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-green-800/30"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4, duration: 0.8 }}
                 itemScope
                 itemType="https://schema.org/Organization"
               >
-                <h3 className="text-2xl font-bold text-white mb-6">Why Businesses Choose Us</h3>
-                <ul className="space-y-4">
+                <h3 className="text-xl sm:text-2xl font-bold text-white mb-6">Why Businesses Choose Us</h3>
+                <ul className="space-y-4 text-sm sm:text-base">
                   <li className="flex items-start gap-3">
                     <span className="text-green-400 mt-1">✓</span>
                     <span>Premium <strong>sun-dried raisins from Vijayapura</strong></span>
@@ -223,15 +207,15 @@ export default function OurStory() {
                 </ul>
                 <div className="mt-8 pt-6 border-t border-green-800/30">
                   <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 rounded-full bg-green-900/30 flex items-center justify-center text-green-400">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-green-900/30 flex items-center justify-center text-green-400">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="w-5 h-5 sm:w-6 sm:h-6">
                         <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
                         <polyline points="22 4 12 14.01 9 11.01"></polyline>
                       </svg>
                     </div>
                     <div>
                       <p className="font-medium text-white">Established in 1993</p>
-                      <p className="text-sm text-green-300">30+ years of excellence</p>
+                      <p className="text-xs sm:text-sm text-green-300">30+ years of excellence</p>
                     </div>
                   </div>
                 </div>
@@ -243,27 +227,48 @@ export default function OurStory() {
             </div>
           </section>
 
+          {/* Founder Section */}
           <section className="max-w-6xl mx-auto py-24 px-4 flex flex-col md:flex-row items-center gap-10">
-            <motion.div className="w-full md:w-1/2 aspect-[3/4] relative rounded-2xl overflow-hidden shadow-lg" initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 1 }}>
+            <motion.div
+              className="w-full md:w-1/2 aspect-[4/5] sm:aspect-[3/4] relative rounded-2xl overflow-hidden shadow-lg"
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1 }}
+            >
               <Image src="/images/founder.webp" alt="Vann Harvest Founder" fill className="object-cover" />
             </motion.div>
 
-            <motion.div className="w-full md:w-1/2 space-y-5 text-white/90 text-base md:text-lg leading-relaxed" initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 1 }}>
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-2">A Message from Our Founder</h2>
+            <motion.div
+              className="w-full md:w-1/2 space-y-5 text-white/90 text-base sm:text-lg leading-relaxed"
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1 }}
+            >
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-2">A Message from Our Founder</h2>
               <p>Vann Harvest was born from a vision: to revolutionize the raisin industry through transparency and education. Despite their popularity, raisins remain misunderstood in terms of quality and processing - something we strive to change.</p>
               <p>Our mission goes beyond business. We&apos;re addressing rural migration, rebuilding local economies, and ensuring farmers get fair equity for their work. We&apos;ve turned our entire organization into a CSR movement, building not just a brand but a cause.</p>
               <p>With over 30 years of expertise, cutting-edge infrastructure, and a deep respect for tradition, Vann Harvest is a promise - of quality, honesty, and community upliftment. Join us in a movement for better health, deeper knowledge, and a more sustainable future.</p>
             </motion.div>
           </section>
 
-          <section className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 px-4 py-24">
+          {/* Timeline Section */}
+          <section className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 md:gap-16 px-4 py-24">
             {timelineData.map((item, index) => (
-              <motion.article key={index} className="bg-white/10 backdrop-blur-md text-white rounded-2xl p-8 shadow-xl border border-white/10 hover:shadow-green-600/40 transition" initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: index * 0.15 }}>
+              <motion.article
+                key={index}
+                className="bg-white/10 backdrop-blur-md text-white rounded-2xl p-5 sm:p-8 shadow-xl border border-white/10 hover:shadow-green-600/40 transition"
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.15 }}
+              >
                 <div className="flex items-center gap-4 mb-4">
-                  <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center">{item.icon}</div>
-                  <h3 className="text-xl font-semibold">{item.title}</h3>
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/10 flex items-center justify-center">
+                    {item.icon}
+                  </div>
+                  <h3 className="text-lg sm:text-xl font-semibold">{item.title}</h3>
                 </div>
-                <p className="text-white/90 text-base leading-relaxed">{item.content}</p>
+                <p className="text-white/90 text-sm sm:text-base leading-relaxed">{item.content}</p>
               </motion.article>
             ))}
           </section>
