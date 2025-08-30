@@ -43,14 +43,9 @@ const nextConfig = {
     formats: ['image/webp'],
     disableStaticImages: process.env.NODE_ENV === 'development',
     minimumCacheTTL: 60 * 60 * 24 * 7, // 1 week
+    loader: 'default',
+    domains: ['img.youtube.com'],
     remotePatterns: [
-      // YouTube thumbnails
-      {
-        protocol: 'https',
-        hostname: 'img.youtube.com',
-        port: '',
-        pathname: '/vi/**',
-      },
       // Other allowed domains from config
       ...(imageConfig.contentSecurityPolicy?.imgSrc || []).map(url => {
         try {

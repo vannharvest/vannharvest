@@ -55,17 +55,17 @@ export default function Hero() {
       <div ref={iframeRef} className="absolute inset-0 w-full h-full z-0 overflow-hidden">
         {/* Fallback image with optimized loading */}
         <div className="absolute inset-0 w-full h-full">
-          <Image
+          <img
             src={`https://img.youtube.com/vi/${VIDEO_ID}/${THUMBNAIL_QUALITY}.jpg`}
             alt="Vann Harvest Farm Tour"
-            fill
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
-            className="object-cover transition-opacity duration-300"
+            className="w-full h-full object-cover transition-opacity duration-300"
             style={{
               opacity: isVideoLoaded ? 0 : 1,
               visibility: isVideoLoaded ? 'hidden' : 'visible',
+              position: 'absolute',
+              top: 0,
+              left: 0,
             }}
-            priority
             onError={(e) => {
               // Fallback to a placeholder if YouTube image fails
               const target = e.target as HTMLImageElement;

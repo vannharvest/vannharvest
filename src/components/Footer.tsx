@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Facebook, Instagram, Twitter } from 'lucide-react';
+import { Facebook, Instagram, Linkedin, Twitter } from 'lucide-react';
 
 interface NavItemProps {
   href: string;
@@ -88,7 +88,7 @@ export default function Footer() {
           </p>
           <div className="flex space-x-2 mt-4 md:mt-0">
             <a
-              href="https://facebook.com"
+              href="https://www.facebook.com/share/16zWe2gB4k/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-300 hover:text-white hover:bg-green-700 transition-colors p-2 rounded-full"
@@ -97,7 +97,7 @@ export default function Footer() {
               <Facebook className="w-5 h-5" />
             </a>
             <a
-              href="https://instagram.com"
+              href="https://www.instagram.com/vann_harvest/?igsh=MTZpNGFvcGo4Nm45NA%3D%3D#"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-300 hover:text-white hover:bg-green-700 transition-colors p-2 rounded-full"
@@ -106,13 +106,13 @@ export default function Footer() {
               <Instagram className="w-5 h-5" />
             </a>
             <a
-              href="https://x.com"
+              href="https://www.linkedin.com/company/vann-harvest/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-300 hover:text-white hover:bg-green-700 transition-colors p-2 rounded-full"
               aria-label="Twitter"
             >
-              <Twitter className="w-5 h-5" />
+              <Linkedin className="w-5 h-5" />
             </a>
           </div>
         </div>
