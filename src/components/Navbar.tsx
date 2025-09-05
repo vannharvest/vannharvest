@@ -166,15 +166,17 @@ export default function Navbar() {
 
         {/* DESKTOP SOCIAL */}
         <div className="hidden lg:flex items-center gap-4">
-          <Link href="https://www.facebook.com/share/16zWe2gB4k/" target="_blank" aria-label="Facebook">
-            <Facebook className="w-5 h-5 text-green-800 hover:text-orange-600 transition" />
-          </Link>
-          <Link href="https://www.instagram.com/vannharvest" target="_blank" aria-label="Instagram">
-            <Instagram className="w-5 h-5 text-green-800 hover:text-orange-600 transition" />
-          </Link>
-          <Link href="https://www.linkedin.com/company/vann-harvest/" target="_blank" aria-label="LinkedIn">
-            <Linkedin className="w-5 h-5 text-green-800 hover:text-orange-600 transition" />
-          </Link>
+            <div className="flex items-center justify-center gap-4 pt-4 border-t border-gray-200">
+            <Link href="https://www.facebook.com/share/16zWe2gB4k/" target="_blank" aria-label="Facebook">
+              <Facebook className="w-5 h-5 text-green-800 hover:text-orange-600" />
+            </Link>
+            <Link href="https://www.instagram.com/vann_harvest/?igsh=MTZpNGFvcGo4Nm45NA%3D%3D#" target="_blank" aria-label="Instagram">
+              <Instagram className="w-5 h-5 text-green-800 hover:text-orange-600" />
+            </Link>
+            <Link href="https://www.linkedin.com/company/vann-harvest/" target="_blank" aria-label="LinkedIn">
+              <Linkedin className="w-5 h-5 text-green-800 hover:text-orange-600" />
+            </Link>
+            </div>
         </div>
       </div>
 
