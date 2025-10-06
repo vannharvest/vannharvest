@@ -84,7 +84,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="border-t border-green-700 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-300 text-sm text-center md:text-left">
-            &copy; {currentYear} Vann Harvest. All rights reserved.
+            &copy; {currentYear} Vann Harvest™. All rights reserved.
           </p>
           <div className="flex space-x-2 mt-4 md:mt-0">
             <a
