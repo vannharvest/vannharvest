@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 import withBundleAnalyzer from '@next/bundle-analyzer';
-import { imageConfig } from './src/config/images';
+import { imageConfig } from './src/app/api/image-proxy/image-config';
 
 const withBundleAnalyzerPlugin = withBundleAnalyzer({
   enabled: process.env.ANALYZE === 'true',
