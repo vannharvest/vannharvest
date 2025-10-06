@@ -17,8 +17,8 @@ export default function WhyChooseUsSection() {
     },
     {
       icon: <Globe className="text-blue-600" size={24} />,
-      title: "Trusted by Exporters & Wholesalers Worldwide",
-      description: "We proudly supply to leading distributors, exporters, and food manufacturers across India and overseas, ensuring consistency, hygiene, and compliance with global food standards."
+      title: "Trusted by Exporters & Wholesalers ",
+      description: "We proudly supply to leading distributors, exporters, and food manufacturers across India, ensuring consistency, hygiene, and compliance with global food standards."
     },
     {
       icon: <Package className="text-green-700" size={24} />,
