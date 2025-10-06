@@ -1,6 +1,17 @@
 // Image configuration for the image proxy
-
 export const imageConfig = {
+  // Device sizes for responsive images
+  deviceSizes: [
+    640,    // sm
+    750,    // md
+    828,    // lg
+    1080,   // xl
+    1200,   // 2xl
+    1920,   // 3xl
+    2048,   // 4xl
+    3840,   // 5xl
+  ],
+  
   // List of allowed image domains (for Next.js Image component)
   domains: [
     'localhost',
