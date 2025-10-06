@@ -20,14 +20,7 @@ const contactMethods = [
     href: 'tel:+917744005377',
     color: 'bg-green-50 text-green-600 border-green-200'
   },
-  {
-    icon: Globe,
-    title: 'Visit Website',
-    subtitle: 'Explore our digital presence',
-    contact: 'www.vannharvest.com',
-    href: 'https://vannharvest.com/',
-    color: 'bg-purple-50 text-purple-600 border-purple-200'
-  }
+
 ];
 
 const businessHours = [
