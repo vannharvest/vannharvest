@@ -1,5 +1,16 @@
 import { NextResponse } from 'next/server';
-import { imageConfig } from '@/config/images';
+import { imageConfig } from './image-config';
+
+interface ImageConfig {
+  contentSecurityPolicy: {
+    imgSrc: string[];
+  };
+  domains: string[];
+  formats: string[];
+  defaultQuality: number;
+  defaultSizes: Array<{ width: number; maxWidth?: number }>;
+  placeholderImage: string;
+}
 
 export const dynamic = 'force-dynamic';
 
@@ -16,7 +27,7 @@ export async function GET(request: Request) {
 
   try {
     // Validate the URL is from an allowed domain
-    const isValidDomain = imageConfig.contentSecurityPolicy.imgSrc.some(domain => {
+    const isValidDomain = imageConfig.contentSecurityPolicy.imgSrc.some((domain: string) => {
       if (domain.startsWith('https://')) {
         const domainUrl = new URL(domain);
         const srcUrl = new URL(url);
