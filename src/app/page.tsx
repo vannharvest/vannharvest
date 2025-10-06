@@ -15,8 +15,8 @@ export default function Home() {
       {/* 🛒 Promotional Banner */}
       <PromotionSection
         heading="Premium Quality Harvest"
-        subheading="Experience the freshness of our farm-to-table produce. Limited stock available!"
-        buttonText="Shop Now"
+        subheading="Discover the pure, natural goodness of our sun-drenched raisins, grown with care and tradition."
+        buttonText="Explore Bulk Orders"
         buttonLink="/products"
         imageSrc="/images/promotional/grapes_promo_2.webp"
         imageAlt="Fresh organic grapes from our farm"

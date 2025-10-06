@@ -31,18 +31,6 @@ export default function WhyChooseUsSection() {
       description: "Our facility is equipped with FSSAI and APEDA certifications, and we follow sustainable farming practices to minimize our environmental impact."
     }
   ];
-
-  const keywords = [
-    "Premium-grade raisins",
-    "Sun-dried raisins",
-    "Sulphur-free raisins",
-    "Wholesale exporter",
-    "Vijayapura raisins",
-    "FSSAI certified",
-    "APEDA certified",
-    "Bulk raisin supplier"
-  ];
-
   return (
     <section className="relative bg-white py-20 md:py-28 px-4 sm:px-6">
       <div className="max-w-7xl mx-auto">
@@ -103,19 +91,7 @@ export default function WhyChooseUsSection() {
                 We take pride in delivering the finest quality raisins while maintaining the highest standards of sustainability and food safety.
               </p>
             </div>
-            <div className="flex flex-wrap justify-center gap-3">
-              {keywords.map((keyword, index) => (
-                <motion.span 
-                  key={index}
-                  className="inline-flex items-center px-4 py-2.5 bg-white rounded-xl text-sm font-medium text-gray-700 border border-gray-200 hover:bg-green-50 hover:border-green-200 transition-all duration-200"
-                  whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <Check className="w-3.5 h-3.5 text-green-500 mr-2 flex-shrink-0" />
-                  {keyword}
-                </motion.span>
-              ))}
-            </div>
+           
           </motion.div>
         </div>
       </div>

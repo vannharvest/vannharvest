@@ -68,9 +68,7 @@ export default function OurStory() {
     { year: '2010', title: 'The Beginning', content: 'Our journey started with a single grape farm in the heart of India.', icon: <Sprout className="w-6 h-6 text-green-400" /> },
     { year: '2015', title: 'First Harvest', content: 'Successfully harvested and processed our first batch of premium raisins.', icon: <Leaf className="w-6 h-6 text-green-400" /> },
     { year: '2018', title: 'Expansion', content: 'Expanded our operations to include multiple farms across the region.', icon: <Tractor className="w-6 h-6 text-green-400" /> },
-    { year: '2020', title: 'National Reach', content: 'Started distributing our products nationwide through various channels.', icon: <Truck className="w-6 h-6 text-green-400" /> },
-    { year: '2022', title: 'Retail Launch', content: 'Launched our products in major retail stores across the country.', icon: <Store className="w-6 h-6 text-green-400" /> },
-    { year: '2023', title: 'Global Vision', content: 'Began exporting our premium raisins to international markets.', icon: <Globe className="w-6 h-6 text-green-400" /> }
+    { year: '2020', title: 'National Reach', content: 'Started distributing our products nationwide through various channels.', icon: <Truck className="w-6 h-6 text-green-400" /> }
   ];
 
   return (
@@ -246,7 +244,7 @@ export default function OurStory() {
             >
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-2">A Message from Our Founder</h2>
               <p>Vann Harvest was born from a vision: to revolutionize the raisin industry through transparency and education. Despite their popularity, raisins remain misunderstood in terms of quality and processing - something we strive to change.</p>
-              <p>Our mission goes beyond business. We&apos;re addressing rural migration, rebuilding local economies, and ensuring farmers get fair equity for their work. We&apos;ve turned our entire organization into a CSR movement, building not just a brand but a cause.</p>
+              <p>Our mission goes beyond business. We&apos;re addressing rural migration, rebuilding local economies, and ensuring farmers get fair equity for their work.</p>
               <p>With over 30 years of expertise, cutting-edge infrastructure, and a deep respect for tradition, Vann Harvest is a promise - of quality, honesty, and community upliftment. Join us in a movement for better health, deeper knowledge, and a more sustainable future.</p>
             </motion.div>
           </section>

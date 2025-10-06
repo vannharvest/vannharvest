@@ -26,22 +26,59 @@ declare module 'next' {
   export interface Metadata {
     title?: string | { default: string; template?: string; absolute?: string };
     description?: string;
+    metadataBase?: URL | string;
     alternates?: MetadataAlternateURLs;
+    robots?: {
+      index?: boolean;
+      follow?: boolean;
+      nocache?: boolean;
+      noarchive?: boolean;
+      nosnippet?: boolean;
+      noimageindex?: boolean;
+      notranslate?: boolean;
+      maxSnippet?: number;
+      maxImagePreview?: 'none' | 'standard' | 'large';
+      maxVideoPreview?: number;
+      googleBot?: {
+        index?: boolean;
+        follow?: boolean;
+        nocache?: boolean;
+        noarchive?: boolean;
+        nosnippet?: boolean;
+        noimageindex?: boolean;
+        notranslate?: boolean;
+        maxSnippet?: number;
+        maxImagePreview?: 'none' | 'standard' | 'large';
+        'max-video-preview'?: number;
+        unavailableAfter?: string;
+        noSiteLinksSearchBox?: boolean;
+      };
+    };
+    keywords?: string | string[];
     openGraph?: {
       title?: string;
       description?: string;
       url?: string;
+      siteName?: string;
+      locale?: string;
       type?: string;
       publishedTime?: string;
+      modifiedTime?: string;
       authors?: string | string[];
+      section?: string;
+      tags?: string[];
       images?: MetadataImage[];
     };
     twitter?: {
       card?: 'summary' | 'summary_large_image' | 'app' | 'player';
       title?: string;
       description?: string;
+      site?: string;
+      creator?: string;
       images?: string[] | MetadataImage[];
     };
+    other?: Record<string, string>;
+    verification?: Record<string, string>;
   }
 
   export type ResolvingMetadata = Promise<Metadata> | Metadata;

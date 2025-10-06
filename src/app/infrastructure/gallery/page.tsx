@@ -139,11 +139,11 @@ export default function GalleryPage() {
   // Close lightbox on ESC key and handle keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
+      if (e.code === 'Escape') {
         closeLightbox();
-      } else if (e.key === 'ArrowLeft') {
+      } else if (e.code === 'ArrowLeft') {
         prevImage();
-      } else if (e.key === 'ArrowRight') {
+      } else if (e.code === 'ArrowRight') {
         nextImage();
       }
     };

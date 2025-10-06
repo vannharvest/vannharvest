@@ -25,16 +25,13 @@ export const siteConfig = {
     youtube: "@vannharvest",
     pinterest: "vannharvest"
   },
-  
+
   // Social media links
   links: {
     twitter: "https://twitter.com/vannharvest",
-    facebook: "https://facebook.com/vannharvest",
-    instagram: "https://instagram.com/vannharvest",
-    linkedin: "https://linkedin.com/company/vannharvest",
-    youtube: "https://youtube.com/@vannharvest",
-    pinterest: "https://pinterest.com/vannharvest",
-    whatsapp: "https://wa.me/91774405377"
+    facebook: "https://www.facebook.com/vannharvest",
+    instagram: "https://www.instagram.com/vannharvest",
+    linkedin: "https://www.linkedin.com/company/vannharvest",
   },
   
   // Business information for structured data
@@ -69,7 +66,7 @@ export const siteConfig = {
   verification: {
     google: "google53f658a803643c00.html",
     yandex: "yandex_verification_123456", // Replace with actual Yandex verification code
-    bing: "BING_SITE_VERIFICATION_KEY",   // Replace with actual Bing verification code
+    bing: process.env.BING_SITE_VERIFICATION_KEY,   // Replace with actual Bing verification code
     me: "",     // For rel="me" auth (Mastodon, etc.)
     baidu: ""    // For Baidu Webmaster Tools
   },

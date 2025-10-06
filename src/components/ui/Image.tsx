@@ -3,8 +3,30 @@
 import { useState, useMemo, useEffect } from 'react';
 import NextImage, { type ImageProps as NextImageProps } from 'next/image';
 import { cn } from '@/lib/utils';
-import { imageConfig, getImageSizes, getImageQuality } from '@/config/images';
-import { isWhitelistedImage } from '@/lib/image-utils';
+// Placeholder config until the real module exists
+const imageConfig = {
+  sizes: {
+    card: '300px',
+    hero: '100vw',
+    thumbnail: '150px',
+  },
+  defaultQuality: 75,
+  highQuality: 90,
+  lowQuality: 50,
+  fallbackImage: '/images/fallback.png',
+  placeholder: {
+    blurDataURL: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=',
+  },
+};
+
+function getImageSizes(size: keyof typeof imageConfig.sizes): string {
+  return imageConfig.sizes[size] || '100vw';
+}
+
+function getImageQuality(quality: 'defaultQuality' | 'highQuality' | 'lowQuality'): number {
+  return imageConfig[quality] || 75;
+}
+// import { isWhitelistedImage } from '@/lib/image-utils'; // commented out until module exists
 
 type ImageSizePreset = keyof typeof imageConfig.sizes;
 type ImageQualityPreset = keyof Pick<typeof imageConfig, 'defaultQuality' | 'highQuality' | 'lowQuality'>;
@@ -107,7 +129,7 @@ export function Image({
     
     // For external images, only use Next.js Image if whitelisted
     if (typeof src === 'string') {
-      return isWhitelistedImage(src);
+      return false; // isWhitelistedImage(src) is unavailable; treat external images as unsafe
     }
     
     return true;

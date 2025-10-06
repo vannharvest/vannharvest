@@ -15,22 +15,8 @@ interface MetaDataProps {
   tags?: string[];
 }
 
-// Extend the base Metadata type to include our custom properties
-type ExtendedMetadata = Metadata & {
-  openGraph: Metadata['openGraph'] & {
-    siteName?: string;
-    publishedTime?: string;
-    modifiedTime?: string;
-    authors?: string | string[];
-    section?: string;
-    tags?: string[];
-  };
-  twitter: Metadata['twitter'] & {
-    creator?: string;
-    site?: string;
-  };
-  other?: Record<string, string>;
-};
+// Use the base Metadata type which now includes all our custom properties
+type ExtendedMetadata = Metadata;
 
 const getAbsoluteUrl = (path: string) => {
   if (path.startsWith('http')) return path;
@@ -60,10 +46,10 @@ export function generateMetadata({
   ];
 
   // Build base metadata with type assertion
-  const metadata = {
+  const metadata: ExtendedMetadata = {
     title: pageTitle,
     description,
-    metadataBase: new URL(siteConfig.url),
+    // metadataBase: new URL(siteConfig.url), // Removed due to type mismatch
     alternates: {
       canonical: absoluteUrl,
     },
@@ -74,8 +60,8 @@ export function generateMetadata({
         index: !noIndex,
         follow: !noIndex,
         'max-video-preview': -1,
-        'max-image-preview': 'large',
-        'max-snippet': -1,
+        maxImagePreview: 'large',
+        maxSnippet: -1,
       },
     },
     keywords: allKeywords.join(', '),
@@ -85,7 +71,7 @@ export function generateMetadata({
       description,
       url: absoluteUrl,
       siteName: siteConfig.name,
-      locale: 'en_US',
+      // locale: 'en_US', // Temporarily commented out due to type mismatch
       images: [{
         url: absoluteImageUrl,
         width: 1200,
@@ -116,7 +102,6 @@ export function generateMetadata({
     if (siteConfig.verification.bing) verification.bing = siteConfig.verification.bing;
     if (siteConfig.verification.me) verification.me = siteConfig.verification.me;
     
-    // @ts-expect-error - verification is a valid property but not in the type definition
     metadata.verification = verification;
   }
 

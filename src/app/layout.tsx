@@ -90,10 +90,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     url: siteConfig.url,
     logo: `${siteConfig.url}/images/logo.png`,
     sameAs: [
-      siteConfig.links.twitter,
-      siteConfig.links.facebook,
-      siteConfig.links.instagram,
-      siteConfig.links.linkedin,
+      siteConfig.social.twitter,  // Fix: Changed from .links to .social
+      siteConfig.social.facebook,  // Fix: Changed from .links to .social
+      siteConfig.social.instagram,  // Fix: Changed from .links to .social
+      siteConfig.social.linkedin
     ],
     contactPoint: [
       {

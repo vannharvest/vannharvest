@@ -1,5 +1,3 @@
-import { siteConfig } from '@/config/site';
-
 type SitemapEntry = {
   url: string;
   lastModified?: string | Date;
@@ -26,7 +24,7 @@ type SitemapEntry = {
 
 // Generate sitemap with enhanced metadata
 export default async function sitemap(): Promise<SitemapEntry[]> {
-  const baseUrl = siteConfig.url;
+  const baseUrl = 'https://vannharvest.com';
   const lastModified = new Date().toISOString().split('T')[0];
   
   // Common image assets

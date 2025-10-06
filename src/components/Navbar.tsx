@@ -6,6 +6,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { ChevronDown, Facebook, Instagram, Linkedin, Menu, X } from 'lucide-react';
 
+type Timeout = ReturnType<typeof setTimeout>;
+
 const NAV_ITEMS = [
   { label: 'Home', href: '/' },
   { label: 'Our Story', href: '/OurStory' },
@@ -26,7 +28,7 @@ export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
-  const closeTimer = useRef<NodeJS.Timeout | null>(null);
+  const closeTimer = useRef<Timeout | null>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
 
@@ -49,7 +51,7 @@ export default function Navbar() {
       }
     };
     const handleEsc = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
+      if (e.code === 'Escape') {
         setIsMenuOpen(false);
         setIsDropdownOpen(false);
       }
