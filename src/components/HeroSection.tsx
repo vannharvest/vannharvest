@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, useCallback } from 'react';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -19,53 +19,47 @@ export default function Hero() {
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const iframeRef = useRef<HTMLDivElement>(null);
 
+  const handlePlay = useCallback(() => {
+    setIsVideoLoaded(true);
+  }, []);
+
   // Memoize the intersection callback
-  const handleIntersect = (entries: IntersectionObserverEntry[]) => {
-    if (entries[0].isIntersecting) {
+  const handleIntersect = useCallback((entries: IntersectionObserverEntry[]) => {
+    const [entry] = entries;
+    if (entry.isIntersecting) {
       setIsVideoLoaded(true);
     }
-  };
+  }, []);
 
   // Lazy load video when in viewport
   useEffect(() => {
     const currentRef = iframeRef.current;
     if (!currentRef) return;
 
-    // Only observe if IntersectionObserver is supported
-    if (!('IntersectionObserver' in window)) {
-      setIsVideoLoaded(true);
-      return;
-    }
-
     const observer = new IntersectionObserver(handleIntersect, {
-      rootMargin: '200px',
-      threshold: 0.1
+      root: null,
+      threshold: 1,
     });
-
     observer.observe(currentRef);
-    return () => observer.disconnect();
-  }, [handleIntersect]);
+
+    return () => {
+      observer.unobserve(currentRef);
+    };
+  }, [iframeRef, handleIntersect]);
 
   return (
-    <section
-      className="relative w-full h-[calc(100vh-10rem)] mt-32 overflow-hidden rounded-2xl max-w-[calc(100%-32px)] mx-auto 4xl:max-w-none 4xl:mx-0 4xl:rounded-none 4xl:mt-0 4xl:h-screen"
-      aria-label="Hero section - Premium Raisin Exporters from Vijayapura"
-    >
+    <section className="relative w-full h-screen overflow-hidden">
       {/* Background video or poster */}
       <div ref={iframeRef} className="absolute inset-0 w-full h-full z-0 overflow-hidden">
         {/* Fallback image with optimized loading */}
         <div className="absolute inset-0 w-full h-full">
-          <img
+          <Image
             src={`https://img.youtube.com/vi/${VIDEO_ID}/${THUMBNAIL_QUALITY}.jpg`}
-            alt="Vann Harvest Farm Tour"
-            className="w-full h-full object-cover transition-opacity duration-300"
-            style={{
-              opacity: isVideoLoaded ? 0 : 1,
-              visibility: isVideoLoaded ? 'hidden' : 'visible',
-              position: 'absolute',
-              top: 0,
-              left: 0,
-            }}
+            alt={VIDEO_TITLE}
+            fill
+            className="object-cover rounded-lg cursor-pointer"
+            onClick={handlePlay}
+            priority
             onError={(e) => {
               // Fallback to a placeholder if YouTube image fails
               const target = e.target as HTMLImageElement;

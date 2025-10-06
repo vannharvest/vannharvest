@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Medal, Sun, Globe, Check, Package, ShieldCheck } from 'lucide-react';
+import { Medal, Sun, Globe, Package, ShieldCheck } from 'lucide-react';
 
 export default function WhyChooseUsSection() {
   const features = [
