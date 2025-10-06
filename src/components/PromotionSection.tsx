@@ -41,7 +41,7 @@ export default function PromotionSection({
 
           <Link
             href={buttonLink}
-            className="inline-block border border-white px-6 py-3 text-base font-semibold text-white hover:bg-white hover:text-white transition rounded-full"
+            className="inline-block border border-white px-6 py-3 text-base font-semibold text-white hover:bg-green-500 hover:text-white transition rounded-full"
           >
             {buttonText}
           </Link>
