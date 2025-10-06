@@ -1,6 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  images: {
+    domains: ['img.youtube.com'],
+  },
   experimental: {
     // Enable new React 19 features
     reactCompiler: true,

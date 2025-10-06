@@ -1,10 +1,11 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Loader2 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import styles from './CategorySection.module.css';
 
 export default function PremiumProduct() {
   const router = useRouter();
@@ -61,25 +62,25 @@ export default function PremiumProduct() {
     router.push(`/products?category=${encodeURIComponent(category)}`);
   };
 
-  return (
-    <>
-      <style jsx global>{`
-        @keyframes marquee {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(calc(-300px * 4 - 2rem * 3)); }
-        }
-        .animate-marquee {
-          animation: marquee 25s linear infinite;
-          display: flex;
-          width: max-content;
-        }
-        .animate-marquee:hover {
-          animation-play-state: paused;
-        }
-      `}</style>
-      
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted) {
+    return (
       <section className="py-6 w-full overflow-hidden">
         <div className="w-full max-w-[calc(100%-32px)] mx-auto bg-white rounded-2xl p-4">
+          <div className="animate-pulse h-[400px] w-full"></div>
+        </div>
+      </section>
+    );
+  }
+
+  return (
+    <section className="py-6 w-full overflow-hidden">
+      <div className="w-full max-w-[calc(100%-32px)] mx-auto bg-white rounded-2xl p-4">
           {/* Header */}
           <div className="flex flex-col md:flex-row justify-between items-center mb-8 px-2">
             <h2 className="text-xl md:text-2xl font-semibold text-gray-900">
@@ -96,7 +97,7 @@ export default function PremiumProduct() {
           {/* Horizontal Scrolling Runner */}
           <div className="relative">
             <div className="overflow-hidden">
-              <div className="animate-marquee">
+              <div className={styles.animateMarquee}>
                 {[...featuredProducts, ...featuredProducts].map((product, index) => (
                   <div 
                     key={`${product.id}-${index}`}
@@ -134,6 +135,5 @@ export default function PremiumProduct() {
           </div>
         </div>
       </section>
-    </>
   );
 }

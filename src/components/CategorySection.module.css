@@ -1,0 +1,14 @@
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-300px * 4 - 2rem * 3)); }
+}
+
+.animateMarquee {
+  animation: marquee 25s linear infinite;
+  display: flex;
+  width: max-content;
+}
+
+.animateMarquee:hover {
+  animation-play-state: paused;
+}
