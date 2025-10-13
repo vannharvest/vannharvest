@@ -65,10 +65,10 @@ export default function OurStory() {
   }
 
   const timelineData = [
-    { year: '2010', title: 'The Beginning', content: 'Our journey started with a single grape farm in the heart of India.', icon: <Sprout className="w-6 h-6 text-green-400" /> },
-    { year: '2015', title: 'First Harvest', content: 'Successfully harvested and processed our first batch of premium raisins.', icon: <Leaf className="w-6 h-6 text-green-400" /> },
+    { year: '2010', title: 'The Beginning', content: 'Our journey started with a single grape farm in the heart of  Vijayapura, Karnataka.', icon: <Sprout className="w-6 h-6 text-green-400" /> },
+    { year: '2015', title: 'First Harvest', content: 'Successfully harvested and processed 30 tons of premium raisins.', icon: <Leaf className="w-6 h-6 text-green-400" /> },
     { year: '2018', title: 'Expansion', content: 'Expanded our operations to include multiple farms across the region.', icon: <Tractor className="w-6 h-6 text-green-400" /> },
-    { year: '2020', title: 'National Reach', content: 'Started distributing our products nationwide through various channels.', icon: <Truck className="w-6 h-6 text-green-400" /> }
+    { year: '2020', title: 'National Reach', content: 'Started distributing our products nationwide and internationally through various channels.', icon: <Truck className="w-6 h-6 text-green-400" /> }
   ];
 
   return (
