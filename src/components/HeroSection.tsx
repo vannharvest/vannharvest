@@ -98,7 +98,7 @@ export default function Hero() {
         aria-atomic="true"
       >
         <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] font-bold leading-[1.1] text-white mb-4 md:mb-6 [text-shadow:_0_1px_2px_rgba(0,0,0,0.8)]">
-          Premium Raisin Exporters from Vijayapura – Trusted Since 1993
+          Premium Raisin Exporters from Vijayapura, Karnataka – Trusted Since 1993
         </h1>
         <p className="text-base sm:text-lg md:text-xl font-light text-white/95 leading-relaxed mb-8 md:mb-10 max-w-3xl [text-shadow:_0_1px_1px_rgba(0,0,0,0.5)]">
           Discover Vann Harvest Pvt. Ltd., a leading wholesale raisin supplier in India, 

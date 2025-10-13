@@ -83,7 +83,7 @@ export default function OurStorySection() {
 
             <motion.div variants={item} className="pt-4 flex flex-wrap gap-4 justify-center lg:justify-start">
               <Link 
-                href="/OurStory" 
+                href="/our-story" 
                 className="px-8 py-4 bg-green-600 hover:bg-green-700 text-white font-medium rounded-full flex items-center gap-2 transition-colors group"
               >
                 Discover Our Story

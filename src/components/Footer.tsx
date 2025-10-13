@@ -39,7 +39,7 @@ export default function Footer() {
             <ul className="space-y-3">
               <li><NavLink href="/">Home</NavLink></li>
               <li><NavLink href="/products">Products</NavLink></li>
-              <li><NavLink href="/OurStory">Our Story</NavLink></li>
+              <li><NavLink href="/our-story">Our Story</NavLink></li>
               <li><NavLink href="/blog">Blog</NavLink></li>
             </ul>
           </div>

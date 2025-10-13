@@ -10,7 +10,7 @@ type Timeout = ReturnType<typeof setTimeout>;
 
 const NAV_ITEMS = [
   { label: 'Home', href: '/' },
-  { label: 'Our Story', href: '/OurStory' },
+  { label: 'Our Story', href: '/our-story' },
   { label: 'Products', href: '/products' },
   {
     label: 'Infrastructure',
@@ -47,13 +47,11 @@ export default function Navbar() {
     const handleClickOutside = (e: MouseEvent) => {
       if (!mobileMenuRef.current?.contains(e.target as Node)) {
         setIsMenuOpen(false);
-        setIsDropdownOpen(false);
       }
     };
     const handleEsc = (e: KeyboardEvent) => {
       if (e.code === 'Escape') {
         setIsMenuOpen(false);
-        setIsDropdownOpen(false);
       }
     };
     document.addEventListener('mousedown', handleClickOutside);

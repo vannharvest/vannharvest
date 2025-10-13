@@ -4,7 +4,7 @@ export async function GET() {
   const robots = `
     User-agent: *
     Allow: /
-    Sitemap: ${process.env.NEXT_PUBLIC_SITE_URL || 'https://yourdomain.com'}/sitemap.xml
+    Sitemap: ${process.env.NEXT_PUBLIC_SITE_URL || 'https://vannharvest.com'}/sitemap.xml
   `;
 
   return new Response(robots.trim(), {
