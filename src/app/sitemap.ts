@@ -44,12 +44,6 @@ export default async function sitemap(): Promise<SitemapEntry[]> {
       lastModified,
       changeFrequency: 'daily',
       priority: 1.0,
-      alternates: {
-        languages: {
-          en: `${baseUrl}/en`,
-          hi: `${baseUrl}/hi`,
-        },
-      },
       images: [{
         ...logoImage,
         geoLocation: 'Pune, Maharashtra, India',
@@ -63,12 +57,6 @@ export default async function sitemap(): Promise<SitemapEntry[]> {
       lastModified,
       changeFrequency: 'daily',
       priority: 0.9,
-      alternates: {
-        languages: {
-          en: `${baseUrl}/en/products`,
-          hi: `${baseUrl}/hi/products`,
-        },
-      },
       images: [
         // Black Raisins
         {
@@ -194,12 +182,6 @@ export default async function sitemap(): Promise<SitemapEntry[]> {
       lastModified,
       changeFrequency: 'weekly',
       priority: 0.85,
-      alternates: {
-        languages: {
-          en: `${baseUrl}/en/our-story`,
-          hi: `${baseUrl}/hi/our-story`,
-        },
-      },
       images: [{
         url: `${baseUrl}/images/founder.webp`,
         title: 'Our Story - Vann Harvest',
@@ -214,12 +196,6 @@ export default async function sitemap(): Promise<SitemapEntry[]> {
       lastModified,
       changeFrequency: 'monthly',
       priority: 0.8,
-      alternates: {
-        languages: {
-          en: `${baseUrl}/en/infrastructure`,
-          hi: `${baseUrl}/hi/infrastructure`,
-        },
-      },
       images: [
         {
           url: `${baseUrl}/images/FarmBg.webp`,
@@ -242,12 +218,6 @@ export default async function sitemap(): Promise<SitemapEntry[]> {
       lastModified,
       changeFrequency: 'monthly',
       priority: 0.7,
-      alternates: {
-        languages: {
-          en: `${baseUrl}/en/certifications`,
-          hi: `${baseUrl}/hi/certifications`,
-        },
-      },
       images: [
         {
           url: `${baseUrl}/images/certification/APEDA.avif`,
@@ -276,12 +246,6 @@ export default async function sitemap(): Promise<SitemapEntry[]> {
       lastModified,
       changeFrequency: 'monthly',
       priority: 0.9,
-      alternates: {
-        languages: {
-          en: `${baseUrl}/en/contact`,
-          hi: `${baseUrl}/hi/contact`,
-        },
-      },
       images: [logoImage]
     },
     
@@ -291,12 +255,6 @@ export default async function sitemap(): Promise<SitemapEntry[]> {
       lastModified,
       changeFrequency: 'daily',
       priority: 0.8,
-      alternates: {
-        languages: {
-          en: `${baseUrl}/en/blog`,
-          hi: `${baseUrl}/hi/blog`,
-        },
-      },
       images: [
         {
           url: `${baseUrl}/images/blog/From%20Vine%20to%20Dried%20Delights.webp`,
@@ -343,12 +301,6 @@ export default async function sitemap(): Promise<SitemapEntry[]> {
       lastModified,
       changeFrequency: 'weekly',
       priority: 0.6,
-      alternates: {
-        languages: {
-          en: `${baseUrl}/en/gallery`,
-          hi: `${baseUrl}/hi/gallery`,
-        },
-      },
       images: [
         {
           url: `${baseUrl}/images/gallery/Farm.avif`,
@@ -387,12 +339,6 @@ export default async function sitemap(): Promise<SitemapEntry[]> {
       lastModified,
       changeFrequency: 'monthly',
       priority: 0.7,
-      alternates: {
-        languages: {
-          en: `${baseUrl}/en/sustainability`,
-          hi: `${baseUrl}/hi/sustainability`,
-        },
-      },
       images: [{
         url: `${baseUrl}/images/Greener_Tomorrow.webp`,
         title: 'Sustainability at Vann Harvest',
