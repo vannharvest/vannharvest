@@ -1,0 +1,4 @@
+Contact: mailto:security@vannharvest.com
+Preferred-Languages: en, hi
+Canonical: https://vannharvest.com/.well-known/security.txt
+Expires: 2025-12-31T23:59:59.000Z

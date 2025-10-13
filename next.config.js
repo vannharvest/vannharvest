@@ -24,13 +24,6 @@ const nextConfig = {
     // your project has ESLint errors.
     ignoreDuringBuilds: true,
   },
-  // Add Babel configuration for React Compiler
-  babel: {
-    presets: ['next/babel'],
-    plugins: [
-      ['babel-plugin-react-compiler'],
-    ],
-  },
 };
 
 export default nextConfig;

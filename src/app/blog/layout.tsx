@@ -49,7 +49,7 @@ export default function BlogLayout({
       'name': 'Vann Harvest',
       'logo': {
         '@type': 'ImageObject',
-        'url': `${siteConfig.url}/images/logo.png`,
+        'url': `${siteConfig.url}/images/logo/Vann-Harvest-Original-Logo.webp`,
       },
     },
     'mainEntityOfPage': {

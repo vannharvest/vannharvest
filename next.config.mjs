@@ -33,6 +33,7 @@ const nextConfig = {
     optimizePackageImports: ['framer-motion', 'react-icons', 'lucide-react'],
     scrollRestoration: true,
     optimizeServerReact: true,
+    bundlePagesRouterDependencies: true, // Enable bundle monitoring
   },
 
   typescript: { ignoreBuildErrors: false },
@@ -44,8 +45,11 @@ const nextConfig = {
     disableStaticImages: process.env.NODE_ENV === 'development',
     minimumCacheTTL: 60 * 60 * 24 * 7, // 1 week
     loader: 'default',
-    domains: ['img.youtube.com'],
     remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'img.youtube.com',
+      },
       // Other allowed domains from config
       ...(imageConfig.contentSecurityPolicy?.imgSrc || []).map(url => {
         try {

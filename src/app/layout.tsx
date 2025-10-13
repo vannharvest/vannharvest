@@ -8,6 +8,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { initializeWebVitals } from '@/lib/analytics';
 
 // Montserrat font with variable support
 const fontSans = Montserrat({
@@ -49,7 +50,7 @@ export const metadata = {
     ],
   },
   twitter: {
-    card: "summary_large_image",
+    card: 'summary_large_image',
     title: siteConfig.name,
     description: siteConfig.description,
     images: [ogImageUrl],
@@ -61,14 +62,13 @@ export const metadata = {
       index: true,
       follow: true,
       'max-video-preview': -1,
-      'max-image-preview': 'large' as const,
-      'max-snippet': -1,
+      maxImagePreview: 'large',
+      maxSnippet: -1,
     },
   },
   icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon-16x16.png",
-    apple: "/apple-touch-icon.png",
+    shortcut: '/favicon.ico',
+    apple: '/apple-touch-icon.png',
   },
   manifest: "/site.webmanifest",
 };
@@ -88,11 +88,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     "@type": "Organization",
     name: siteConfig.name,
     url: siteConfig.url,
-    logo: `${siteConfig.url}/images/logo.png`,
+    logo: `${siteConfig.url}/images/logo/Vann-Harvest-Original-Logo.webp`,
+    "foundingDate": "1993",
     sameAs: [
-      siteConfig.social.twitter,  // Fix: Changed from .links to .social
-      siteConfig.social.facebook,  // Fix: Changed from .links to .social
-      siteConfig.social.instagram,  // Fix: Changed from .links to .social
+      siteConfig.social.twitter,
+      siteConfig.social.facebook,
+      siteConfig.social.instagram,
       siteConfig.social.linkedin
     ],
     contactPoint: [
@@ -107,11 +108,26 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     ],
     address: {
       "@type": "PostalAddress",
-      streetAddress: siteConfig.contact.address,
-      addressCountry: "IN",
-      addressRegion: "Maharashtra",
-      postalCode: "411044",
+      "streetAddress": "Plot No 529, Ganga Nagar, Sector No. 28, Nigdi",
+      "addressLocality": "Pune",
+      "addressRegion": "Maharashtra",
+      "postalCode": "411044",
+      "addressCountry": "IN"
     },
+  };
+
+  // Breadcrumb structured data for navigation
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": siteConfig.url
+      }
+    ]
   };
 
   return (
@@ -134,12 +150,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* Preconnect & preload */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="preload" as="image" href="/images/logo.png" />
+        <link rel="preload" as="image" href="/images/logo/Vann-Harvest-Original-Logo.webp" />
 
         {/* Structured data */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
         />
       </head>
       <body

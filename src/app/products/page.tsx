@@ -8,6 +8,363 @@ import productsData from '../../../public/data/products.json';
 import Loading from './loading';
 import PageWrapper from '@/components/PageWrapper';
 
+// Products structured data for SEO
+const productsStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Vann Harvest Raisin Products",
+  "description": "Premium quality raisins including black, golden, and green varieties",
+  "itemListElement": [
+    // Black Raisins
+    {
+      "@type": "Product",
+      "name": "Black Round Seeded Raisins",
+      "description": "Naturally sun-dried black seeded raisins with rich flavor",
+      "brand": {
+        "@type": "Brand",
+        "name": "Vann Harvest"
+      },
+      "category": "Black Raisins",
+      "offers": {
+        "@type": "Offer",
+        "availability": "https://schema.org/InStock",
+        "priceCurrency": "INR",
+        "seller": {
+          "@type": "Organization",
+          "name": "Vann Harvest Pvt. Ltd."
+        }
+      }
+    },
+    {
+      "@type": "Product",
+      "name": "Black Round Seedless Raisins",
+      "description": "Premium seedless black raisins perfect for baking and snacking",
+      "brand": {
+        "@type": "Brand",
+        "name": "Vann Harvest"
+      },
+      "category": "Black Raisins",
+      "offers": {
+        "@type": "Offer",
+        "availability": "https://schema.org/InStock",
+        "priceCurrency": "INR",
+        "seller": {
+          "@type": "Organization",
+          "name": "Vann Harvest Pvt. Ltd."
+        }
+      }
+    },
+
+    // Golden Raisins
+    {
+      "@type": "Product",
+      "name": "Golden Round Raisins - Grade A",
+      "description": "Premium golden raisins with natural sweetness",
+      "brand": {
+        "@type": "Brand",
+        "name": "Vann Harvest"
+      },
+      "category": "Golden Raisins",
+      "offers": {
+        "@type": "Offer",
+        "availability": "https://schema.org/InStock",
+        "priceCurrency": "INR",
+        "seller": {
+          "@type": "Organization",
+          "name": "Vann Harvest Pvt. Ltd."
+        }
+      }
+    },
+    {
+      "@type": "Product",
+      "name": "Golden Round Raisins - Grade AA",
+      "description": "Superior quality golden raisins for gourmet use",
+      "brand": {
+        "@type": "Brand",
+        "name": "Vann Harvest"
+      },
+      "category": "Golden Raisins",
+      "offers": {
+        "@type": "Offer",
+        "availability": "https://schema.org/InStock",
+        "priceCurrency": "INR",
+        "seller": {
+          "@type": "Organization",
+          "name": "Vann Harvest Pvt. Ltd."
+        }
+      }
+    },
+    {
+      "@type": "Product",
+      "name": "Golden Round Raisins - Grade AAA",
+      "description": "Finest quality golden raisins, hand-selected",
+      "brand": {
+        "@type": "Brand",
+        "name": "Vann Harvest"
+      },
+      "category": "Golden Raisins",
+      "offers": {
+        "@type": "Offer",
+        "availability": "https://schema.org/InStock",
+        "priceCurrency": "INR",
+        "seller": {
+          "@type": "Organization",
+          "name": "Vann Harvest Pvt. Ltd."
+        }
+      }
+    },
+    {
+      "@type": "Product",
+      "name": "Golden Round Raisins - Premium",
+      "description": "Luxury golden raisins for discerning customers",
+      "brand": {
+        "@type": "Brand",
+        "name": "Vann Harvest"
+      },
+      "category": "Golden Raisins",
+      "offers": {
+        "@type": "Offer",
+        "availability": "https://schema.org/InStock",
+        "priceCurrency": "INR",
+        "seller": {
+          "@type": "Organization",
+          "name": "Vann Harvest Pvt. Ltd."
+        }
+      }
+    },
+    {
+      "@type": "Product",
+      "name": "Golden Long Raisins - Grade A",
+      "description": "Premium long golden raisins, perfect for confectionery",
+      "brand": {
+        "@type": "Brand",
+        "name": "Vann Harvest"
+      },
+      "category": "Golden Raisins",
+      "offers": {
+        "@type": "Offer",
+        "availability": "https://schema.org/InStock",
+        "priceCurrency": "INR",
+        "seller": {
+          "@type": "Organization",
+          "name": "Vann Harvest Pvt. Ltd."
+        }
+      }
+    },
+    {
+      "@type": "Product",
+      "name": "Golden Long Raisins - Grade AA",
+      "description": "Superior long golden raisins for professional bakers",
+      "brand": {
+        "@type": "Brand",
+        "name": "Vann Harvest"
+      },
+      "category": "Golden Raisins",
+      "offers": {
+        "@type": "Offer",
+        "availability": "https://schema.org/InStock",
+        "priceCurrency": "INR",
+        "seller": {
+          "@type": "Organization",
+          "name": "Vann Harvest Pvt. Ltd."
+        }
+      }
+    },
+    {
+      "@type": "Product",
+      "name": "Golden Long Raisins - Grade AAA",
+      "description": "Finest quality long golden raisins, extra large size",
+      "brand": {
+        "@type": "Brand",
+        "name": "Vann Harvest"
+      },
+      "category": "Golden Raisins",
+      "offers": {
+        "@type": "Offer",
+        "availability": "https://schema.org/InStock",
+        "priceCurrency": "INR",
+        "seller": {
+          "@type": "Organization",
+          "name": "Vann Harvest Pvt. Ltd."
+        }
+      }
+    },
+    {
+      "@type": "Product",
+      "name": "Golden Long Raisins - Premium",
+      "description": "Luxury long golden raisins, hand-selected premium quality",
+      "brand": {
+        "@type": "Brand",
+        "name": "Vann Harvest"
+      },
+      "category": "Golden Raisins",
+      "offers": {
+        "@type": "Offer",
+        "availability": "https://schema.org/InStock",
+        "priceCurrency": "INR",
+        "seller": {
+          "@type": "Organization",
+          "name": "Vann Harvest Pvt. Ltd."
+        }
+      }
+    },
+
+    // Green Raisins
+    {
+      "@type": "Product",
+      "name": "Green Round Raisins - Grade A",
+      "description": "Naturally sweet green raisins, perfect for healthy snacks",
+      "brand": {
+        "@type": "Brand",
+        "name": "Vann Harvest"
+      },
+      "category": "Green Raisins",
+      "offers": {
+        "@type": "Offer",
+        "availability": "https://schema.org/InStock",
+        "priceCurrency": "INR",
+        "seller": {
+          "@type": "Organization",
+          "name": "Vann Harvest Pvt. Ltd."
+        }
+      }
+    },
+    {
+      "@type": "Product",
+      "name": "Green Round Raisins - Grade AA",
+      "description": "Premium green raisins with superior taste and texture",
+      "brand": {
+        "@type": "Brand",
+        "name": "Vann Harvest"
+      },
+      "category": "Green Raisins",
+      "offers": {
+        "@type": "Offer",
+        "availability": "https://schema.org/InStock",
+        "priceCurrency": "INR",
+        "seller": {
+          "@type": "Organization",
+          "name": "Vann Harvest Pvt. Ltd."
+        }
+      }
+    },
+    {
+      "@type": "Product",
+      "name": "Green Round Raisins - Grade AAA",
+      "description": "Finest quality green raisins, carefully selected",
+      "brand": {
+        "@type": "Brand",
+        "name": "Vann Harvest"
+      },
+      "category": "Green Raisins",
+      "offers": {
+        "@type": "Offer",
+        "availability": "https://schema.org/InStock",
+        "priceCurrency": "INR",
+        "seller": {
+          "@type": "Organization",
+          "name": "Vann Harvest Pvt. Ltd."
+        }
+      }
+    },
+    {
+      "@type": "Product",
+      "name": "Green Round Raisins - Premium",
+      "description": "Luxury green raisins for gourmet culinary use",
+      "brand": {
+        "@type": "Brand",
+        "name": "Vann Harvest"
+      },
+      "category": "Green Raisins",
+      "offers": {
+        "@type": "Offer",
+        "availability": "https://schema.org/InStock",
+        "priceCurrency": "INR",
+        "seller": {
+          "@type": "Organization",
+          "name": "Vann Harvest Pvt. Ltd."
+        }
+      }
+    },
+    {
+      "@type": "Product",
+      "name": "Green Long Raisins - Grade A",
+      "description": "Premium long green raisins, naturally sweet",
+      "brand": {
+        "@type": "Brand",
+        "name": "Vann Harvest"
+      },
+      "category": "Green Raisins",
+      "offers": {
+        "@type": "Offer",
+        "availability": "https://schema.org/InStock",
+        "priceCurrency": "INR",
+        "seller": {
+          "@type": "Organization",
+          "name": "Vann Harvest Pvt. Ltd."
+        }
+      }
+    },
+    {
+      "@type": "Product",
+      "name": "Green Long Raisins - Grade AA",
+      "description": "Superior long green raisins for health-conscious consumers",
+      "brand": {
+        "@type": "Brand",
+        "name": "Vann Harvest"
+      },
+      "category": "Green Raisins",
+      "offers": {
+        "@type": "Offer",
+        "availability": "https://schema.org/InStock",
+        "priceCurrency": "INR",
+        "seller": {
+          "@type": "Organization",
+          "name": "Vann Harvest Pvt. Ltd."
+        }
+      }
+    },
+    {
+      "@type": "Product",
+      "name": "Green Long Raisins - Grade AAA",
+      "description": "Finest quality long green raisins, extra large size",
+      "brand": {
+        "@type": "Brand",
+        "name": "Vann Harvest"
+      },
+      "category": "Green Raisins",
+      "offers": {
+        "@type": "Offer",
+        "availability": "https://schema.org/InStock",
+        "priceCurrency": "INR",
+        "seller": {
+          "@type": "Organization",
+          "name": "Vann Harvest Pvt. Ltd."
+        }
+      }
+    },
+    {
+      "@type": "Product",
+      "name": "Green Long Raisins - Premium",
+      "description": "Luxury long green raisins, hand-selected premium quality",
+      "brand": {
+        "@type": "Brand",
+        "name": "Vann Harvest"
+      },
+      "category": "Green Raisins",
+      "offers": {
+        "@type": "Offer",
+        "availability": "https://schema.org/InStock",
+        "priceCurrency": "INR",
+        "seller": {
+          "@type": "Organization",
+          "name": "Vann Harvest Pvt. Ltd."
+        }
+      }
+    }
+  ]
+};
+
 interface Product {
   id: number | string;
   name: string;
@@ -199,6 +556,12 @@ function ProductsContent() {
           </section>
         </main>
       </div>
+
+      {/* Products structured data for SEO */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productsStructuredData) }}
+      />
     </PageWrapper>
   );
 }
