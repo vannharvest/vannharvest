@@ -55,6 +55,18 @@ const typeIcon: Record<LocationType, LucideIcon> = {
 
 const locations: Location[] = [
   {
+    "title": "Bhavani Agri Inputs Cold Storage",
+    "type": "office",
+    "desc": "Bhavani Agri Inputs Cold Storage, Colour Sorting & Grading Unit",
+    "address": [
+      "Plot No.47, KIADB Industrial Area",
+      "Opp. Society Cold Storage",
+      "VIJAYPURA - 586104",
+      "Karnataka, India"
+    ],
+    "map": "https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d4698.662827787985!2d75.74767687515275!3d16.84639548395146!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTbCsDUwJzQ3LjAiTiA3NcKwNDUnMDAuOSJF!5e1!3m2!1sen!2sin!4v1766147368159!5m2!1sen!2sin"
+  },
+  {
     title: 'Corporate Office',
     type: 'office',
     desc: 'Our headquarters and main business operations',
@@ -160,8 +172,8 @@ export default function ContactPage() {
               <div
                 key={index}
                 className={`flex justify-between items-center py-2 px-3 rounded-lg ${item.open
-                    ? 'bg-green-50 border border-green-200'
-                    : 'bg-white border border-gray-200'
+                  ? 'bg-green-50 border border-green-200'
+                  : 'bg-white border border-gray-200'
                   }`}
               >
                 <span className="text-sm font-medium text-gray-700">{item.day}</span>
