@@ -329,7 +329,7 @@ export default function GalleryPage() {
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
             >
-              <div className="relative aspect-[4/3] sm:aspect-square">
+              <div className="relative">
                 <Image
                   src={imageError[image.src] ? FALLBACK_IMAGE : image.src}
                   alt={image.alt}

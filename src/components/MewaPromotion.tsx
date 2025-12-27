@@ -64,7 +64,7 @@ const MewaPromotion: React.FC = () => {
             Vann Harvest at MEWA India 2026!
           </h2>
           <p className="text-lg sm:text-xl mb-6 opacity-90">
-            Join us at India's Largest Dry Fruits & Nuts Trade Show. Discover our premium selection and explore partnership opportunities.
+            If you’re looking to source the finest raisins for your business, visit us at Stall B45 and let’s talk business. And if you’re just passing by, drop in to say hello, we’d love to connect!
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4 mb-6">
             <div className="flex items-center text-lg">
