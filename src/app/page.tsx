@@ -3,6 +3,7 @@ import PromotionSection from "@/components/PromotionSection";
 import OurStorySection from "@/components/OurStorySection";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import CategorySection from "@/components/CategorySection";
+import MewaPromotion from "@/components/MewaPromotion";
 
 
 export default function Home() {
@@ -11,6 +12,7 @@ export default function Home() {
       {/* 🌟 Hero Section */}
       <HeroSection />
       {/* 🧺 Product Categories */}
+      <MewaPromotion />
       <CategorySection />
       {/* 🛒 Promotional Banner */}
       <PromotionSection
