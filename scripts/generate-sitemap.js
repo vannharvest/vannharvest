@@ -58,7 +58,7 @@ async function generateSitemap() {
 
   // Write sitemap to public directory
   writeFileSync(join(process.cwd(), 'public', 'sitemap.xml'), sitemap);
-  console.log('Sitemap generated successfully!');
+
 }
 
 generateSitemap().catch(console.error);

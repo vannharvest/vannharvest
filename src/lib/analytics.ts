@@ -3,9 +3,6 @@
 
 export function initializeWebVitals() {
   // Web Vitals monitoring will be set up in the main app file
-  if (typeof window !== 'undefined') {
-    console.log('Web Vitals monitoring initialized');
-  }
 }
 
 // Placeholder for future implementation

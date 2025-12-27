@@ -26,4 +26,4 @@ blogPosts.forEach(post => {
   );
 });
 
-console.log(`Generated ${blogPosts.length} blog post pages`);
+

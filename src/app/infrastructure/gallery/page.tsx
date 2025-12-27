@@ -19,17 +19,27 @@ interface GalleryImage {
 // Gallery images from public directory
 const imageUrls = {
   // Farm and Operations
-  farm: '/images/gallery/Farm.avif',
-  irrigation: '/images/gallery/Irrigation.avif',
-  processing: '/images/gallery/processing.avif',
-  drying: '/images/gallery/drying.avif',
-  quality: '/images/gallery/quality.avif',
+  farm: '/images/gallery/farm/Farm.avif',
+  irrigation: '/images/gallery/farm/Irrigation.avif',
+  drying: '/images/gallery/farm/drying.avif',
+  sustainability: '/images/gallery/farm/Sustainibility.avif',
   
   // Team
-  team: '/images/gallery/team.avif',
+  team: '/images/gallery/team/team.avif',
+
+  // Processing
+  processing: '/images/gallery/processing/processing.avif',
+  quality: '/images/gallery/processing/quality.avif',
   
   // Hero image
-  hero: '/images/gallery/Farm.avif'
+  hero: '/images/gallery/Farm.avif',
+
+  // Events
+  mewa_1: '/images/gallery/events/mewa_1.avif',
+  mewa_2: '/images/gallery/events/mewa_2.avif',
+  mewa_3: '/images/gallery/events/mewa_3.avif',
+  mewa_4: '/images/gallery/events/mewa_4.avif',
+  mewa_5: '/images/gallery/events/mewa_5.avif'
 };
 
 // Fallback image in case of loading errors
@@ -39,7 +49,7 @@ const galleryImages: GalleryImage[] = [
   // Farm and Operations
   {
     src: imageUrls.farm,
-    fallback: imageUrls.farm,
+    fallback: FALLBACK_IMAGE,
     alt: 'Our beautiful raisin farm landscape',
     width: 1600,
     height: 900,
@@ -47,45 +57,95 @@ const galleryImages: GalleryImage[] = [
   },
   {
     src: imageUrls.irrigation,
-    fallback: imageUrls.irrigation,
+    fallback: FALLBACK_IMAGE,
     alt: 'Efficient irrigation systems in our fields',
     width: 1600,
     height: 900,
     category: 'Farm'
   },
   {
-    src: imageUrls.processing,
-    fallback: imageUrls.processing,
-    alt: 'State-of-the-art processing facility',
-    width: 1600,
-    height: 900,
-    category: 'Processing'
-  },
-  {
     src: imageUrls.drying,
-    fallback: imageUrls.drying,
+    fallback: FALLBACK_IMAGE,
     alt: 'Natural drying process under the sun',
     width: 1600,
     height: 900,
-    category: 'Processing'
+    category: 'Farm'
   },
   {
-    src: imageUrls.quality,
-    fallback: imageUrls.quality,
-    alt: 'Stringent quality control measures',
+    src: imageUrls.sustainability,
+    fallback: FALLBACK_IMAGE,
+    alt: 'Sustainable farming practices',
     width: 1600,
     height: 900,
-    category: 'Quality'
+    category: 'Farm'
   },
   
   // Team
   {
     src: imageUrls.team,
-    fallback: imageUrls.team,
+    fallback: FALLBACK_IMAGE,
     alt: 'Our dedicated and skilled team',
     width: 1600,
     height: 900,
     category: 'Team'
+  },
+  // Processing & Quality
+  {
+    src: imageUrls.processing,
+    fallback: FALLBACK_IMAGE,
+    alt: 'Raisin processing and packaging',
+    width: 1600,
+    height: 900,
+    category: 'Processing & Quality'
+  },
+  {
+    src: imageUrls.quality,
+    fallback: FALLBACK_IMAGE,
+    alt: 'Quality control and inspection',
+    width: 1600,
+    height: 900,
+    category: 'Processing & Quality'
+  },
+  // Events & Exhibitions
+  {
+    src: imageUrls.mewa_1,
+    fallback: FALLBACK_IMAGE,
+    alt: 'Vann Harvest at MEWA Exhibition 1',
+    width: 1600,
+    height: 900,
+    category: 'Event & Exhibitions'
+  },
+  {
+    src: imageUrls.mewa_2,
+    fallback: FALLBACK_IMAGE,
+    alt: 'Vann Harvest at MEWA Exhibition 2',
+    width: 1600,
+    height: 900,
+    category: 'Event & Exhibitions'
+  },
+  {
+    src: imageUrls.mewa_3,
+    fallback: FALLBACK_IMAGE,
+    alt: 'Vann Harvest at MEWA Exhibition 3',
+    width: 1600,
+    height: 900,
+    category: 'Event & Exhibitions'
+  },
+  {
+    src: imageUrls.mewa_4,
+    fallback: FALLBACK_IMAGE,
+    alt: 'Vann Harvest at MEWA Exhibition 4',
+    width: 1600,
+    height: 900,
+    category: 'Event & Exhibitions'
+  },
+  {
+    src: imageUrls.mewa_5,
+    fallback: FALLBACK_IMAGE,
+    alt: 'Vann Harvest at MEWA Exhibition 5',
+    width: 1600,
+    height: 900,
+    category: 'Event & Exhibitions'
   }
 ];
 
