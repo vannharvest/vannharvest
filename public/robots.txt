@@ -6,6 +6,9 @@ Disallow: /_next/static/
 Disallow: /_next/image/
 Disallow: /_next/data/
 Disallow: /private/
+# Allow search and filter queries for better indexing of product variations
+Allow: /*?search=
+Allow: /*?category=
 Disallow: /*?*
 
 # Sitemaps

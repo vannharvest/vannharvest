@@ -297,7 +297,7 @@ export default async function sitemap(): Promise<SitemapEntry[]> {
     
     // Gallery - Medium priority
     {
-      url: `${baseUrl}/gallery`,
+      url: `${baseUrl}/infrastructure/gallery`,
       lastModified,
       changeFrequency: 'weekly',
       priority: 0.6,

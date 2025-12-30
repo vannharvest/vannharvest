@@ -86,27 +86,19 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: siteConfig.name,
-    url: siteConfig.url,
-    logo: `${siteConfig.url}/images/logo/Vann-Harvest-Original-Logo.webp`,
+    "@id": `${siteConfig.url}/#organization`,
+    "name": siteConfig.name,
+    "url": siteConfig.url,
+    "logo": {
+      "@type": "ImageObject",
+      "url": `${siteConfig.url}/images/logo/Vann-Harvest-Original-Logo.webp`,
+      "width": 600,
+      "height": 600
+    },
+    "image": `${siteConfig.url}/images/logo/Vann-Harvest-Original-Logo.webp`,
+    "description": siteConfig.description,
     "foundingDate": "1993",
-    sameAs: [
-      siteConfig.social.twitter,
-      siteConfig.social.facebook,
-      siteConfig.social.instagram,
-      siteConfig.social.linkedin
-    ],
-    contactPoint: [
-      {
-        "@type": "ContactPoint",
-        telephone: siteConfig.contact.phone,
-        contactType: "customer service",
-        email: siteConfig.contact.email,
-        areaServed: "IN",
-        availableLanguage: ["English", "Hindi"],
-      },
-    ],
-    address: {
+    "address": {
       "@type": "PostalAddress",
       "streetAddress": "Plot No 529, Ganga Nagar, Sector No. 28, Nigdi",
       "addressLocality": "Pune",
@@ -114,6 +106,88 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       "postalCode": "411044",
       "addressCountry": "IN"
     },
+    "contactPoint": [
+      {
+        "@type": "ContactPoint",
+        "telephone": siteConfig.contact.phone,
+        "contactType": "customer service",
+        "email": siteConfig.contact.email,
+        "areaServed": "Worldwide",
+        "availableLanguage": ["English", "Hindi"]
+      }
+    ],
+    "sameAs": [
+      siteConfig.links.twitter,
+      siteConfig.links.facebook,
+      siteConfig.links.instagram,
+      siteConfig.links.linkedin
+    ]
+  };
+
+  // WebSite structured data with SearchAction for Sitelinks Searchbox
+  const websiteLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": `${siteConfig.url}/#website`,
+    "url": siteConfig.url,
+    "name": siteConfig.name,
+    "description": siteConfig.description,
+    "publisher": {
+      "@id": `${siteConfig.url}/#organization`
+    },
+    "potentialAction": [{
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": `${siteConfig.url}/products?search={search_term_string}`
+      },
+      "query-input": "required name=search_term_string"
+    }]
+  };
+
+  // SiteNavigationElement for better sitelinks discovery
+  const navigationLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Main Navigation",
+    "itemListElement": [
+      {
+        "@type": "SiteNavigationElement",
+        "position": 1,
+        "name": "Home",
+        "url": siteConfig.url
+      },
+      {
+        "@type": "SiteNavigationElement",
+        "position": 2,
+        "name": "Our Products",
+        "url": `${siteConfig.url}/products`
+      },
+      {
+        "@type": "SiteNavigationElement",
+        "position": 3,
+        "name": "Our Story",
+        "url": `${siteConfig.url}/our-story`
+      },
+      {
+        "@type": "SiteNavigationElement",
+        "position": 4,
+        "name": "Infrastructure",
+        "url": `${siteConfig.url}/infrastructure`
+      },
+      {
+        "@type": "SiteNavigationElement",
+        "position": 5,
+        "name": "Sustainability",
+        "url": `${siteConfig.url}/infrastructure/sustainability`
+      },
+      {
+        "@type": "SiteNavigationElement",
+        "position": 6,
+        "name": "Contact Us",
+        "url": `${siteConfig.url}/contact`
+      }
+    ]
   };
 
   // Breadcrumb structured data for navigation
@@ -126,6 +200,62 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         "position": 1,
         "name": "Home",
         "item": siteConfig.url
+      }
+    ]
+  };
+
+  // Site navigation structured data
+  const navLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "itemListElement": [
+      {
+        "@type": "SiteNavigationElement",
+        "position": 1,
+        "name": "Home",
+        "url": siteConfig.url
+      },
+      {
+        "@type": "SiteNavigationElement",
+        "position": 2,
+        "name": "Products",
+        "url": `${siteConfig.url}/products`
+      },
+      {
+        "@type": "SiteNavigationElement",
+        "position": 3,
+        "name": "About Us",
+        "url": `${siteConfig.url}/about`
+      },
+      {
+        "@type": "SiteNavigationElement",
+        "position": 4,
+        "name": "Certifications",
+        "url": `${siteConfig.url}/infrastructure/certifications`
+      },
+      {
+        "@type": "SiteNavigationElement",
+        "position": 5,
+        "name": "Sustainability",
+        "url": `${siteConfig.url}/infrastructure/sustainability`
+      },
+      {
+        "@type": "SiteNavigationElement",
+        "position": 6,
+        "name": "Gallery",
+        "url": `${siteConfig.url}/infrastructure/gallery`
+      },
+      {
+        "@type": "SiteNavigationElement",
+        "position": 7,
+        "name": "Blog",
+        "url": `${siteConfig.url}/blog`
+      },
+      {
+        "@type": "SiteNavigationElement",
+        "position": 8,
+        "name": "Contact Us",
+        "url": `${siteConfig.url}/contact`
       }
     ]
   };
@@ -159,7 +289,19 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
         <script
           type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(navigationLd) }}
+        />
+        <script
+          type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(navLd) }}
         />
       </head>
       <body
