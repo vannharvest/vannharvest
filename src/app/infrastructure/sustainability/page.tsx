@@ -21,7 +21,7 @@ export default function Sustainability() {
         <div className="absolute inset-0 z-0">
           <div className="w-full h-full relative">
             <Image 
-              src="/images/gallery/Sustainibility.avif" 
+              src="/images/gallery/farm/Sustainibility.avif" 
               alt="Sustainable Farming at Vann Harvest" 
               fill
               priority
