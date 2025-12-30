@@ -17,7 +17,7 @@ export default function CertificationsPage() {
       <div className="relative h-[calc(100vh-10rem)] w-full max-w-[calc(100%-32px)] mx-auto rounded-2xl overflow-hidden mt-32">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/gallery/team.avif"
+            src="/images/gallery/team/team.avif"
             alt="Certifications at Vann Harvest"
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1400px"

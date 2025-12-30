@@ -324,7 +324,7 @@ export default async function sitemap(): Promise<SitemapEntry[]> {
           license: `${baseUrl}/terms`
         },
         {
-          url: `${baseUrl}/images/gallery/team.avif`,
+          url: `${baseUrl}/images/gallery/team/team.avif`,
           title: 'Our Team',
           caption: 'Dedicated team ensuring quality at every step',
           geoLocation: 'Pune, India',
