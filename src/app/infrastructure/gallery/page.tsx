@@ -119,7 +119,7 @@ const galleryImages: GalleryImage[] = [
   {
     src: imageUrls.mewa_1,
     fallback: FALLBACK_IMAGE,
-    alt: 'Vann Harvest team at MEWA India 2025 booth',
+    alt: 'Close-up of Vann Harvest products at MEWA India 2025',
     width: 1600,
     height: 900,
     category: 'Event & Exhibitions'
@@ -135,7 +135,7 @@ const galleryImages: GalleryImage[] = [
   {   
     src: imageUrls.mewa_3,
     fallback: FALLBACK_IMAGE,
-    alt: 'Visitors engaging with Vann Harvest at MEWA India 2025',
+    alt: 'Vann Harvest booth and team at MEWA India 2025',
     width: 1600,
     height: 900,
     category: 'Event & Exhibitions'
@@ -143,7 +143,7 @@ const galleryImages: GalleryImage[] = [
   {
     src: imageUrls.mewa_4,
     fallback: FALLBACK_IMAGE,
-    alt: 'Vann Harvest representatives networking at MEWA India 2025',
+    alt: 'Vann Harvest Founders networking at MEWA India 2025',
     width: 1600,
     height: 900,
     category: 'Event & Exhibitions'
@@ -151,7 +151,7 @@ const galleryImages: GalleryImage[] = [
   {
     src: imageUrls.mewa_5,
     fallback: FALLBACK_IMAGE,
-    alt: 'Close-up of Vann Harvest products at MEWA India 2025',
+    alt: 'Vann Harvest at MEWA India 2025',
     width: 1600,
     height: 900,
     category: 'Event & Exhibitions'
