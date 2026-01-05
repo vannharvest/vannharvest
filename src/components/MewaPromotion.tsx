@@ -82,7 +82,7 @@ const MewaPromotion: React.FC = () => {
             rel="noopener noreferrer"
             className="inline-flex items-center px-8 py-3 border border-transparent text-base font-medium rounded-full shadow-lg text-orange-700 bg-white hover:bg-gray-100 transition-colors duration-300 transform hover:scale-105"
           >
-            Learn More
+            Learn more about MEWA India 2026
             <ArrowRight className="ml-2 h-5 w-5" />
           </Link>
         </div>

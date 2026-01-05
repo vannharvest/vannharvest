@@ -20,15 +20,6 @@ export default function ResourceHints() {
         type="image/webp"
       />
       
-      {/* Preload critical fonts */}
-      <link
-        rel="preload"
-        href="/fonts/montserrat-v25-latin-regular.woff2"
-        as="font"
-        type="font/woff2"
-        crossOrigin="anonymous"
-      />
-      
       {/* Prefetch important pages */}
       <link rel="prefetch" href="/products" />
       <link rel="prefetch" href="/about" />

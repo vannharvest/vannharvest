@@ -145,7 +145,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     }]
   };
 
-  // SiteNavigationElement for better sitelinks discovery
+  // Site navigation structured data for better sitelinks discovery
   const navigationLd = {
     "@context": "https://schema.org",
     "@type": "ItemList",
@@ -168,64 +168,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         "position": 3,
         "name": "Our Story",
         "url": `${siteConfig.url}/our-story`
-      },
-      {
-        "@type": "SiteNavigationElement",
-        "position": 4,
-        "name": "Infrastructure",
-        "url": `${siteConfig.url}/infrastructure`
-      },
-      {
-        "@type": "SiteNavigationElement",
-        "position": 5,
-        "name": "Sustainability",
-        "url": `${siteConfig.url}/infrastructure/sustainability`
-      },
-      {
-        "@type": "SiteNavigationElement",
-        "position": 6,
-        "name": "Contact Us",
-        "url": `${siteConfig.url}/contact`
-      }
-    ]
-  };
-
-  // Breadcrumb structured data for navigation
-  const breadcrumbLd = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Home",
-        "item": siteConfig.url
-      }
-    ]
-  };
-
-  // Site navigation structured data
-  const navLd = {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    "itemListElement": [
-      {
-        "@type": "SiteNavigationElement",
-        "position": 1,
-        "name": "Home",
-        "url": siteConfig.url
-      },
-      {
-        "@type": "SiteNavigationElement",
-        "position": 2,
-        "name": "Products",
-        "url": `${siteConfig.url}/products`
-      },
-      {
-        "@type": "SiteNavigationElement",
-        "position": 3,
-        "name": "About Us",
-        "url": `${siteConfig.url}/about`
       },
       {
         "@type": "SiteNavigationElement",
@@ -256,6 +198,20 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         "position": 8,
         "name": "Contact Us",
         "url": `${siteConfig.url}/contact`
+      }
+    ]
+  };
+
+  // Breadcrumb structured data for navigation
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": siteConfig.url
       }
     ]
   };
@@ -298,10 +254,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(navLd) }}
         />
       </head>
       <body
