@@ -3,112 +3,112 @@
     {
       "id": 1,
       "name": "Golden long A",
-      "image": "/images/products/verticle-img/Golden long A.avif",
+      "image": "/images/products/verticle-img/golden-long-a-raisins.avif",
       "category": "golden-long",
       "inStock": true
     },
     {
       "id": 2,
       "name": "Golden long AA",
-      "image": "/images/products/verticle-img/Golden Long AA.avif",
+      "image": "/images/products/verticle-img/golden-long-aa-raisins.avif",
       "category": "golden-long",
       "inStock": true
     },
     {
       "id": 3,
       "name": "Golden long AAA",
-      "image": "/images/products/verticle-img/Golden Long AAA.avif",
+      "image": "/images/products/verticle-img/golden-long-aaa-raisins.avif",
       "category": "golden-long",
       "inStock": true
     },
     {
       "id": 4,
       "name": "Golden long Premium",
-      "image": "/images/products/verticle-img/Golden Long Premium.avif",
+      "image": "/images/products/verticle-img/golden-long-premium-raisins.avif",
       "category": "golden-long",
       "inStock": true
     },
     {
       "id": 5,
       "name": "Golden Round A",
-      "image": "/images/products/verticle-img/Golden Round A.avif",
+      "image": "/images/products/verticle-img/golden-round-a-raisins.avif",
       "category": "golden-round",
       "inStock": true
     },
     {
       "id": 6,
       "name": "Golden Round AA",
-      "image": "/images/products/verticle-img/Golden Round AA.avif",
+      "image": "/images/products/verticle-img/golden-round-aa-raisins.avif",
       "category": "golden-round",
       "inStock": true
     },
     {
       "id": 7,
       "name": "Golden Round AAA",
-      "image": "/images/products/verticle-img/Golden Round AAA.avif",
+      "image": "/images/products/verticle-img/golden-round-aaa-raisins.avif",
       "category": "golden-round",
       "inStock": true
     },
     {
       "id": 8,
       "name": "Golden Round Premium",
-      "image": "/images/products/verticle-img/Golden Round Premium.avif",
+      "image": "/images/products/verticle-img/golden-round-premium-raisins.avif",
       "category": "golden-round",
       "inStock": true
     },
     {
       "id": 9,
       "name": "Green long A",
-      "image": "/images/products/verticle-img/Green Long A.avif",
+      "image": "/images/products/verticle-img/green-long-a-raisins.avif",
       "category": "green-long",
       "inStock": true
     },
     {
       "id": 10,
       "name": "Green long AA",
-      "image": "/images/products/verticle-img/Green Long AA.avif",
+      "image": "/images/products/verticle-img/green-long-aa-raisins.avif",
       "category": "green-long",
       "inStock": true
     },
     {
       "id": 11,
       "name": "Green long AAA",
-      "image": "/images/products/verticle-img/Green Long AAA.avif",
+      "image": "/images/products/verticle-img/green-long-aaa-raisins.avif",
       "category": "green-long",
       "inStock": true
     },
     {
       "id": 12,
       "name": "Green long Premium",
-      "image": "/images/products/verticle-img/Green Long Premium.avif",
+      "image": "/images/products/verticle-img/green-long-premium-raisins.avif",
       "category": "green-long",
       "inStock": true
     },
     {
       "id": 13,
       "name": "Green Round A",
-      "image": "/images/products/verticle-img/Green Round A.avif",
+      "image": "/images/products/verticle-img/green-round-a-raisins.avif",
       "category": "green-round",
       "inStock": true
     },
     {
       "id": 14,
       "name": "Green Round AA",
-      "image": "/images/products/verticle-img/Green Round AA.avif",
+      "image": "/images/products/verticle-img/green-round-aa-raisins.avif",
       "category": "green-round",
       "inStock": true
     },
     {
       "id": 15,
       "name": "Green Round AAA",
-      "image": "/images/products/verticle-img/Green Round AAA.avif",
+      "image": "/images/products/verticle-img/green-round-aaa-raisins.avif",
       "category": "green-round",
       "inStock": true
     },
     {
       "id": 16,
       "name": "Green Round Premium",
-      "image": "/images/products/verticle-img/Green Round Premium.avif",
+      "image": "/images/products/verticle-img/green-round-premium-raisins.avif",
       "category": "green-round",
       "inStock": true
     }
@@ -117,14 +117,14 @@
     {
       "id": 101,
       "name": "Black Seeded",
-      "image": "/images/products/verticle-img/Black-Round-Seeded.avif",
+      "image": "/images/products/verticle-img/black-round-seeded-raisins.avif",
       "category": "black",
       "inStock": true
     },
     {
       "id": 201,
       "name": "Black Seedless",
-      "image": "/images/products/verticle-img/Black-Round-Seedless.avif",
+      "image": "/images/products/verticle-img/black-round-seedless-raisins.avif",
       "category": "black",
       "inStock": true
     }

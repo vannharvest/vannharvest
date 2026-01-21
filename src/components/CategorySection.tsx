@@ -15,42 +15,42 @@ export default function PremiumProduct() {
     {
       id: 'gold-long',
       name: 'Gold Long',
-      image: '/images/products/top-img/Golden-Long.avif',
+      image: '/images/products/top-img/golden-long-raisins.avif',
       category: 'golden-long',
       inStock: true
     },
     {
       id: 'gold-round',
       name: 'Gold Round',
-      image: '/images/products/top-img/Golden-Round.avif',
+      image: '/images/products/top-img/golden-round-raisins.avif',
       category: 'golden-round',
       inStock: true
     },
     {
       id: 'green-long',
       name: 'Green Long',
-      image: '/images/products/top-img/Green-Long.avif',
+      image: '/images/products/top-img/green-long-raisins.avif',
       category: 'green-long',
       inStock: true
     },
       {
       id: 'green-round',
       name: 'Green Round',
-      image: '/images/products/top-img/Green-Round.avif',
+      image: '/images/products/top-img/green-round-raisins.avif',
       category: 'green-round',
       inStock: true
     },
     {
       id: 'black-round-seedless',
       name: 'Black Round Seedless',
-      image: '/images/products/top-img/Black-Round-Seedless.avif',
+      image: '/images/products/top-img/black-round-seedless-raisins.avif',
       category: 'black',
       inStock: true
     },
     {
       id: 'black-round-seeded',
       name: 'Black Round Seeded',
-      image: '/images/products/top-img/Black-Round-Seeded.avif',
+      image: '/images/products/top-img/black-round-seeded-raisins.avif',
       category: 'black',
       inStock: true
     }

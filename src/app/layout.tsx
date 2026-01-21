@@ -8,7 +8,6 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { initializeWebVitals } from '@/lib/analytics';
 
 // Montserrat font with variable support
 const fontSans = Montserrat({
@@ -91,11 +90,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     "url": siteConfig.url,
     "logo": {
       "@type": "ImageObject",
-      "url": `${siteConfig.url}/images/logo/Vann-Harvest-Original-Logo.webp`,
+      "url": `${siteConfig.url}/images/logo/vann-harvest-official-logo.webp`,
       "width": 600,
       "height": 600
     },
-    "image": `${siteConfig.url}/images/logo/Vann-Harvest-Original-Logo.webp`,
+    "image": `${siteConfig.url}/images/logo/vann-harvest-official-logo.webp`,
     "description": siteConfig.description,
     "foundingDate": "1993",
     "address": {
@@ -236,7 +235,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* Preconnect & preload */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="preload" as="image" href="/images/logo/Vann-Harvest-Original-Logo.webp" />
+        <link rel="preload" as="image" href="/images/logo/vann-harvest-official-logo.webp" />
 
         {/* Structured data */}
         <script

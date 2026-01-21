@@ -69,7 +69,7 @@ export default function BlogPostContent({ post }: BlogPostContentProps) {
           <div className="relative w-full aspect-video mb-8 rounded-lg overflow-hidden bg-gray-100">
             <Image
               src={post.image}
-              alt={post.title}
+              alt={post.imageAlt}
               fill
               className="object-cover"
               priority

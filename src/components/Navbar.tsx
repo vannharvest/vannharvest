@@ -69,8 +69,8 @@ export default function Navbar() {
         <div className="flex-1 lg:flex-none">
           <Link href="/" className="relative h-16 w-40 block">
             <Image
-              src="/images/logo/Vann-Harvest-Original-Logo.webp"
-              alt="Vann Harvest Logo"
+              src="/images/logo/vann-harvest-official-logo.webp"
+              alt="Vann Harvest - Premium Quality Raisins Exporter Official Logo"
               fill
               className="object-contain object-left"
               priority

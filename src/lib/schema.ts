@@ -23,7 +23,7 @@ export const generateOrganizationSchema = () => {
     '@type': 'Organization',
     name: siteConfig.name,
     url: siteConfig.url,
-    logo: `${siteConfig.url}/images/logo/Vann-Harvest-Original-Logo.webp`,
+    logo: `${siteConfig.url}/images/logo/vann-harvest-official-logo.webp`,
     sameAs: [
       siteConfig.links.twitter,
       siteConfig.links.facebook,
@@ -93,7 +93,7 @@ export const generateBlogPostSchema = (post: BlogPost) => {
       name: siteConfig.name,
       logo: {
         '@type': 'ImageObject',
-        url: `${siteConfig.url}/images/logo/Vann-Harvest-Original-Logo.webp`,
+        url: `${siteConfig.url}/images/logo/vann-harvest-official-logo.webp`,
       },
     },
   };

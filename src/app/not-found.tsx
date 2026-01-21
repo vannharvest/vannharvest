@@ -30,8 +30,8 @@ export default function NotFound() {
             Oops! Page Not Found
           </h2>
           <p className="text-lg text-gray-600 leading-relaxed">
-            The page you're looking for seems to have wandered off to the vineyard.
-            Don't worry, our premium raisins are still here and waiting for you!
+            The page you&apos;re looking for seems to have wandered off to the vineyard.
+            Don&apos;t worry, our premium raisins are still here and waiting for you!
           </p>
         </motion.div>
 
@@ -99,7 +99,7 @@ export default function NotFound() {
             <span className="font-semibold">Need Help?</span>
           </div>
           <p className="text-green-100 mb-3">
-            Can't find what you're looking for? Our team is here to help!
+            Can&apos;t find what you&apos;re looking for? Our team is here to help!
           </p>
           <Link
             href="/contact"

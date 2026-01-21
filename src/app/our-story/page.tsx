@@ -4,7 +4,7 @@ import { useRef, useState, useEffect } from 'react';
 import { motion, useMotionValue, useTransform } from 'framer-motion';
 import Image from 'next/image';
 import PageWrapper from '@/components/PageWrapper';
-import { Leaf, Sprout, Tractor, Truck, Store, Globe } from 'lucide-react';
+import { Leaf, Sprout, Tractor, Truck } from 'lucide-react';
 
 export default function OurStory() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -18,7 +18,7 @@ export default function OurStory() {
   const bgY = useTransform(scrollY, [0, 1000], [0, 100]);
 
   const [isLoading, setIsLoading] = useState(true);
-  const bgImageSrc = '/images/FarmBg.webp';
+  const bgImageSrc = '/images/vann-harvest-grape-farm-background.webp';
 
   useEffect(() => {
     setIsClient(true);
@@ -236,8 +236,8 @@ export default function OurStory() {
               transition={{ duration: 1 }}
             >
               <Image 
-                src="/images/founder.webp" 
-                alt="Vann Harvest Founder" 
+                src="/images/vann-harvest-founder-vineyard.webp" 
+                alt="Vann Harvest Founder in the Vineyard" 
                 fill 
                 className="object-cover"
                 priority

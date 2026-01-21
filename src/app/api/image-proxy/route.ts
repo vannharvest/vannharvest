@@ -1,17 +1,6 @@
 import { NextResponse } from 'next/server';
 import { imageConfig } from './image-config';
 
-interface ImageConfig {
-  contentSecurityPolicy: {
-    imgSrc: string[];
-  };
-  domains: string[];
-  formats: string[];
-  defaultQuality: number;
-  defaultSizes: Array<{ width: number; maxWidth?: number }>;
-  placeholderImage: string;
-}
-
 export const dynamic = 'force-dynamic';
 
 export async function GET(request: Request) {

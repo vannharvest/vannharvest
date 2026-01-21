@@ -20,7 +20,7 @@ export function BlogClientPage() {
         <div className="absolute inset-0 z-0">
           <Image
             src={blogImages.hero}
-            alt="Blog Hero"
+            alt="Vann Harvest Blog - Insights on Premium Raisins, Sustainable Farming and Health"
             fill
             className="object-cover"
             priority
@@ -63,7 +63,7 @@ export function BlogClientPage() {
               <div className="relative aspect-[4/3] w-full bg-gray-100">
                 <Image
                   src={post.image}
-                  alt={post.title}
+                  alt={post.imageAlt}
                   fill
                   className="object-cover"
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"

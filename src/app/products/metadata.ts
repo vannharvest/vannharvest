@@ -16,10 +16,10 @@ export async function generateMetadata({
   // Define category-specific metadata
   // Map categories to their respective product images
   const productImages = {
-    'black-raisins': '/images/products/Black Long_1.webp',
-    'golden-raisins': '/images/products/Golden long Premium.webp',
-    'green-raisins': '/images/products/Green long Premium.webp',
-    'all': '/images/logo/Vann-Harvest-Original-Logo.webp'
+    'black-raisins': '/images/products/verticle-img/black-round-seeded-raisins.avif',
+    'golden-raisins': '/images/products/verticle-img/golden-long-premium-raisins.avif',
+    'green-raisins': '/images/products/verticle-img/green-long-premium-raisins.avif',
+    'all': '/images/logo/vann-harvest-official-logo.webp'
   };
 
   const categoryMeta = {

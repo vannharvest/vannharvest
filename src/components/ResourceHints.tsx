@@ -13,12 +13,18 @@ export default function ResourceHints() {
       <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
       
       {/* Preload critical assets */}
-      <link 
+      {/* 
+        Note: The logo is used in Navbar (LCP candidate), but Next.js Image component handles
+        loading optimization automatically. Explicit preload can cause double-download warnings
+        if not matched perfectly with how Next.js requests the image.
+        Disabling explicit preload to let Next.js optimize it.
+      */}
+      {/* <link 
         rel="preload" 
-        href="/images/logo/Vann-Harvest-Original-Logo.webp" 
+        href="/images/logo/vann-harvest-official-logo.webp" 
         as="image" 
         type="image/webp"
-      />
+      /> */}
       
       {/* Prefetch important pages */}
       <link rel="prefetch" href="/products" />

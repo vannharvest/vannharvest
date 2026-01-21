@@ -20,8 +20,8 @@ export default function Home() {
         subheading="Discover the pure, natural goodness of our sun-drenched raisins, grown with care and tradition."
         buttonText="Explore Bulk Orders"
         buttonLink="/products"
-        imageSrc="/images/promotional/grapes_promo_2.webp"
-        imageAlt="Fresh organic grapes from our farm"
+        imageSrc="/images/promotional/premium-green-grapes-harvest.webp"
+        imageAlt="Vann Harvest premium green grapes ready for drying"
       />
       {/* 📖 Brand Story */}
       <OurStorySection />

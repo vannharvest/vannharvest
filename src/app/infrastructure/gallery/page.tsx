@@ -19,39 +19,39 @@ interface GalleryImage {
 // Gallery images from public directory
 const imageUrls = {
   // Farm and Operations
-  farm: '/images/gallery/farm/Farm.avif',
-  irrigation: '/images/gallery/farm/Irrigation.avif',
-  drying: '/images/gallery/farm/drying.avif',
-  sustainability: '/images/gallery/farm/Sustainibility.avif',
+  farm: '/images/gallery/farm/vann-harvest-farm-landscape.avif',
+  irrigation: '/images/gallery/farm/farm-irrigation-system.avif',
+  drying: '/images/gallery/farm/raisin-drying-process.avif',
+  sustainability: '/images/gallery/farm/sustainable-farming-practices.avif',
   
   // Team
-  team: '/images/gallery/team/team.avif',
+  team: '/images/gallery/team/vann-harvest-team-members.avif',
 
   // Processing
-  processing: '/images/gallery/processing/processing.avif',
-  quality: '/images/gallery/processing/quality.avif',
+  processing: '/images/gallery/processing/vann-harvest-raisin-processing-plant.avif',
+  quality: '/images/gallery/processing/vann-harvest-raisin-quality-control.avif',
   
   // Hero image
-  hero: '/images/gallery/Farm.avif',
+  hero: '/images/gallery/farm/vann-harvest-farm-landscape.avif',
 
   // Events
-  mewa: '/images/gallery/events/mewa.avif',
-  mewa_1: '/images/gallery/events/mewa_1.avif',
-  mewa_2: '/images/gallery/events/mewa_2.avif',
-  mewa_3: '/images/gallery/events/mewa_3.avif',
-  mewa_4: '/images/gallery/events/mewa_4.avif',
-  mewa_5: '/images/gallery/events/mewa_5.avif'
+  mewa: '/images/gallery/events/mewa-india-2026-event-banner.avif',
+  mewa_1: '/images/gallery/events/mewa-india-2026-booth-overview.avif',
+  mewa_2: '/images/gallery/events/mewa-india-2026-team-interaction.avif',
+  mewa_3: '/images/gallery/events/mewa-india-2026-product-display.avif',
+  mewa_4: '/images/gallery/events/mewa-india-2026-networking-founders.avif',
+  mewa_5: '/images/gallery/events/mewa-india-2026-vann-harvest-products.avif'
 };
 
 // Fallback image in case of loading errors
-const FALLBACK_IMAGE = '/images/gallery/Farm.avif';
+const FALLBACK_IMAGE = '/images/gallery/farm/vann-harvest-farm-landscape.avif';
 
 const galleryImages: GalleryImage[] = [
   // Farm and Operations
   {
     src: imageUrls.farm,
     fallback: FALLBACK_IMAGE,
-    alt: 'Our beautiful raisin farm landscape',
+    alt: 'Vann Harvest farm landscape',
     width: 1600,
     height: 900,
     category: 'Farm'
@@ -59,7 +59,7 @@ const galleryImages: GalleryImage[] = [
   {
     src: imageUrls.irrigation,
     fallback: FALLBACK_IMAGE,
-    alt: 'Efficient irrigation systems in our fields',
+    alt: 'Efficient farm irrigation system',
     width: 1600,
     height: 900,
     category: 'Farm'
@@ -67,7 +67,7 @@ const galleryImages: GalleryImage[] = [
   {
     src: imageUrls.drying,
     fallback: FALLBACK_IMAGE,
-    alt: 'Natural drying process under the sun',
+    alt: 'Natural raisin drying process under the sun',
     width: 1600,
     height: 900,
     category: 'Farm'
@@ -75,7 +75,7 @@ const galleryImages: GalleryImage[] = [
   {
     src: imageUrls.sustainability,
     fallback: FALLBACK_IMAGE,
-    alt: 'Sustainable farming practices',
+    alt: 'Eco-friendly and sustainable farming practices for organic raisin production',
     width: 1600,
     height: 900,
     category: 'Farm'
@@ -85,7 +85,7 @@ const galleryImages: GalleryImage[] = [
   {
     src: imageUrls.team,
     fallback: FALLBACK_IMAGE,
-    alt: 'Our dedicated and skilled team',
+    alt: 'Vann Harvest dedicated team members',
     width: 1600,
     height: 900,
     category: 'Team'
@@ -94,7 +94,7 @@ const galleryImages: GalleryImage[] = [
   {
     src: imageUrls.processing,
     fallback: FALLBACK_IMAGE,
-    alt: 'Raisin processing and packaging',
+    alt: 'Vann Harvest raisin processing and packaging plant',
     width: 1600,
     height: 900,
     category: 'Processing & Quality'
@@ -102,7 +102,7 @@ const galleryImages: GalleryImage[] = [
   {
     src: imageUrls.quality,
     fallback: FALLBACK_IMAGE,
-    alt: 'Quality control and inspection',
+    alt: 'Rigorous raisin quality control and expert inspection at Vann Harvest facility',
     width: 1600,
     height: 900,
     category: 'Processing & Quality'

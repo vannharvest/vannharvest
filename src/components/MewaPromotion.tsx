@@ -5,7 +5,7 @@ import { CalendarDays, MapPin, ArrowRight } from 'lucide-react';
 
 const MewaPromotion: React.FC = () => {
   const mewaImages = [
-    { src: '/images/gallery/events/mewa_5.avif', alt: 'Close-up of Vann Harvest products at MEWA India 2026' },
+    { src: '/images/gallery/events/mewa-india-2026-vann-harvest-products.avif', alt: 'Close-up of Vann Harvest products at MEWA India 2026' },
   ];
 
   return (
@@ -33,9 +33,9 @@ const MewaPromotion: React.FC = () => {
               }
             },
             "image": [
-              "https://www.vannharvest.com/images/gallery/events/mewa_1.avif",
-              "https://www.vannharvest.com/images/gallery/events/mewa_2.avif",
-              "https://www.vannharvest.com/images/gallery/events/mewa_3.avif"
+              "https://www.vannharvest.com/images/gallery/events/mewa-india-2026-booth-overview.avif",
+              "https://www.vannharvest.com/images/gallery/events/mewa-india-2026-team-interaction.avif",
+              "https://www.vannharvest.com/images/gallery/events/mewa-india-2026-product-display.avif"
             ],
             "description": "Vann Harvest is attending MEWA India 2026, India's Largest Dry Fruits & Nuts Trade Show. Discover our premium selection and explore partnership opportunities.",
             "organizer": {
@@ -50,7 +50,7 @@ const MewaPromotion: React.FC = () => {
       <section className="relative bg-gradient-to-r from-yellow-400 via-orange-500 to-red-600 text-white py-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
       <div className="absolute inset-0 opacity-20">
         <Image
-          src="/images/gallery/events/mewa.avif" // Replace with an appropriate background image
+          src="/images/gallery/events/mewa-india-2026-event-banner.avif" // Replace with an appropriate background image
           alt="Dry fruits background"
           width={1920}
           height={1080}
