@@ -41,9 +41,6 @@ export default function WhyChooseUsSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <span className="inline-block text-green-600 text-sm font-semibold tracking-wider uppercase mb-4">
-            Why Choose Us
-          </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6">
             Why Choose Vann Harvest?
           </h2>
