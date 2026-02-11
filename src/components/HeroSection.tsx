@@ -11,7 +11,7 @@ const MotionDiv = dynamic(() => import('framer-motion').then(m => m.motion.div),
   loading: () => <div />
 });
 
-const VIDEO_ID = 'mpYtM-4s27g';
+const VIDEO_ID = 'ge4TiG153xk';
 const VIDEO_TITLE = 'Vann Harvest - Our Farm Tour';
 const THUMBNAIL_QUALITY = 'hqdefault'; // 'maxresdefault' for higher quality if needed
 
