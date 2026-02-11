@@ -12,7 +12,8 @@ export default function Home() {
       {/* 🌟 Hero Section */}
       <HeroSection />
       {/* 🧺 Product Categories */}
-      <MewaPromotion />
+      {/* {<MewaPromotion />} */}
+      
       <CategorySection />
       {/* 🛒 Promotional Banner */}
       <PromotionSection

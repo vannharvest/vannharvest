@@ -93,20 +93,20 @@ export default function Hero() {
         className="absolute z-20 left-6 md:left-12 lg:left-20 bottom-16 md:bottom-24 w-[90%] max-w-4xl"
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 10 }}
+        transition={{ duration: 0.8, delay: 0.5 }}
         aria-live="polite"
         aria-atomic="true"
       >
-        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] font-bold leading-[1.1] text-white mb-4 md:mb-6 [text-shadow:_0_1px_2px_rgba(0,0,0,0.8)]">
+        <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-[2.5rem] font-bold leading-[1.1] text-white mb-4 md:mb-6 [text-shadow:_0_1px_2px_rgba(0,0,0,0.8)]">
           Premium Raisin Exporters from Vijayapura, Karnataka – Trusted Since 1993
         </h1>
-        <p className="text-base sm:text-lg md:text-xl font-light text-white/95 leading-relaxed mb-8 md:mb-10 max-w-3xl [text-shadow:_0_1px_1px_rgba(0,0,0,0.5)]">
+        <p className="text-xs sm:text-sm md:text-base font-light text-white/95 leading-relaxed mb-8 md:mb-10 max-w-3xl [text-shadow:_0_1px_1px_rgba(0,0,0,0.5)]">
           Discover Vann Harvest Pvt. Ltd., a leading wholesale raisin supplier in India, 
           producing naturally sun-dried, sulphur-free raisins from our farms in Vijayapura, Karnataka.
         </p>
         <Link
           href="/products"
-          className="inline-block px-8 sm:px-10 py-3 sm:py-3.5 bg-green-600 hover:bg-green-700 rounded-full text-white font-medium transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 text-base sm:text-lg"
+          className="inline-block px-6 sm:px-8 py-2.5 sm:py-3 bg-green-600 hover:bg-green-700 rounded-full text-white font-medium transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 text-sm sm:text-base"
           aria-label="Explore our premium raisin products"
         >
           Explore Our Products
