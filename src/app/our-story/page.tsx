@@ -18,7 +18,7 @@ export default function OurStory() {
   const bgY = useTransform(scrollY, [0, 1000], [0, 100]);
 
   const [isLoading, setIsLoading] = useState(true);
-  const bgImageSrc = '/images/vann-harvest-grape-farm-background.webp';
+  const bgImageSrc = '/images/VH_our_story_bg.avif';
 
   useEffect(() => {
     setIsClient(true);

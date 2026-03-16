@@ -134,7 +134,7 @@ At Vann Harvest, we take pride in every step of this process, ensuring that only
   {
     title: 'The Natural Power of Raisins: Why They Belong in Your Daily Diet',
     excerpt: 'Discover the health benefits of sun-dried raisins and how Vann Harvest ensures purity in every pack.',
-    image: '/images/blog/natural-power-of-raisins.webp',
+    image: '/images/blog/natural-power-of-raisins.avif',
     imageAlt: 'Nutrient-rich sun-dried raisins from Vann Harvest for daily health',
     slug: 'natural-power-of-raisins',
     date: '2025-06-20',

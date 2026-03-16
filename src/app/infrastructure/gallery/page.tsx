@@ -23,6 +23,16 @@ const imageUrls = {
   irrigation: '/images/gallery/farm/farm-irrigation-system.avif',
   drying: '/images/gallery/farm/raisin-drying-process.avif',
   sustainability: '/images/gallery/farm/sustainable-farming-practices.avif',
+  vh_5942: '/images/gallery/farm/VH_5942.avif',
+  vh_5953: '/images/gallery/farm/VH_5953 .avif',
+  vh_5959: '/images/gallery/farm/VH_5959.avif',
+  vh_5969: '/images/gallery/farm/VH_5969.avif',
+  vh_5974: '/images/gallery/farm/VH_5974 .avif',
+  vh_5980: '/images/gallery/farm/VH_5980.avif',
+  vh_6000: '/images/gallery/farm/VH_6000.avif',
+  vh_6077: '/images/gallery/farm/VH_6077.avif',
+  vh_6081: '/images/gallery/farm/VH_6081.avif',
+  vh_6084: '/images/gallery/farm/VH_6084.avif',
   
   // Team
   team: '/images/gallery/team/vann-harvest-team-members.avif',
@@ -30,6 +40,8 @@ const imageUrls = {
   // Processing
   processing: '/images/gallery/processing/vann-harvest-raisin-processing-plant.avif',
   quality: '/images/gallery/processing/vann-harvest-raisin-quality-control.avif',
+  vh_6086: '/images/gallery/processing/VH_6086.avif',
+  vh_9440: '/images/gallery/processing/VH_9440.avif',
   
   // Hero image
   hero: '/images/gallery/farm/vann-harvest-farm-landscape.avif',
@@ -38,8 +50,7 @@ const imageUrls = {
   mewa: '/images/gallery/events/mewa-india-2026-event-banner.avif',
   mewa_1: '/images/gallery/events/mewa-india-2026-booth-overview.avif',
   mewa_2: '/images/gallery/events/mewa-india-2026-team-interaction.avif',
-  mewa_3: '/images/gallery/events/mewa-india-2026-product-display.avif',
-  mewa_4: '/images/gallery/events/mewa-india-2026-networking-founders.avif',
+  mewa_3: '/images/gallery/events/mewa-india-2026-networking-founders.avif',
   mewa_5: '/images/gallery/events/mewa-india-2026-vann-harvest-products.avif'
 };
 
@@ -80,15 +91,85 @@ const galleryImages: GalleryImage[] = [
     height: 900,
     category: 'Farm'
   },
-  
-  // Team
   {
-    src: imageUrls.team,
+    src: imageUrls.vh_5942,
     fallback: FALLBACK_IMAGE,
-    alt: 'Vann Harvest dedicated team members',
+    alt: 'Vann Harvest farm operations - VH_5942',
     width: 1600,
     height: 900,
-    category: 'Team'
+    category: 'Farm'
+  },
+  {
+    src: imageUrls.vh_5953,
+    fallback: FALLBACK_IMAGE,
+    alt: 'Vann Harvest farm operations - VH_5953',
+    width: 1600,
+    height: 900,
+    category: 'Farm'
+  },
+  {
+    src: imageUrls.vh_5959,
+    fallback: FALLBACK_IMAGE,
+    alt: 'Vann Harvest farm operations - VH_5959',
+    width: 1600,
+    height: 900,
+    category: 'Farm'
+  },
+  {
+    src: imageUrls.vh_5969,
+    fallback: FALLBACK_IMAGE,
+    alt: 'Vann Harvest farm operations - VH_5969',
+    width: 1600,
+    height: 900,
+    category: 'Farm'
+  },
+  {
+    src: imageUrls.vh_5974,
+    fallback: FALLBACK_IMAGE,
+    alt: 'Vann Harvest farm operations - VH_5974',
+    width: 1600,
+    height: 900,
+    category: 'Farm'
+  },
+  {
+    src: imageUrls.vh_5980,
+    fallback: FALLBACK_IMAGE,
+    alt: 'Vann Harvest farm operations - VH_5980',
+    width: 1600,
+    height: 900,
+    category: 'Farm'
+  },
+  {
+    src: imageUrls.vh_6000,
+    fallback: FALLBACK_IMAGE,
+    alt: 'Vann Harvest farm operations - VH_6000',
+    width: 1600,
+    height: 900,
+    category: 'Farm'
+  },
+  {
+    src: imageUrls.vh_6077,
+    fallback: FALLBACK_IMAGE,
+    alt: 'Vann Harvest farm operations - VH_6077',
+    width: 1600,
+    height: 900,
+    category: 'Farm'
+  },
+  {
+    src: imageUrls.vh_6081,
+    fallback: FALLBACK_IMAGE,
+    alt: 'Vann Harvest farm operations - VH_6081',
+    width: 1600,
+    height: 900,
+    category: 'Farm'
+  },
+  {
+    src: imageUrls.vh_6084,
+    fallback: FALLBACK_IMAGE,
+    alt: 'Vann Harvest farm operations - VH_6084',
+    width: 1600,
+    height: 900,
+    category: 'Farm'
   },
   // Processing & Quality
   {
@@ -103,6 +184,30 @@ const galleryImages: GalleryImage[] = [
     src: imageUrls.quality,
     fallback: FALLBACK_IMAGE,
     alt: 'Rigorous raisin quality control and expert inspection at Vann Harvest facility',
+    width: 1600,
+    height: 900,
+    category: 'Processing & Quality'
+  },
+  {
+    src: imageUrls.team,
+    fallback: FALLBACK_IMAGE,
+    alt: 'Vann Harvest dedicated team members',
+    width: 1600,
+    height: 900,
+    category: 'Processing & Quality'
+  },
+  {
+    src: imageUrls.vh_6086,
+    fallback: FALLBACK_IMAGE,
+    alt: 'Vann Harvest processing operations - VH_6086',
+    width: 1600,
+    height: 900,
+    category: 'Processing & Quality'
+  },
+  {
+    src: imageUrls.vh_9440,
+    fallback: FALLBACK_IMAGE,
+    alt: 'Vann Harvest processing operations - VH_9440',
     width: 1600,
     height: 900,
     category: 'Processing & Quality'
@@ -132,16 +237,8 @@ const galleryImages: GalleryImage[] = [
     height: 900,
     category: 'Event & Exhibitions'
   },
-  {   
-    src: imageUrls.mewa_3,
-    fallback: FALLBACK_IMAGE,
-    alt: 'Vann Harvest booth and team at MEWA India 2025',
-    width: 1600,
-    height: 900,
-    category: 'Event & Exhibitions'
-  },
   {
-    src: imageUrls.mewa_4,
+    src: imageUrls.mewa_3,
     fallback: FALLBACK_IMAGE,
     alt: 'Vann Harvest Founders networking at MEWA India 2025',
     width: 1600,

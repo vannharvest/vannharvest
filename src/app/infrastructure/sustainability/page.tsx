@@ -104,7 +104,7 @@ export default function Sustainability() {
             <div className="relative h-80 md:h-96 rounded-2xl overflow-hidden bg-gray-100 flex items-center justify-center">
               <div className="w-full h-full relative">
                 <Image 
-                  src="/images/sustainable-farming-green-grapes-harvest.webp" 
+                  src="/images/VH_sustainable-farming-green-grapes-harvest..avif" 
                   alt="Vann Harvest sustainable farming with lush green vineyards" 
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
@@ -127,7 +127,7 @@ export default function Sustainability() {
               <div className="relative h-80 md:h-96 rounded-2xl overflow-hidden bg-gray-100 flex items-center justify-center">
                 <div className="w-full h-full relative">
                   <Image 
-                    src="/images/nutrient-rich-soil-vineyard-cultivation.webp" 
+                    src="/images/VH_6030.avif" 
                     alt="Nutrient-rich soil for sustainable vineyard cultivation" 
                     fill
                     sizes="(max-width: 768px) 100vw, 50vw"

@@ -358,7 +358,7 @@ export default async function sitemap(): Promise<SitemapEntry[]> {
       changeFrequency: 'monthly',
       priority: 0.7,
       images: [{
-        url: `${baseUrl}/images/sustainable-farming-green-grapes-harvest.webp`,
+        url: `${baseUrl}/images/VH_sustainable-farming-green-grapes-harvest..avif`,
         title: 'Sustainable Farming at Vann Harvest',
         caption: 'Commitment to sustainable farming and a greener tomorrow',
         license: `${baseUrl}/terms`

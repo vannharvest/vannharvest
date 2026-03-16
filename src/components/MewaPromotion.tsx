@@ -34,8 +34,7 @@ const MewaPromotion: React.FC = () => {
             },
             "image": [
               "https://www.vannharvest.com/images/gallery/events/mewa-india-2026-booth-overview.avif",
-              "https://www.vannharvest.com/images/gallery/events/mewa-india-2026-team-interaction.avif",
-              "https://www.vannharvest.com/images/gallery/events/mewa-india-2026-product-display.avif"
+              "https://www.vannharvest.com/images/gallery/events/mewa-india-2026-team-interaction.avif"
             ],
             "description": "Vann Harvest is attending MEWA India 2026, India's Largest Dry Fruits & Nuts Trade Show. Discover our premium selection and explore partnership opportunities.",
             "organizer": {
